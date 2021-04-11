@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Application\Interfaces\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Repositorys\Interfaces\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
