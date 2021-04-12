@@ -1,4 +1,8 @@
+using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
+using ChilePlacer.Repositories;
+using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -47,6 +51,11 @@ namespace ChilePlacer
             services.AddControllersWithViews();
             services.AddRazorPages();
             //*****************************************************************************
+
+            services.AddTransient<MyAppContext, MyAppContext>();
+            services.AddTransient<IUtilidad,Utilidad>();
+            services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
+            services.AddTransient<IGirlsRepository, GirlsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

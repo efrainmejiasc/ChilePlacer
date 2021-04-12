@@ -18,6 +18,5 @@ namespace ChilePlacer.DataModels
         [Column(Order = 2, TypeName = "VARCHAR(50)")]
         public string Type{ get; set; }
 
-        public  List<GaleriaGirls> GaleriaGirls { get; set; }
     }
 }

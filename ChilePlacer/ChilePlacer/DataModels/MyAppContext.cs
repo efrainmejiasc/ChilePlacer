@@ -13,6 +13,7 @@ namespace ChilePlacer.DataModels
         {
         }
 
+        public virtual DbSet<Girls> Girls { get; set; }
         public virtual DbSet<TypeGirls> TypeGirls { get; set; }
         public virtual DbSet<GaleriaGirls> GaleriaGirls { get; set; }
 
@@ -24,5 +25,7 @@ namespace ChilePlacer.DataModels
             }
 
         }
+
+
     }
 }

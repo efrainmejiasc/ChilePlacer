@@ -2,7 +2,7 @@
 
 namespace ChilePlacer.Migrations
 {
-    public partial class ForeKey2 : Migration
+    public partial class Key : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,49 +10,40 @@ namespace ChilePlacer.Migrations
                 name: "FK_GaleriaGirls_TypeGirls_TypeGirlsId",
                 table: "GaleriaGirls");
 
-            migrationBuilder.DropColumn(
-                name: "IdTypeGirls",
-                table: "GaleriaGirls");
-
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.RenameColumn(
                 name: "TypeGirlsId",
                 table: "GaleriaGirls",
-                type: "INT",
-                nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(int),
-                oldType: "INT",
-                oldNullable: true);
+                newName: "GirlsId");
+
+            migrationBuilder.RenameIndex(
+                name: "IX_GaleriaGirls_TypeGirlsId",
+                table: "GaleriaGirls",
+                newName: "IX_GaleriaGirls_GirlsId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_GaleriaGirls_TypeGirls_TypeGirlsId",
+                name: "FK_GaleriaGirls_Girls_GirlsId",
                 table: "GaleriaGirls",
-                column: "TypeGirlsId",
-                principalTable: "TypeGirls",
+                column: "GirlsId",
+                principalTable: "Girls",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_GaleriaGirls_TypeGirls_TypeGirlsId",
+                name: "FK_GaleriaGirls_Girls_GirlsId",
                 table: "GaleriaGirls");
 
-            migrationBuilder.AlterColumn<int>(
-                name: "TypeGirlsId",
+            migrationBuilder.RenameColumn(
+                name: "GirlsId",
                 table: "GaleriaGirls",
-                type: "INT",
-                nullable: true,
-                oldClrType: typeof(int),
-                oldType: "INT");
+                newName: "TypeGirlsId");
 
-            migrationBuilder.AddColumn<int>(
-                name: "IdTypeGirls",
+            migrationBuilder.RenameIndex(
+                name: "IX_GaleriaGirls_GirlsId",
                 table: "GaleriaGirls",
-                type: "INT",
-                nullable: false,
-                defaultValue: 0);
+                newName: "IX_GaleriaGirls_TypeGirlsId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_GaleriaGirls_TypeGirls_TypeGirlsId",

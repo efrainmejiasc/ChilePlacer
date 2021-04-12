@@ -16,13 +16,11 @@ namespace ChilePlacer.DataModels
         public int Id { get; set; }
 
         [Column(Order = 2, TypeName = "INT")]
-        public int IdGirls {get;set;}
+        [Required]
+        public Girls Girls { get; set; }
 
         [Column(Order = 3, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
-
-        [Required]
-        public TypeGirls TypeGirls { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(250)")]
         public string PathImagen { get; set; }

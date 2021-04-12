@@ -7,5 +7,9 @@ namespace ChilePlacer.Application.Interfaces
 {
     public interface IUtilidad
     {
+        Guid NuevoIdentificador();
+        string CodeBase64(string cadena);
+        string DecodeBase64(string cadena);
+        bool CompararString(string a, string b);
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210410233354_ForeKey")]
-    partial class ForeKey
+    [Migration("20210412163407_Key")]
+    partial class Key
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,23 +31,54 @@ namespace ChilePlacer.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int>("IdGirls")
+                    b.Property<int?>("GirlsId")
                         .HasColumnType("INT");
 
-                    b.Property<int>("IdTypeGirls")
+                    b.Property<int>("IdGirls")
                         .HasColumnType("INT");
 
                     b.Property<string>("PathImagen")
                         .HasColumnType("VARCHAR(250)");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("GirlsId");
+
+                    b.ToTable("GaleriaGirls");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.Girls", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("BIT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
                     b.Property<int?>("TypeGirlsId")
                         .HasColumnType("INT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TypeGirlsId");
 
-                    b.ToTable("GaleriaGirls");
+                    b.ToTable("Girls");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypeGirls", b =>
@@ -67,16 +98,20 @@ namespace ChilePlacer.Migrations
 
             modelBuilder.Entity("ChilePlacer.DataModels.GaleriaGirls", b =>
                 {
+                    b.HasOne("ChilePlacer.DataModels.Girls", "Girls")
+                        .WithMany()
+                        .HasForeignKey("GirlsId");
+
+                    b.Navigation("Girls");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.Girls", b =>
+                {
                     b.HasOne("ChilePlacer.DataModels.TypeGirls", "TypeGirls")
-                        .WithMany("GaleriaGirls")
+                        .WithMany()
                         .HasForeignKey("TypeGirlsId");
 
                     b.Navigation("TypeGirls");
-                });
-
-            modelBuilder.Entity("ChilePlacer.DataModels.TypeGirls", b =>
-                {
-                    b.Navigation("GaleriaGirls");
                 });
 #pragma warning restore 612, 618
         }

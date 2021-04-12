@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210410233932_ForeKey2")]
-    partial class ForeKey2
+    [Migration("20210412162532_INIT")]
+    partial class INIT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,7 +37,7 @@ namespace ChilePlacer.Migrations
                     b.Property<string>("PathImagen")
                         .HasColumnType("VARCHAR(250)");
 
-                    b.Property<int>("TypeGirlsId")
+                    b.Property<int?>("TypeGirlsId")
                         .HasColumnType("INT");
 
                     b.HasKey("Id");
@@ -45,6 +45,40 @@ namespace ChilePlacer.Migrations
                     b.HasIndex("TypeGirlsId");
 
                     b.ToTable("GaleriaGirls");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.Girls", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Activo")
+                        .HasColumnType("BIT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<int?>("TypeGirlsId")
+                        .HasColumnType("INT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeGirlsId");
+
+                    b.ToTable("Girls");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypeGirls", b =>
@@ -64,11 +98,16 @@ namespace ChilePlacer.Migrations
 
             modelBuilder.Entity("ChilePlacer.DataModels.GaleriaGirls", b =>
                 {
-                    b.HasOne("ChilePlacer.DataModels.TypeGirls", "TypeGirls")
+                    b.HasOne("ChilePlacer.DataModels.TypeGirls", null)
                         .WithMany("GaleriaGirls")
-                        .HasForeignKey("TypeGirlsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TypeGirlsId");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.Girls", b =>
+                {
+                    b.HasOne("ChilePlacer.DataModels.TypeGirls", "TypeGirls")
+                        .WithMany()
+                        .HasForeignKey("TypeGirlsId");
 
                     b.Navigation("TypeGirls");
                 });
