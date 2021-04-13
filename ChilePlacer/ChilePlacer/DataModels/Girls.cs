@@ -21,33 +21,21 @@ namespace ChilePlacer.DataModels
         public Guid Identidad { get; set; }
 
         [Required]
-        [Column(Order = 3)]
-        public TypeGirls TypeGirls { get; set; }
-
-        [Required]
-        [Column(Order = 4, TypeName = "VARCHAR(50)")]
+        [Column(Order = 3, TypeName = "VARCHAR(50)")]
         public string Email { get; set; }
 
         [Required]
-        [Column(Order = 5, TypeName = "VARCHAR(50)")]
+        [Column(Order = 4, TypeName = "VARCHAR(50)")]
         public string Username{ get; set; }
 
-        [Column(Order = 6, TypeName = "DATETIME")]
+        [Column(Order = 5, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
 
-        [Column(Order = 7, TypeName = "BIT")]
+        [Column(Order = 6, TypeName = "BIT")]
         public  bool Activo{ get; set; }
 
         [Required]
-        [Column(Order = 8, TypeName = "VARCHAR(100)")]
-        public string Nombre { get; set; }
-
-        [Required]
-        [Column(Order = 9, TypeName = "VARCHAR(100)")]
-        public string Apellido { get; set; }
-
-        [Required]
-        [Column(Order = 10, TypeName = "VARCHAR(250)")]
+        [Column(Order = 7, TypeName = "VARCHAR(250)")]
         public string Password { get; set; }
 
     }
