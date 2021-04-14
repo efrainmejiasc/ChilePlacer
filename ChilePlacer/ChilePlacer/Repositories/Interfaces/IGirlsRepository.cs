@@ -9,6 +9,7 @@ namespace ChilePlacer.Repositories.Interfaces
     public interface IGirlsRepository
     {
         Girls InsertGirls(Girls model);
+        bool GetExisteEmail(string email);
         bool GetExisteUserName(string username);
     }
 }

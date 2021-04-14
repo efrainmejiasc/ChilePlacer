@@ -32,9 +32,15 @@ namespace ChilePlacer.Controllers
             var respuesta = new RespuestaModel();
             if (girls.GetExisteUserName(username))
             {
-                respuesta.Descripcion ="El usuario: " + username + "ya existe en nuestro sistema";
+                respuesta.Descripcion ="El usuario: " + username + " ya existe en nuestro sistema";
                 return Json(respuesta);
             }
+            else if (girls.GetExisteEmail(mail))
+            {
+                respuesta.Descripcion = "La direccion de e-mail: " + mail + " ya existe en nuestro sistema";
+                return Json(respuesta);
+            }
+
             var identificador = util.NuevoIdentificador();
             var password64 = util.CodeBase64(mail + password);
             var modelGirl = util.SetGirlsModel(username, mail, password64,identificador);
@@ -42,8 +48,7 @@ namespace ChilePlacer.Controllers
 
             var enlaze = util.ConstruirEnlazeRegistro(mail, identificador);
             var estructuraMail = util.SetEstructuraMailRegister(enlaze,mail);
-
-
+            sendMail.EnviarMailNotificacion(estructuraMail, hostEnv);
 
             if(modelGirl.Id > 0)
                 respuesta.Descripcion = "Registro satisfactorio, fue enviado un email a tu direccion electronica para la activacion de tu cuenta";

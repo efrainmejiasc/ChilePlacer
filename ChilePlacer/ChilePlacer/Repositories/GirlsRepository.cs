@@ -23,6 +23,15 @@ namespace ChilePlacer.Repositories
             return false;
         }
 
+        public bool GetExisteEmail(string email)
+        {
+            var mail = db.Girls.Where(x => x.Activo == true && x.Email == email).Select(x => x.Email).FirstOrDefault();
+            if (!string.IsNullOrEmpty(mail))
+                return false;
+
+            return true;
+        }
+
         public Girls InsertGirls(Girls model)
         {
             db.Girls.Add(model);
