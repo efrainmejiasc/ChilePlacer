@@ -37,10 +37,13 @@ export class RegistroGirlsComponent  {
     $.ajax({
       type: "POST",
       url: "Registro/RegistroGirls",
-      data: { nameuser: this.username, mail: this.mail, password: this.password },
+      data: {username: this.username, mail: this.mail, password: this.password },
       dataType: "json",
       success: function (data) {
-        this.mostrarMensaje(data.descripcion);
+        $('#msj').html('');
+        $('#msj').html(data.descripcion);
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
       },
       complete: function () {
         console.log('REGITROGIRLS');
@@ -68,7 +71,8 @@ export class RegistroGirlsComponent  {
   }
 
   mostrarMensaje(msj: string) {
-    $('#msj').html(msj)
+    $('#msj').html('');
+    $('#msj').html(msj);
     $('#mensaje').show();
     setTimeout(this.ocultarmensaje, 3000);
   }

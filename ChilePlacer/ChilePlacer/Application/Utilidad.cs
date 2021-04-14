@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,22 @@ namespace ChilePlacer.Application
         private Guid CrearGuid()
         {
             return Guid.NewGuid();
+        }
+
+        public Girls SetGirlsModel (string username, string email, string password,Guid identificador)
+        {
+            var girl = new Girls()
+            {
+                Identidad = identificador,
+                Username = username,
+                Password = password,
+                Email = email,
+                Activo = false,
+                Fecha = DateTime.UtcNow
+             
+            };
+
+            return girl;
         }
     }
 }

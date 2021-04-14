@@ -17,7 +17,7 @@ namespace ChilePlacer.Repositories
         public bool GetExisteUserName (string username)
         {
             var nameUser = db.Girls.Where(x => x.Activo == true && x.Username == username).Select(x => x.Username).FirstOrDefault();
-            if (nameUser != string.Empty)
+            if (!string.IsNullOrEmpty(nameUser))
                 return true;
 
             return false;

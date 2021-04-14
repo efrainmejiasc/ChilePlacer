@@ -30,9 +30,15 @@ namespace ChilePlacer.Controllers
             }
             var identificador = util.NuevoIdentificador();
             var password64 = util.CodeBase64(mail + password);
+            var modelGirl = util.SetGirlsModel(username, mail, password64,identificador);
+            modelGirl = girls.InsertGirls(modelGirl);
 
+            if(modelGirl.Id > 0)
+                respuesta.Descripcion = "Registro satisfactorio, fue enviado un email a tu direccion electronica para la activacion de tu cuenta";
+            else
+                respuesta.Descripcion = "Registro fallido";
 
-            return Json("");
+            return Json(respuesta);
         }
     }
 }
