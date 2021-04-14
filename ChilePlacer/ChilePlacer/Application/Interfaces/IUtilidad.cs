@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace ChilePlacer.Application.Interfaces
         string CodeBase64(string cadena);
         string DecodeBase64(string cadena);
         bool CompararString(string a, string b);
+        string ConstruirEnlazeRegistro(string email, Guid identidad);
+        ActivacioMailModel SetEstructuraMailRegister(string enlaze, string email);
         Girls SetGirlsModel(string username, string email, string password,Guid identiificador);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,10 +60,33 @@ namespace ChilePlacer.Application
                 Email = email,
                 Activo = false,
                 Fecha = DateTime.UtcNow
-             
             };
 
             return girl;
+        }
+
+        public ActivacioMailModel SetEstructuraMailRegister(string enlaze, string email)
+        {
+            ActivacioMailModel model = new ActivacioMailModel();
+            model.Link = enlaze;
+            model.Saludo = "Hola: " +  email;
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = "Por favor confirma la direccion de correo electronico, para saber que eres realmente tu.";
+            model.ClickAqui = "Hazme Click Para Confirmar Tu Identidad!";
+            model.Asunto = "Por favor completa tu perfil...";
+            model.Observacion = "Bienvenido(a) a nuestro sitio ChilePlacer, haz click en el link y completa tu perfil  </br> Todos los datos aportados seran confidenciales , no seran revelados ni compartidos con nadie.";
+            model.PathLecturaArchivo = @"Template\ActivacionMail";
+            return model;
+        }
+
+        public string ConstruirEnlazeRegistro(string email, Guid identidad)
+        {
+            string link = "http://localhost:8080";
+            link = link + "&email=" + CodeBase64(email);
+            link = link + "&identidad=" + CodeBase64(identidad.ToString());
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            return link;
         }
     }
 }
