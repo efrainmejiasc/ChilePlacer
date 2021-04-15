@@ -1,0 +1,58 @@
+﻿@model ChilePlacer.Models.RespuestaModel
+
+@{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/modal.css" />
+}
+
+
+
+<div>
+    <input type="hidden" id="descripcion" name="descripcion" value="@Model.Descripcion" />
+    <input type="hidden" id="status" name="status" value="@Model.Status" />
+    <label> ChilePlacer </label>
+</div>
+
+<div>
+    <div id="mensaje" class="modalTipo">
+        <div class="modal-content">
+            <!-- <i class='fas fa-times'>x</i>-->
+            <div class="formulario-campo">
+                <label id="msj"></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        console.log('ready');
+        mostrarMensaje()
+    });
+
+    function mostrarMensaje() {
+        let msj = $('#descripcion').val();
+        let status = $('#status').val();
+        console.log(status);
+
+        if (msj !== '')
+        {
+            $('#msj').html('');
+            $('#msj').html(msj);
+            $('#mensaje').show();
+            setTimeout(ocultarMensaje, 4000);
+        }
+
+        if (status === 'true')
+            window.location = "http://localhost:4200/girl-completed-profile";
+        else
+            window.location = "http://localhost:4200";
+    }
+
+    function ocultarMensaje() {
+        $('#mensaje').hide();
+    }
+
+
+</script>

@@ -23,13 +23,13 @@ namespace ChilePlacer.Repositories
             return false;
         }
 
-        public bool GetExisteEmail(string email)
+        public bool GetExisteEmail(string email,bool activo)
         {
-            var mail = db.Girls.Where(x => x.Activo == true && x.Email == email).Select(x => x.Email).FirstOrDefault();
+            var mail = db.Girls.Where(x => x.Activo == activo && x.Email == email).Select(x => x.Email).FirstOrDefault();
             if (!string.IsNullOrEmpty(mail))
-                return false;
+                return true;
 
-            return true;
+            return false;
         }
 
         public Girls InsertGirls(Girls model)
@@ -38,6 +38,16 @@ namespace ChilePlacer.Repositories
             db.SaveChanges();
 
             return model;
+        }
+
+        public Girls ActivarUsuario (Guid identificador, bool activo)
+        {
+            var girl = db.Girls.Where(x => x.Identidad == identificador).FirstOrDefault();
+            db.Girls.Attach(girl);
+            girl.Activo = activo;
+            db.SaveChanges();
+
+            return girl;
         }
     }
 }

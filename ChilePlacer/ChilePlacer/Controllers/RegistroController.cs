@@ -35,7 +35,7 @@ namespace ChilePlacer.Controllers
                 respuesta.Descripcion ="El usuario: " + username + " ya existe en nuestro sistema";
                 return Json(respuesta);
             }
-            else if (girls.GetExisteEmail(mail))
+            else if (girls.GetExisteEmail(mail,true))
             {
                 respuesta.Descripcion = "La direccion de e-mail: " + mail + " ya existe en nuestro sistema";
                 return Json(respuesta);
@@ -46,7 +46,7 @@ namespace ChilePlacer.Controllers
             var modelGirl = util.SetGirlsModel(username, mail, password64,identificador);
             modelGirl = girls.InsertGirls(modelGirl);
 
-            var enlaze = util.ConstruirEnlazeRegistro(mail, identificador);
+            var enlaze = util.ConstruirEnlazeRegistro(mail,username,identificador);
             var estructuraMail = util.SetEstructuraMailRegister(enlaze,mail);
             sendMail.EnviarMailNotificacion(estructuraMail, hostEnv);
 

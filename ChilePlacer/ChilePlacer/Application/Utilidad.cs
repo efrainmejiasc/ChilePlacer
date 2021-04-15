@@ -80,13 +80,28 @@ namespace ChilePlacer.Application
             return model;
         }
 
-        public string ConstruirEnlazeRegistro(string email, Guid identidad)
+        public string ConstruirEnlazeRegistro(string email, string username,Guid identidad)
         {
-            string link = "http://localhost:8080";
+            string link = EngineData.UrlServerActivacion;
             link = link + "?email=" + CodeBase64(email);
+            link = link + "&username=" + CodeBase64(username);
             link = link + "&identidad=" + CodeBase64(identidad.ToString());
             link = link + "&date=" + DateTime.UtcNow.ToString();
             return link;
+        }
+
+        public bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion)
+        {
+            bool resultado = false;
+            if (fechaEnvio.Date != fechaActivacion.Date)
+                return resultado;
+
+            int horaEnvio = fechaEnvio.Hour;
+            int horaActivacion = fechaActivacion.Hour;
+            int diferenciaHora = horaActivacion - horaEnvio;
+            if (diferenciaHora <= 3)
+                resultado = true;
+            return resultado;
         }
     }
 }

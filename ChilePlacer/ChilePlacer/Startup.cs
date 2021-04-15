@@ -57,6 +57,10 @@ namespace ChilePlacer
             services.AddTransient<ISendMail, SendMail>();
             services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
             services.AddTransient<IGirlsRepository, GirlsRepository>();
+
+
+            EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHost");
+            EngineData.UrlServerActivacion= Configuration.GetValue<string>("HostSettings:UrlServerActivacion");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

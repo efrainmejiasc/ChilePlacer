@@ -8,5 +8,7 @@ namespace ChilePlacer.Models
     public class RespuestaModel
     {
         public string Descripcion { get; set; }
+
+        public string  Status { get; set; }
     }
 }

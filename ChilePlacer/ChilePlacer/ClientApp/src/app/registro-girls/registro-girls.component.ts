@@ -16,6 +16,7 @@ export class RegistroGirlsComponent  {
   public msj: string;
 
 
+
   public getRegister()
   {
     if (this.username === '' || this.mail === '' || this.password === '' || this.confirmaPassword === '' || this.robot !== true)

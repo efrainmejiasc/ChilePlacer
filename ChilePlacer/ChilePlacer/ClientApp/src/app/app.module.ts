@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroGirlsComponent } from './registro-girls/registro-girls.component';
+import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-completed-profile.component';
 
 
 
@@ -17,6 +18,7 @@ import { RegistroGirlsComponent } from './registro-girls/registro-girls.componen
     NavMenuComponent,
     HomeComponent,
     RegistroGirlsComponent,
+    GirlCompletedProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -24,7 +26,8 @@ import { RegistroGirlsComponent } from './registro-girls/registro-girls.componen
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'registro-girls', component: RegistroGirlsComponent},
+      { path: 'registro-girls', component: RegistroGirlsComponent },
+      { path: 'girl-completed-profile', component: GirlCompletedProfileComponent },
     ])
   ],
   providers: [],

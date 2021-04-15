@@ -1,0 +1,7 @@
+Hosting Account ID:	chileplacercl-001
+First Website Root Folder Name:	site1
+Hosting Plan Name:	W60-US
+Please Record The Following FTP Infomation:
+FTP Address :	FTP.SITE4NOW.NET
+FTP Username :	chileplacercl-001
+FTP Password :	1234Santiago*
