@@ -4,4 +4,4 @@ SELECT * FROM ChilePlacer..TypeSex
 SELECT * FROM ChilePlacer..GaleriaGirls 
 
 TRUNCATE TABLE ChilePlacer..Girls
-DELETE ChilePlacer..Girls
+--DELETE ChilePlacer..Girls

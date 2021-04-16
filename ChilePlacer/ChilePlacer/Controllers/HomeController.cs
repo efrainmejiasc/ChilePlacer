@@ -1,11 +1,16 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace ChilePlacer.Controllers
 {
@@ -13,11 +18,13 @@ namespace ChilePlacer.Controllers
     {
         private readonly IUtilidad util;
         private readonly IGirlsRepository girls;
+        private readonly IWebHostEnvironment hostEnv;
 
-        public HomeController(IUtilidad _util, IGirlsRepository _girls)
+        public HomeController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv)
         {
             util = _util;
             girls = _girls;
+            hostEnv = _hostEnv;
         }
 
         [HttpGet]
@@ -55,7 +62,42 @@ namespace ChilePlacer.Controllers
 
             respuesta.Descripcion = "El usuario: " + username + " fue activado...Ahora completa tu perfil";
             respuesta.Status = "true";
+            respuesta.Username = username;
+            respuesta.Identidad = identificador.ToString();
+
             return View(respuesta);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+
+        public JsonResult UploadFileMethod(IFormFile file)
+        {
+            if (file != null)
+            {
+                try
+                {
+                    if (!file.FileName.Contains(".csv"))
+                    {
+                        ViewBag.Message = "El archivo debe ser con extenxion .csv";
+                        return Json("Test");
+                    }
+                    string path = Path.Combine(hostEnv.ContentRootPath, "ArchivosFTP", file.FileName);
+                    var stream = System.IO.File.Create(path);
+                    file.CopyTo(stream);
+                    stream.Dispose();
+                    ViewBag.Message = "Archivo " + file.FileName + " cargado correctamente";
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Selecciona un archivp";
+            }
+            return Json("Test");
         }
     }
 }

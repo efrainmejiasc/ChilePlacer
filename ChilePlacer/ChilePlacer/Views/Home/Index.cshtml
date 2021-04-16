@@ -11,6 +11,8 @@
 <div>
     <input type="hidden" id="descripcion" name="descripcion" value="@Model.Descripcion" />
     <input type="hidden" id="status" name="status" value="@Model.Status" />
+    <input type="hidden" id="identidad" name="identidad" value="@Model.Identidad" />
+    <input type="hidden" id="username" name="username" value="@Model.Username" />
     <label> ChilePlacer </label>
 </div>
 
@@ -34,7 +36,7 @@
     function mostrarMensaje() {
         let msj = $('#descripcion').val();
         let status = $('#status').val();
-        console.log(status);
+        let parametro = 'username=' + $('#username').val() + '&identidad=' + $('#identidad').val();
 
         if (msj !== '')
         {
@@ -45,7 +47,7 @@
         }
 
         if (status === 'true')
-            window.location = "http://localhost:4200/girl-completed-profile";
+            window.location = "http://localhost:4200/girl-completed-profile?" + parametro;
         else
             window.location = "http://localhost:4200";
     }

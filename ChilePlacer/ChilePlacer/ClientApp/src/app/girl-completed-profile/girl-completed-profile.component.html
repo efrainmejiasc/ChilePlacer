@@ -1,4 +1,5 @@
 
+
 <div class="container">
 
   <span style="font-size:14px;color:silver;"><strong>Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.</strong></span><br />
@@ -12,7 +13,16 @@
       <div class="col col-4">
         <br /><br /><br />
         <span>Foto de perfil</span><br />
-        <input id="file-field" name="file-field" (change)="uploadFile($event)" type="file" accept=".png,.jpg,.jpeg">
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+      </div>
+      <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+          {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+          {{message}}
+        </span>
       </div>
     </div>
   </div>
@@ -31,7 +41,11 @@
     <label>Telefono</label>
     <input type="text" id="telefono" class="form form-control" required [(ngModel)]="telefono" /><br /><br />
 
+    <input type="hidden" id="username" [(ngModel)]="username"/>
+    <input type="hidden" id="identidad" [(ngModel)]="identidad"/>
   </div>
+
+
 
   <div class="form-group">
     <div class="col-md-12">
