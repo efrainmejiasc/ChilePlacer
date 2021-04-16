@@ -45,6 +45,7 @@ export class RegistroGirlsComponent  {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        window.location.href = 'http://localhost:4200';
       },
       complete: function () {
         console.log('REGITROGIRLS');
@@ -76,5 +77,9 @@ export class RegistroGirlsComponent  {
     $('#msj').html(msj);
     $('#mensaje').show();
     setTimeout(this.ocultarmensaje, 3000);
+  }
+
+  public cancelar() {
+    window.location.href = 'http://localhost:4200';
   }
 }

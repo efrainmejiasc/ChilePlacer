@@ -38,6 +38,7 @@
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />
+    <Folder Include="wwwroot\Files\ImagesSite\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
