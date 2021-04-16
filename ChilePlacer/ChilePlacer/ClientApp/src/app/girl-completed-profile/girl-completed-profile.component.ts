@@ -36,7 +36,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    this.http.post('https://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events' })
+    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
