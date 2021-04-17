@@ -27,6 +27,7 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log('onInit');
+    $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
   }
 
   public cancelar() {
@@ -75,6 +76,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     var nameImg = p[0] + "_" + this.identidad + "." + p[1];
     
     this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
+    $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
     console.log(nameImg);
 
     return false;
@@ -86,7 +88,12 @@ export class GirlCompletedProfileComponent implements OnInit {
     this.identidad = $('#identidad').val() as string;
     var p = this.namefile.replace('_', '').split('.');
     var nameImg = p[0] + "_" + this.identidad + "." + p[1];
-    console.log(nameImg);
+
+    if (this.nombre === '' || this.apellido === '' || this.dni === '' ||  this.telefono === '' || this.identidad === '') {
+      this.mostrarMensaje('Todos los campos son requeridos');
+      return false;
+    }
+
 
     $.ajax({
       type: "POST",

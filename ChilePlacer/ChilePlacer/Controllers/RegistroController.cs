@@ -64,7 +64,7 @@ namespace ChilePlacer.Controllers
         public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id)
         {
             var respuesta = new RespuestaModel();
-            if (string.IsNullOrEmpty(nameFoto) || string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 respuesta.Descripcion = "Error: valores vacios";
                 return Json(respuesta);
