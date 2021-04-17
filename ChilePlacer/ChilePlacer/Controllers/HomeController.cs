@@ -68,36 +68,5 @@ namespace ChilePlacer.Controllers
             return View(respuesta);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-
-        public JsonResult UploadFileMethod(IFormFile file)
-        {
-            if (file != null)
-            {
-                try
-                {
-                    if (!file.FileName.Contains(".csv"))
-                    {
-                        ViewBag.Message = "El archivo debe ser con extenxion .csv";
-                        return Json("Test");
-                    }
-                    string path = Path.Combine(hostEnv.ContentRootPath, "ArchivosFTP", file.FileName);
-                    var stream = System.IO.File.Create(path);
-                    file.CopyTo(stream);
-                    stream.Dispose();
-                    ViewBag.Message = "Archivo " + file.FileName + " cargado correctamente";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                }
-            }
-            else
-            {
-                ViewBag.Message = "Selecciona un archivp";
-            }
-            return Json("Test");
-        }
     }
 }

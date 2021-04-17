@@ -6,27 +6,28 @@
 
   <div class="container">
     <div class="row">
-      <div class="col col-3">
-        <img [src]="imgPerfil" class="imgSkill" />
+      <div class="col col-4">
+        <img [src]="imgPerfil"  [(ngModel)]="imgPerfil" class="imgSkill" /><br />
+        <span style="font-size:12px;color:silver;font-weight:bold;">El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)</span>
       </div>
 
       <div class="col col-4">
         <br /><br /><br />
-        <span>Foto de perfil</span><br />
+        <span>Imagen de perfil</span><br />
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-        <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+        <button type="button" class="btn btn-success" (click)="file.click()">Seleccionar imagen</button>
       </div>
       <div class="col-md-4">
-        <span class="upload" *ngIf="progress > 0">
+        <span class="upload" *ngIf="progress > 0" style="display:none;">
           {{progress}}%
         </span>
-        <span class="upload" *ngIf="message">
+        <span class="upload" *ngIf="message" style="display:none;">
           {{message}}
         </span>
       </div>
     </div>
   </div>
-
+  <br />
 
   <div class="col col-14">
     <label>Nombre</label>
@@ -41,8 +42,9 @@
     <label>Telefono</label>
     <input type="text" id="telefono" class="form form-control" required [(ngModel)]="telefono" /><br /><br />
 
-    <input type="hidden" id="username" [(ngModel)]="username"/>
-    <input type="hidden" id="identidad" [(ngModel)]="identidad"/>
+    <input type="hidden" id="username" [(ngModel)]="username" />
+    <input type="hidden" id="identidad" [(ngModel)]="identidad" />
+    <input type="hidden" id="filename" />
   </div>
 
 
@@ -51,7 +53,7 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" class="btn btn-success" style="width:200px;">Actualizar</button>
+          <button type="submit" id="registrar" (click)="SaveprofileGirls()"class="btn btn-success" style="width:200px;">Actualizar</button>
         </div>
         <div class="col-md-6 text-right">
           <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:200px;">Cancelar</button>
@@ -63,3 +65,12 @@
 </div>
 
 
+<div>
+  <div id="mensaje" class="modalTipo">
+    <div class="modal-content">
+      <div class="formulario-campo">
+        <label id="msj" [(ngModel)]="msj"></label>
+      </div>
+    </div>
+  </div>
+</div>

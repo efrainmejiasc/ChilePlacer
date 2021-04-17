@@ -56,23 +56,23 @@ export class RegistroGirlsComponent  {
   
   }
 
-  ocultarmensaje() {
+  public ocultarmensaje() {
     $('#mensaje').hide();
   }
 
-  emailValido(mail: string): boolean {
+  public emailValido(mail: string): boolean {
     const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(mail);
   }
 
-  compararCadenas(a: string, b: string) {
+ public compararCadenas(a: string, b: string) {
     if (a === b)
       return true;
 
     return false;
   }
 
-  mostrarMensaje(msj: string) {
+  public mostrarMensaje(msj: string) {
     $('#msj').html('');
     $('#msj').html(msj);
     $('#mensaje').show();

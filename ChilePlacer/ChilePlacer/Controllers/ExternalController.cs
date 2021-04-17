@@ -1,48 +1,62 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ChilePlacer.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ChilePlacer.api
+
+namespace ChilePlacer.Controllers
 {
 
     [ApiController]
     public class ExternalController : ControllerBase
     {
+        private readonly IWebHostEnvironment hostEnv;
+
+        public ExternalController(IWebHostEnvironment _hostEnv)
+        {
+            hostEnv = _hostEnv;
+        }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("api/UploadFileMethod")]
-        public string UploadFileMethod(IFormFile file)
+        public string UploadFileMethod(IFormFile file,string username,string identidad)
         {
             if (file != null)
-            {                try
+            {
+                try
                 {
-                    if (!file.FileName.Contains(".csv"))
+                    var p = file.FileName.Replace("_","").Split('.');
+                    var name = p[0] + "_" + identidad + "." + p[1];
+                    if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
                     {
-                        //ViewBag.Message = "El archivo debe ser con extenxion .csv";
-                        return "Test";
+                        string path = Path.Combine(hostEnv.ContentRootPath, "ClientApp/src/assets/ProfileImageGirls", name);
+                        var stream = System.IO.File.Create(path);
+                        file.CopyTo(stream);
+                        stream.Dispose();
                     }
-                    string path = Path.Combine("ArchivosFTP", file.FileName);
-                    var stream = System.IO.File.Create(path);
-                    file.CopyTo(stream);
-                    stream.Dispose();
-                    //ViewBag.Message = "Archivo " + file.FileName + " cargado correctamente";
+                    else
+                        return "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)";
+
                 }
                 catch (Exception ex)
                 {
-                    //ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    return ex.ToString(); ;
                 }
             }
             else
             {
-                //ViewBag.Message = "Selecciona un archivp";
+                return "El valor no puede ser nulo";
             }
-            return "Test";
+
+            return "OK";
         }
     }
 }

@@ -4,14 +4,16 @@ using ChilePlacer.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20210417133233_Cp")]
+    partial class Cp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,9 +86,6 @@ namespace ChilePlacer.Migrations
 
                     b.Property<string>("Apellido")
                         .HasColumnType("VARCHAR(80)");
-
-                    b.Property<string>("Dni")
-                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("DATETIME");

@@ -17,13 +17,15 @@ namespace ChilePlacer.Controllers
         private readonly ISendMail sendMail;
         private readonly IGirlsRepository girls;
         private readonly IWebHostEnvironment hostEnv;
+        private readonly IProfileGirlsRepository profileGirls;
 
-        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail)
+        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls)
         {
             util = _util;
             girls = _girls;
             hostEnv = _hostEnv;
             sendMail = _sendMail;
+            profileGirls = _profileGirls;
         }
 
         [HttpPost]
@@ -54,6 +56,24 @@ namespace ChilePlacer.Controllers
                 respuesta.Descripcion = "Registro satisfactorio, fue enviado un email a tu direccion electronica para la activacion de tu cuenta";
             else
                 respuesta.Descripcion = "Registro fallido";
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id)
+        {
+            var respuesta = new RespuestaModel();
+            if (string.IsNullOrEmpty(nameFoto) || string.IsNullOrEmpty(id))
+            {
+                respuesta.Descripcion = "Error: valores vacios";
+                return Json(respuesta);
+            }
+
+            var identidad = Guid.Parse(id);
+            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad);
+            profile = profileGirls.InsertProfileGirls(profile);
+            respuesta.Descripcion = "Perfil actualizado correctamente";
 
             return Json(respuesta);
         }

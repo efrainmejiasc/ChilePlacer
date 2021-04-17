@@ -103,5 +103,21 @@ namespace ChilePlacer.Application
                 resultado = true;
             return resultado;
         }
+
+        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad)
+        {
+            var profileGirls = new ProfileGirls()
+            {
+                Identidad = identidad,
+                Nombre = nombre,
+                Apellido = apellido,
+                Dni =  dni,
+                Telefono = telefono,
+                Path = path,
+                Fecha = DateTime.UtcNow
+            };
+
+            return profileGirls;
+        }
     }
 }

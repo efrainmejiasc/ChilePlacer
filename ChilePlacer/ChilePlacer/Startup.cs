@@ -57,6 +57,7 @@ namespace ChilePlacer
             services.AddTransient<ISendMail, SendMail>();
             services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
             services.AddTransient<IGirlsRepository, GirlsRepository>();
+            services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
 
 
             EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHost");

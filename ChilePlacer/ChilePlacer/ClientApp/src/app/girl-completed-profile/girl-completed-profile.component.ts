@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as $ from 'jquery';
-import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http'
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http'
+
 
 @Component({
   selector: 'app-girl-completed-profile',
@@ -15,6 +16,8 @@ export class GirlCompletedProfileComponent implements OnInit {
   public telefono: string;
   public username: string;
   public identidad: string;
+  public namefile: string;
+  public msj: string;
 
   public progress: number;
   public message: string;
@@ -23,6 +26,7 @@ export class GirlCompletedProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    console.log('onInit');
   }
 
   public cancelar() {
@@ -31,20 +35,28 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   public uploadFile = (files) => {
     if (files.length === 0) {
-      return;
+      return false;
     }
+    this.progress = 0;
+    this.getParametros();
+
     let fileToUpload = <File>files[0];
+    $('#filename').val(fileToUpload.name);
+
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events' })
+
+    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad} })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
         else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
+          this.message = 'Exito';
           this.onUploadFinished.emit(event.body);
         }
       });
+
+    setTimeout(this.setImageProfile, 6000);
   }
 
  public getParametros() {
@@ -53,6 +65,59 @@ export class GirlCompletedProfileComponent implements OnInit {
   this.username = urlParams.get('username')
   this.identidad = urlParams.get('identidad')
 
+   return false;
  }
+
+  public setImageProfile() {
+    this.namefile = $('#filename').val() as string;
+    this.identidad = $('#identidad').val() as string;
+    var p = this.namefile.replace('_', '').split('.');
+    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
+    
+    this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
+    console.log(nameImg);
+
+    return false;
+  }
+
+
+  public SaveprofileGirls() {
+    this.namefile = $('#filename').val() as string;
+    this.identidad = $('#identidad').val() as string;
+    var p = this.namefile.replace('_', '').split('.');
+    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
+    console.log(nameImg);
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/CompletedRegistroGirls",
+      data: { nombre: this.nombre, apellido: this.apellido, dni: this.dni, telefono: this.telefono, nameFoto: nameImg, id: this.identidad },
+      dataType: "json",
+      success: function (data) {
+        $('#msj').html('');
+        $('#msj').html(data.descripcion);
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        window.location.href = 'http://localhost:4200';
+      },
+      complete: function () {
+        console.log('SaveProfileGirls');
+      }
+    });
+
+    return false;
+  }
+
+
+  public ocultarmensaje() {
+    $('#mensaje').hide();
+  }
+
+  public mostrarMensaje(msj: string) {
+    $('#msj').html('');
+    $('#msj').html(msj);
+    $('#mensaje').show();
+    setTimeout(this.ocultarmensaje, 3000);
+  }
 
 }
