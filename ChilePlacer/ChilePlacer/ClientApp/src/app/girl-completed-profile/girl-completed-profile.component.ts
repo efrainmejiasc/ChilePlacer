@@ -31,7 +31,7 @@ export class GirlCompletedProfileComponent implements OnInit {
   }
 
   public cancelar() {
-    window.location.href = 'http://localhost:4200';
+    window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
   }
 
   public uploadFile = (files) => {
@@ -47,7 +47,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad} })
+    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad} })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -105,7 +105,7 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        window.location.href = 'http://localhost:4200';
+        window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
       },
       complete: function () {
         console.log('SaveProfileGirls');

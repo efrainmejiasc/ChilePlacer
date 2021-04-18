@@ -45,7 +45,7 @@ export class RegistroGirlsComponent  {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        window.location.href = 'http://localhost:4200';
+        window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
       },
       complete: function () {
         console.log('REGITROGIRLS');
@@ -80,6 +80,6 @@ export class RegistroGirlsComponent  {
   }
 
   public cancelar() {
-    window.location.href = 'http://localhost:4200';
+    window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
   }
 }

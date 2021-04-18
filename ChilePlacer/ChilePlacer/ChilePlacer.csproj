@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>c131ea71-90f0-4eec-bfd2-86e4872000be</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,8 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\assets\ProfileImageGirls\" />
-    <Folder Include="Views\External\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />

@@ -23,7 +23,7 @@ namespace ChilePlacer.DataModels
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=EMCSERVERI7;Database=ChilePlacer;User Id=sa;password=1234santiago;Trusted_Connection=False;");
+                optionsBuilder.UseSqlServer("Data Source=SQL5104.site4now.net;Initial Catalog=db_a72b76_chileplacer;User Id=db_a72b76_chileplacer_admin;Password=1234santiago");
             }
 
         }
