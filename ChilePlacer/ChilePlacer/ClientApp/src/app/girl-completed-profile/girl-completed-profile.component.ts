@@ -27,6 +27,11 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log('onInit');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.username = urlParams.get('username');
+    this.identidad = urlParams.get('identidad');
+
     $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
   }
 
@@ -39,7 +44,10 @@ export class GirlCompletedProfileComponent implements OnInit {
       return false;
     }
     this.progress = 0;
-    this.getParametros();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.username = urlParams.get('username');
+    this.identidad = urlParams.get('identidad');
 
     let fileToUpload = <File>files[0];
     $('#filename').val(fileToUpload.name);
@@ -61,10 +69,10 @@ export class GirlCompletedProfileComponent implements OnInit {
   }
 
  public getParametros() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  this.username = urlParams.get('username')
-  this.identidad = urlParams.get('identidad')
+   const queryString = window.location.search;
+   const urlParams = new URLSearchParams(queryString);
+   this.username = urlParams.get('username');
+   this.identidad = urlParams.get('identidad');
 
    return false;
  }
@@ -105,7 +113,7 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+        setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
       },
       complete: function () {
         console.log('SaveProfileGirls');

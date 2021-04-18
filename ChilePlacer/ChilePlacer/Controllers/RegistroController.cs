@@ -77,5 +77,20 @@ namespace ChilePlacer.Controllers
 
             return Json(respuesta);
         }
+
+        [HttpPost]
+        public JsonResult ImagenGirls(string id)
+        {
+            var respuesta = new RespuestaModel();
+            if (string.IsNullOrEmpty(id))
+            {
+                respuesta.Descripcion = "Error: valores vacios";
+                return Json(respuesta);
+            }
+
+
+
+            return Json(respuesta);
+        }
     }
 }

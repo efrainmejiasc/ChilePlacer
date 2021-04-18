@@ -37,7 +37,7 @@ namespace ChilePlacer.Controllers
                     var name = p[0] + "_" + identidad + "." + p[1];
                     if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
                     {
-                        string path = Path.Combine(hostEnv.ContentRootPath, "ClientApp/src/assets/ProfileImageGirls", name);
+                        string path = Path.Combine(hostEnv.WebRootPath, "ClientApp/dis/assets/ProfileImageGirls", name);
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
