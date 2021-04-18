@@ -44,10 +44,7 @@ export class GirlCompletedProfileComponent implements OnInit {
       return false;
     }
     this.progress = 0;
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    this.username = urlParams.get('username');
-    this.identidad = urlParams.get('identidad');
+    this.getParametros();
 
     let fileToUpload = <File>files[0];
     $('#filename').val(fileToUpload.name);

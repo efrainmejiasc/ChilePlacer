@@ -58,5 +58,14 @@ namespace ChilePlacer.Controllers
 
             return "OK";
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/PruebaApi")]
+        public string PruebaApi (string id)
+        {
+
+            return "OK: " + id ;
+        }
     }
 }
