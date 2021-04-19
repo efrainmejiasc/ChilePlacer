@@ -26,13 +26,7 @@ export class GirlCompletedProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    console.log('onInit');
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    this.username = urlParams.get('username');
-    this.identidad = urlParams.get('identidad');
-
-    $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
+    this.GetImagenProfile();
   }
 
   public cancelar() {
@@ -52,7 +46,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad} })
+    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad }, withCredentials: false } )
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -130,6 +124,29 @@ export class GirlCompletedProfileComponent implements OnInit {
     $('#msj').html(msj);
     $('#mensaje').show();
     setTimeout(this.ocultarmensaje, 3000);
+  }
+
+
+  public GetImagenProfile () {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.username = urlParams.get('username');
+    this.identidad = urlParams.get('identidad');
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileImage",
+      data: { id: this.identidad },
+      dataType: "json",
+      success: function (data) {
+        $('#foto').attr("src", data.descripcion); 
+      },
+      complete: function () {
+        console.log('GetImagenProfile');
+      }
+    });
+
+    return false;
   }
 
 }

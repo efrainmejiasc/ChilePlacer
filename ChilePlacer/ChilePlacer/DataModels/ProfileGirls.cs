@@ -28,7 +28,7 @@ namespace ChilePlacer.DataModels
         [Column(Order = 5, TypeName = "VARCHAR(50)")]
         public string Telefono { get; set; }
 
-        [Column(Order = 6, TypeName = "VARCHAR(400)")]
+        [Column(Order = 6, TypeName = "VARCHAR(8000)")]
         public string Path { get; set; }
 
         [Column(Order = 7, TypeName = "DATETIME")]

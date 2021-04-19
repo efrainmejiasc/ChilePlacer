@@ -27,8 +27,9 @@ namespace ChilePlacer.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/UploadFileMethod")]
-        public string UploadFileMethod(IFormFile file,string username,string identidad)
+        public RespuestaModel UploadFileMethod(IFormFile file,string username,string identidad)
         {
+            var respuesta = new RespuestaModel();
             if (file != null)
             {
                 try
@@ -37,36 +38,46 @@ namespace ChilePlacer.Controllers
                     var name = p[0] + "_" + identidad + "." + p[1];
                     if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
                     {
-                        //string path = Path.Combine(hostEnv.WebRootPath, "ClientApp/dis/assets/ProfileImageGirls", name);
-                        string path = "~/ClientApp/dis/assets/ProfileImageGirls/" + name;
+                        string path = "ClientApp/dist/assets/ProfileImageGirls/" + name;
+                        if (!Directory.Exists("ClientApp/dist/assets/ProfileImageGirls"))
+                        {
+                            Directory.CreateDirectory("ClientApp/dist/assets/ProfileImageGirls/");
+                        }
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
                     }
                     else
-                        return "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)";
+                    {
+                        respuesta.Descripcion = "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)";
+                        return respuesta;
+                    }
 
                 }
                 catch (Exception ex)
                 {
-                    return ex.ToString(); ;
+                    respuesta.Descripcion = ex.ToString();
+                    return respuesta;
                 }
             }
             else
             {
-                return "El valor no puede ser nulo";
+                respuesta.Descripcion = "El valor no puede ser nulo";
+                return respuesta;
             }
 
-            return "OK";
+            respuesta.Descripcion = "OK: Exito";
+            return respuesta;
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route("api/PruebaApi")]
-        public string PruebaApi (string id)
+        public RespuestaModel PruebaApi (string id)
         {
-
-            return "OK: " + id ;
+            var respuesta = new RespuestaModel();
+            respuesta.Descripcion = "OK: " + id;
+            return respuesta;
         }
     }
 }

@@ -72,7 +72,11 @@ namespace ChilePlacer.Controllers
 
             var identidad = Guid.Parse(id);
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad);
-            profile = profileGirls.InsertProfileGirls(profile);
+            if (!profileGirls.ExisteProfileGirls(identidad))
+                profile = profileGirls.InsertProfileGirls(profile);
+            else
+                profile = profileGirls.UpdateProfileGirls(profile);
+
             respuesta.Descripcion = "Perfil actualizado correctamente";
 
             return Json(respuesta);
@@ -88,7 +92,15 @@ namespace ChilePlacer.Controllers
                 return Json(respuesta);
             }
 
+            return Json(respuesta);
+        }
 
+        [HttpPost]
+        public JsonResult GetProfileImage(string id)
+        {
+            var respuesta = new RespuestaModel();
+            var identificador = Guid.Parse(id);
+            respuesta.Descripcion = profileGirls.GetProfileImage(identificador);
 
             return Json(respuesta);
         }
