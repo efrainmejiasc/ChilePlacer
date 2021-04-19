@@ -15,7 +15,7 @@
         <br /><br /><br />
         <span>Imagen de perfil</span><br />
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-        <button type="button" class="btn btn-success" (click)="file.click()">Seleccionar imagen</button>
+        <button type="button" class="btn btn-success" (click)="file.click()" style="width:200px;">Seleccionar</button>
       </div>
       <div class="col-md-4">
         <span class="upload" *ngIf="progress > 0" style="display:none;">

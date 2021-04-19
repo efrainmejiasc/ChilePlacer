@@ -27,6 +27,7 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   ngOnInit() {
     this.GetImagenProfile();
+    //$('#foto').attr("src", "assets/ImagesSite/unphoto.jpg"); 
   }
 
   public cancelar() {

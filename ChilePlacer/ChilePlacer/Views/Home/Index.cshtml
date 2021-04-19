@@ -30,13 +30,13 @@
 <script>
     $(document).ready(function () {
         console.log('ready');
-        mostrarMensaje()
+        setTimeout(mostrarMensaje, 2000);
     });
 
     function mostrarMensaje() {
         let msj = $('#descripcion').val();
         let status = $('#status').val();
-        let parametro = 'username=' + $('#username').val() + '&identidad=' + $('#identidad').val();
+
 
         if (msj !== '')
         {
@@ -47,14 +47,24 @@
         }
 
         if (status === 'true')
-            setTimeout(function () { window.location = "http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?" + parametro; }, 2000);
+            setTimeout(CompletarRegistro, 2000);
         else
-            setTimeout(function () { window.location = "http://chileplacercl-001-site1.itempurl.com/"; + parametro; }, 2000);
+            setTimeout(IrHome, 2000);
     }
 
     function ocultarMensaje() {
         $('#mensaje').hide();
     }
 
+
+    function CompletarRegistro() {
+        let parametro = 'username=' + $('#username').val() + '&identidad=' + $('#identidad').val();
+        window.location = "http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?" + parametro;
+    }
+
+
+    function IrHome () {
+        window.location = "http://chileplacercl-001-site1.itempurl.com/";
+    }
 
 </script>

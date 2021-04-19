@@ -1,0 +1,48 @@
+
+
+<div>
+
+  <div class="col col-14">
+
+
+    <label>Email</label>
+    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" />
+
+
+    <label>Contraseña</label>
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" />
+
+
+    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot</label><br /><br />
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" id="registrar" (click)="loginGirls()" class="btn btn-success" style="width:200px;">Login</button>
+        </div>
+        <div class="col-md-6 text-right">
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:200px;">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div>
+  <div id="mensaje" class="modalTipo">
+    <div class="modal-content">
+      <div class="formulario-campo">
+        <label id="msj" [(ngModel)]="msj"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

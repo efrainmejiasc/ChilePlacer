@@ -104,5 +104,23 @@ namespace ChilePlacer.Controllers
 
             return Json(respuesta);
         }
+
+        [HttpPost]
+        public JsonResult LoginGirls(string email, string password)
+        {
+            RespuestaModel respuesta = new RespuestaModel();
+            var password64 = util.CodeBase64(email + password);
+            var s = girls.LoginGirls(email, password64);
+            if (s != null)
+            {
+                respuesta.Descripcion = "Usuario correctamente logeado";
+                respuesta.Identidad = s.Identidad.ToString();
+                respuesta.Username = s.Username;
+            }
+            else
+                respuesta.Descripcion = "Usuario y password no existe";
+
+            return Json(respuesta);
+        }
     }
 }

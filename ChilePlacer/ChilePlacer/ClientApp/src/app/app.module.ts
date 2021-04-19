@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { RegistroGirlsComponent } from './registro-girls/registro-girls.component';
 import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-completed-profile.component';
+import { LoginGirlComponent } from './login-girl/login-girl.component';
 
 
 
@@ -19,6 +20,7 @@ import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-com
     HomeComponent,
     RegistroGirlsComponent,
     GirlCompletedProfileComponent,
+    LoginGirlComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -27,6 +29,7 @@ import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-com
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registro-girls', component: RegistroGirlsComponent },
+      { path: 'login-girl', component: LoginGirlComponent },
       { path: 'girl-completed-profile', component: GirlCompletedProfileComponent },
     ])
   ],
