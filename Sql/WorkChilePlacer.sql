@@ -5,5 +5,6 @@ SELECT * FROM ChilePlacer..TypeSex
 SELECT * FROM ChilePlacer..GaleriaGirls 
 
 TRUNCATE TABLE ChilePlacer..Girls
-TRUNCATE TABLE ProfileChilePlacer..Girls
+TRUNCATE TABLE ChilePlacer..ProfileGirls
 DELETE ChilePlacer..Girls Where Id > 3
+update ChilePlacer..Girls set Activo = 0
