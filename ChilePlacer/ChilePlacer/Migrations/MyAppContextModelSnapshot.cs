@@ -66,10 +66,6 @@ namespace ChilePlacer.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(250)");
 
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Girls");
@@ -98,9 +94,12 @@ namespace ChilePlacer.Migrations
                         .HasColumnType("VARCHAR(80)");
 
                     b.Property<string>("Path")
-                        .HasColumnType("VARCHAR(8000)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Telefono")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("Username")
                         .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");

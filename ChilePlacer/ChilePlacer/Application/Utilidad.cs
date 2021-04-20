@@ -50,12 +50,11 @@ namespace ChilePlacer.Application
             return Guid.NewGuid();
         }
 
-        public Girls SetGirlsModel (string username, string email, string password,Guid identificador)
+        public Girls SetGirlsModel (string email, string password,Guid identificador)
         {
             var girl = new Girls()
             {
                 Identidad = identificador,
-                Username = username,
                 Password = password,
                 Email = email,
                 Activo = false,
@@ -80,11 +79,10 @@ namespace ChilePlacer.Application
             return model;
         }
 
-        public string ConstruirEnlazeRegistro(string email, string username,Guid identidad)
+        public string ConstruirEnlazeRegistro(string email, Guid identidad)
         {
             string link = EngineData.UrlServerActivacion;
             link = link + "?email=" + CodeBase64(email);
-            link = link + "&username=" + CodeBase64(username);
             link = link + "&identidad=" + CodeBase64(identidad.ToString());
             link = link + "&date=" + DateTime.UtcNow.ToString();
             return link;
@@ -104,7 +102,7 @@ namespace ChilePlacer.Application
             return resultado;
         }
 
-        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad)
+        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username)
         {
             var profileGirls = new ProfileGirls()
             {
@@ -114,7 +112,8 @@ namespace ChilePlacer.Application
                 Dni =  dni,
                 Telefono = telefono,
                 Path = path,
-                Fecha = DateTime.UtcNow
+                Fecha = DateTime.UtcNow,
+                Username = username
             };
 
             return profileGirls;

@@ -29,15 +29,10 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpPost]
-        public JsonResult RegistroGirls(string username, string mail , string password)
+        public JsonResult RegistroGirls(string mail , string password)
         {
             var respuesta = new RespuestaModel();
-            if (girls.GetExisteUserName(username))
-            {
-                respuesta.Descripcion ="El usuario: " + username + " ya existe en nuestro sistema";
-                return Json(respuesta);
-            }
-            else if (girls.GetExisteEmail(mail,true))
+            if (girls.GetExisteEmail(mail,true))
             {
                 respuesta.Descripcion = "La direccion de e-mail: " + mail + " ya existe en nuestro sistema";
                 return Json(respuesta);
@@ -45,10 +40,10 @@ namespace ChilePlacer.Controllers
 
             var identificador = util.NuevoIdentificador();
             var password64 = util.CodeBase64(mail + password);
-            var modelGirl = util.SetGirlsModel(username, mail, password64,identificador);
+            var modelGirl = util.SetGirlsModel(mail, password64,identificador);
             modelGirl = girls.InsertGirls(modelGirl);
 
-            var enlaze = util.ConstruirEnlazeRegistro(mail,username,identificador);
+            var enlaze = util.ConstruirEnlazeRegistro(mail,identificador);
             var estructuraMail = util.SetEstructuraMailRegister(enlaze,mail);
             sendMail.EnviarMailNotificacion(estructuraMail, hostEnv);
 
@@ -61,7 +56,7 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpPost]
-        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id)
+        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username)
         {
             var respuesta = new RespuestaModel();
             if (string.IsNullOrEmpty(id))
@@ -71,7 +66,7 @@ namespace ChilePlacer.Controllers
             }
 
             var identidad = Guid.Parse(id);
-            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad);
+            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username);
             if (!profileGirls.ExisteProfileGirls(identidad))
                 profile = profileGirls.InsertProfileGirls(profile);
             else
@@ -115,7 +110,7 @@ namespace ChilePlacer.Controllers
             {
                 respuesta.Descripcion = "Usuario correctamente logeado";
                 respuesta.Identidad = s.Identidad.ToString();
-                respuesta.Username = s.Username;
+                respuesta.Username = s.Email;
             }
             else
                 respuesta.Descripcion = "Usuario y password no existe";

@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />

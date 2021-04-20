@@ -24,18 +24,14 @@ namespace ChilePlacer.DataModels
         [Column(Order = 3, TypeName = "VARCHAR(50)")]
         public string Email { get; set; }
 
-        [Required]
-        [Column(Order = 4, TypeName = "VARCHAR(50)")]
-        public string Username{ get; set; }
-
-        [Column(Order = 5, TypeName = "DATETIME")]
+        [Column(Order = 4, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
 
-        [Column(Order = 6, TypeName = "BIT")]
+        [Column(Order = 5, TypeName = "BIT")]
         public  bool Activo{ get; set; }
 
         [Required]
-        [Column(Order = 7, TypeName = "VARCHAR(250)")]
+        [Column(Order = 6, TypeName = "VARCHAR(250)")]
         public string Password { get; set; }
 
     }

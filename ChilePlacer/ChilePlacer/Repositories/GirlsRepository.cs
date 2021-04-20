@@ -14,15 +14,7 @@ namespace ChilePlacer.Repositories
         {
             db = _db;
         }
-        public bool GetExisteUserName (string username)
-        {
-            var nameUser = db.Girls.Where(x => x.Activo == true && x.Username == username).Select(x => x.Username).FirstOrDefault();
-            if (!string.IsNullOrEmpty(nameUser))
-                return true;
-
-            return false;
-        }
-
+   
         public bool GetExisteEmail(string email,bool activo)
         {
             var mail = db.Girls.Where(x => x.Activo == activo && x.Email == email).Select(x => x.Email).FirstOrDefault();

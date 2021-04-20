@@ -27,7 +27,7 @@ namespace ChilePlacer.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/UploadFileMethod")]
-        public RespuestaModel UploadFileMethod(IFormFile file,string username,string identidad)
+        public RespuestaModel UploadFileMethod(IFormFile file,string identidad)
         {
             var respuesta = new RespuestaModel();
             if (file != null)

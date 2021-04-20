@@ -8,7 +8,6 @@ import * as $ from 'jquery';
 })
 export class RegistroGirlsComponent  {
 
-  public username: string;
   public mail: string;
   public password: string;
   public confirmaPassword: string;
@@ -19,7 +18,7 @@ export class RegistroGirlsComponent  {
 
   public getRegister()
   {
-    if (this.username === '' || this.mail === '' || this.password === '' || this.confirmaPassword === '' || this.robot !== true)
+    if (this.mail === '' || this.password === '' || this.confirmaPassword === '' || this.robot !== true)
     {
       this.mostrarMensaje('Todos los campos son requeridos');
       return false;
@@ -38,7 +37,7 @@ export class RegistroGirlsComponent  {
     $.ajax({
       type: "POST",
       url: "Registro/RegistroGirls",
-      data: {username: this.username, mail: this.mail, password: this.password },
+      data: { mail: this.mail, password: this.password },
       dataType: "json",
       success: function (data) {
         $('#msj').html('');

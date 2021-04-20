@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210414001632_RegistroGirl")]
-    partial class RegistroGirl
+    [Migration("20210420104025_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,13 +68,45 @@ namespace ChilePlacer.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(250)");
 
+                    b.HasKey("Id");
+
+                    b.ToTable("Girls");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.ProfileGirls", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Apellido")
+                        .HasColumnType("VARCHAR(80)");
+
+                    b.Property<string>("Dni")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("VARCHAR(80)");
+
+                    b.Property<string>("Path")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("VARCHAR(50)");
+
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Girls");
+                    b.ToTable("ProfileGirls");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypeGirls", b =>

@@ -36,13 +36,17 @@
     <label>Apellido</label>
     <input type="text" id="apellido" class="form form-control" required [(ngModel)]="apellido" />
 
+    <label>Nombre de fantasia</label>
+    <input type="text" id="username" class="form form-control" required [(ngModel)]="username" />
+    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y 4 digitos, ej: <strong> Katerina-2210 </strong></span><br />
+
     <label>Rut / Nº Pasaporte</label>
     <input type="text" id="dni" class="form form-control" required [(ngModel)]="dni" />
 
     <label>Telefono</label>
     <input type="text" id="telefono" class="form form-control" required [(ngModel)]="telefono" /><br /><br />
 
-    <input type="hidden" id="username" [(ngModel)]="username" />
+
     <input type="hidden" id="identidad" [(ngModel)]="identidad" />
     <input type="hidden" id="filename" />
   </div>

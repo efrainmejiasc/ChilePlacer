@@ -55,7 +55,16 @@ namespace ChilePlacer.Repositories
                 src = "assets/ImagesSite/unphoto.jpg";
 
             return src;
-
         }
+
+        public bool GetExisteUserName(string username)
+        {
+            var nameUser = db.ProfileGirls.Where(x => x.Username == username).Select(x => x.Username).FirstOrDefault();
+            if (!string.IsNullOrEmpty(nameUser))
+                return true;
+
+            return false;
+        }
+
     }
 }

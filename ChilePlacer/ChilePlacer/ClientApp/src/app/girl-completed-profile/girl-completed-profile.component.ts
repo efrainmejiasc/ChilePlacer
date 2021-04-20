@@ -8,8 +8,10 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from
   templateUrl: './girl-completed-profile.component.html',
   styleUrls: ['./girl-completed-profile.component.css']
 })
+
 export class GirlCompletedProfileComponent implements OnInit {
-  public imgPerfil = "assets/ImagesSite/unphoto.jpg";
+
+  public imgPerfil : string;
   public nombre: string;
   public apellido: string;
   public dni: string;
@@ -21,13 +23,37 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   public progress: number;
   public message: string;
+
   @Output() public onUploadFinished = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.GetImagenProfile();
-    //$('#foto').attr("src", "assets/ImagesSite/unphoto.jpg"); 
+    this.getImagenProfile();
+  }
+
+
+  public getImagenProfile() {
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.username = urlParams.get('username');
+    this.identidad = urlParams.get('identidad');
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileImage",
+      data: { id: this.identidad },
+      dataType: "json",
+      success: function (data) {
+        $('#foto').attr("src", data.descripcion);
+      },
+      complete: function () {
+        console.log('GetImagenProfile');
+      }
+    });
+
+    return false;
   }
 
   public cancelar() {
@@ -47,7 +73,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { username: this.username, identidad: this.identidad }, withCredentials: false } )
+    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -60,45 +86,42 @@ export class GirlCompletedProfileComponent implements OnInit {
     setTimeout(this.setImageProfile, 6000);
   }
 
- public getParametros() {
-   const queryString = window.location.search;
-   const urlParams = new URLSearchParams(queryString);
-   this.username = urlParams.get('username');
-   this.identidad = urlParams.get('identidad');
-
-   return false;
- }
-
-  public setImageProfile() {
-    this.namefile = $('#filename').val() as string;
-    this.identidad = $('#identidad').val() as string;
-    var p = this.namefile.replace('_', '').split('.');
-    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
-    
-    this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
-    $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
-    console.log(nameImg);
+  public getParametros() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.identidad = urlParams.get('identidad');
 
     return false;
   }
 
+  public ocultarmensaje() {
+    $('#mensaje').hide();
+  }
+
+  public mostrarMensaje(msj: string) {
+    $('#msj').html('');
+    $('#msj').html(msj);
+    $('#mensaje').show();
+    setTimeout(this.ocultarmensaje, 3000);
+  }
+
 
   public SaveprofileGirls() {
+
     this.namefile = $('#filename').val() as string;
     this.identidad = $('#identidad').val() as string;
     var p = this.namefile.replace('_', '').split('.');
     var nameImg = p[0] + "_" + this.identidad + "." + p[1];
 
-    if (this.nombre === '' || this.apellido === '' || this.dni === '' ||  this.telefono === '' || this.identidad === '') {
+    if (this.nombre === '' || this.apellido === '' || this.dni === '' || this.telefono === '' || this.identidad === '') {
       this.mostrarMensaje('Todos los campos son requeridos');
       return false;
     }
 
-
     $.ajax({
       type: "POST",
       url: "Registro/CompletedRegistroGirls",
-      data: { nombre: this.nombre, apellido: this.apellido, dni: this.dni, telefono: this.telefono, nameFoto: nameImg, id: this.identidad },
+      data: { nombre: this.nombre, apellido: this.apellido, dni: this.dni, telefono: this.telefono, nameFoto: nameImg, id: this.identidad, username: this.username },
       dataType: "json",
       success: function (data) {
         $('#msj').html('');
@@ -115,37 +138,15 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
+  public setImageProfile() {
+    this.namefile = $('#filename').val() as string;
+    this.identidad = $('#identidad').val() as string;
+    var p = this.namefile.replace('_', '').split('.');
+    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
 
-  public ocultarmensaje() {
-    $('#mensaje').hide();
-  }
-
-  public mostrarMensaje(msj: string) {
-    $('#msj').html('');
-    $('#msj').html(msj);
-    $('#mensaje').show();
-    setTimeout(this.ocultarmensaje, 3000);
-  }
-
-
-  public GetImagenProfile () {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    this.username = urlParams.get('username');
-    this.identidad = urlParams.get('identidad');
-
-    $.ajax({
-      type: "POST",
-      url: "Registro/GetProfileImage",
-      data: { id: this.identidad },
-      dataType: "json",
-      success: function (data) {
-        $('#foto').attr("src", data.descripcion); 
-      },
-      complete: function () {
-        console.log('GetImagenProfile');
-      }
-    });
+    this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
+    $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
+    console.log(nameImg);
 
     return false;
   }

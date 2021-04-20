@@ -28,7 +28,7 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string email,string username, string identidad, string date)
+        public IActionResult Index(string email,string identidad, string date)
         {
             var respuesta = new RespuestaModel();
             if (string.IsNullOrEmpty(email))
@@ -40,8 +40,6 @@ namespace ChilePlacer.Controllers
                 
             var fechaEnvio = Convert.ToDateTime(date);
             var fechaActivacion = DateTime.UtcNow;
-            username = util.DecodeBase64(username);
-
 
             if (!util.EstatusLink(fechaEnvio, fechaActivacion))
             {
@@ -49,20 +47,15 @@ namespace ChilePlacer.Controllers
                 respuesta.Status = "false";
                 return View(respuesta);
             }
-            else if (girls.GetExisteUserName(username))
-            {
-                respuesta.Descripcion = "El usuario: " + username + " ya existe en nuestro sistema";
-                respuesta.Status = "false";
-                return View(respuesta);
-            }
 
+            email = util.DecodeBase64(email);
             identidad = util.DecodeBase64(identidad);
             var identificador = Guid.Parse(identidad);
             var girl = girls.ActivarUsuario(identificador, true);
 
-            respuesta.Descripcion = "El usuario: " + username + " fue activado...Ahora completa tu perfil";
+            respuesta.Descripcion = "La cuenta de: " + email + " fue activado...Ahora completa tu perfil";
             respuesta.Status = "true";
-            respuesta.Username = username;
+            respuesta.Username = email;
             respuesta.Identidad = identificador.ToString();
 
             return View(respuesta);
