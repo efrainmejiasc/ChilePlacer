@@ -61,6 +61,36 @@ namespace ChilePlacer.Application
             return model;
         }
 
- 
+        public bool EnviarMailNotificacion(string subject, string body,string emailDestiny)
+        {
+            bool result = false;
+            try
+            {
+                MailMessage mensaje = new MailMessage();
+                SmtpClient servidor = new SmtpClient();
+                mensaje.From = new MailAddress("www.chileplacer.cl<www.chileplacer.cl@gmail.com>");
+                mensaje.Subject = subject;
+                mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
+                mensaje.Body = body;
+                mensaje.BodyEncoding = System.Text.Encoding.UTF8;
+                mensaje.IsBodyHtml = true;
+                mensaje.To.Add(new MailAddress(emailDestiny));
+                servidor.Credentials = new System.Net.NetworkCredential("www.chileplacer.cl", "1234Santiago*");
+                servidor.Port = 587;
+                servidor.Host = "smtp.gmail.com";
+                servidor.EnableSsl = true;
+                servidor.Send(mensaje);
+                mensaje.Dispose();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                string e = ex.ToString();
+            }
+
+            return result;
+        }
+
+
     }
 }

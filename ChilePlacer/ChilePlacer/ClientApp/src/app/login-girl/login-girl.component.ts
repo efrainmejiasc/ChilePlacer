@@ -21,7 +21,8 @@ export class LoginGirlComponent implements OnInit {
 
 
   public cancelar() {
-    window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+   // window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+    window.location.href = 'http://localhost:4200/';
   }
 
 
@@ -52,7 +53,8 @@ export class LoginGirlComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+        //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
 
       },
       complete: function () {
@@ -63,5 +65,80 @@ export class LoginGirlComponent implements OnInit {
     return false;
 
   }
+
+ public olvidoPassword() {
+   $('#olvido').show();
+  }
+
+  public cerrarOlvido() {
+    $('#olvido').hide();
+  }
+
+  public getCodigo() {
+
+    var _mail = $('#_mail').val();
+
+    if (_mail === '') {
+      $('#_mensaje').css("color", "red");
+      $('#_mensaje').html('Ingresa tu cuenta de correo');
+      $('#_msj').show();
+      setTimeout(function () { $('#_msj').hide(); }, 4000);
+
+      return false;
+    }
+
+    if (!this.emailValido(_mail.toString())) {
+      $('#_mensaje').css("color", "red");
+      $('#_mensaje').html('El email no es una direccion valida');
+      $('#_msj').show();
+      setTimeout(function () { $('#_msj').hide(); }, 4000);
+      return false;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/SendMailChangePassword",
+      data: { email: _mail },
+      dataType: "json",
+      success: function (data) {
+
+        if (data.status === 'true')
+        {
+          $('#_mensaje').css("color", "green");
+          $('#_mensaje').html(data.descripcion);
+          $('#_msj').show();
+          //setTimeout(function() { $('#_msj').hide(); }, 4000);
+        }
+        else
+        {
+          $('#_mensaje').css("color", "red");
+          $('#_mensaje').html(data.descripcion);
+          $('#_msj').show();
+          //setTimeout(function() { $('#_msj').hide(); }, 3000);
+          $('#olvido').hide();
+          return false;
+        }
+
+      },
+      complete: function () {
+        console.log('SendEmail');
+      }
+    });
+
+    return false;
+  }
+
+  public haveCodigo() {
+    $('#_mensaje').css("color", "green");
+    $('#_mensaje').html('Ingresa tu correo y el codigo, click en Enviar');
+    $('#_msj').show();
+    setTimeout(function () { $('#_msj').hide(); }, 4000);
+  }
+
+  public emailValido(mail: string): boolean {
+    const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(mail);
+  }
+
 
 }

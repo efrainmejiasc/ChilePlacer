@@ -44,8 +44,8 @@ export class RegistroGirlsComponent  {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
-     
+        //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
       },
       complete: function () {
         console.log('REGITROGIRLS');
@@ -80,6 +80,34 @@ export class RegistroGirlsComponent  {
   }
 
   public cancelar() {
-    window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+    //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+    window.location.href = 'http://localhost:4200/';
+  }
+
+   public validarPassword() {
+
+     let valor = $('#password').val();
+     var nvalor = valor.toString();
+     const soloNum = /^[0-9a]+$/;
+     const soloLet = /^[aA-zZ]+$/;
+     $('#msj').html('');
+
+     if (nvalor.length > 0) {
+       if (soloNum.test(nvalor) || soloLet.test(nvalor)) {
+         $('#msj').html('La contraseña debe contener numeros y letras');
+         $('#mensaje').show();
+         setTimeout(function () { $('#mensaje').hide(); }, 3000);
+         $('#password').val('');
+       }
+
+       if (nvalor.length < 8) {
+         $('#msj').html('La contraseña debe contener minimo ocho(8) caracteres');
+         $('#mensaje').show();
+         setTimeout(function () { $('#mensaje').hide(); }, 3000);
+         $('#password').val('');
+       }
+     }
+     
+     return false;
   }
 }

@@ -18,14 +18,16 @@ namespace ChilePlacer.Controllers
         private readonly IGirlsRepository girls;
         private readonly IWebHostEnvironment hostEnv;
         private readonly IProfileGirlsRepository profileGirls;
+        private readonly IChangePasswordRepository changePassword;
 
-        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls)
+        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword)
         {
             util = _util;
             girls = _girls;
             hostEnv = _hostEnv;
             sendMail = _sendMail;
             profileGirls = _profileGirls;
+            changePassword = _changePassword;
         }
 
         [HttpPost]
@@ -39,7 +41,7 @@ namespace ChilePlacer.Controllers
             }
 
             var identificador = util.NuevoIdentificador();
-            var password64 = util.CodeBase64(mail + password);
+            var password64 = util.CodeBase64(mail + "#" + password);
             var modelGirl = util.SetGirlsModel(mail, password64,identificador);
             modelGirl = girls.InsertGirls(modelGirl);
 
@@ -104,7 +106,7 @@ namespace ChilePlacer.Controllers
         public JsonResult LoginGirls(string email, string password)
         {
             RespuestaModel respuesta = new RespuestaModel();
-            var password64 = util.CodeBase64(email + password);
+            var password64 = util.CodeBase64(email + "#" + password);
             var s = girls.LoginGirls(email, password64);
             if (s != null)
             {
@@ -115,6 +117,31 @@ namespace ChilePlacer.Controllers
             else
                 respuesta.Descripcion = "Usuario y password no existe";
 
+            return Json(respuesta);
+        }
+
+
+        [HttpPost]
+        public JsonResult SendMailChangePassword(string email)
+        {
+            RespuestaModel respuesta = new RespuestaModel();
+            if (!girls.GetExisteEmail(email, true))
+            {
+                respuesta.Descripcion = "El email:" + email  + " no esta registrado o puede estar inactivo";
+                respuesta.Status = "false";
+                return Json(respuesta);
+            }
+
+            var codigo = util.ConstruirCodigo();
+            var subject = "Cambio de contraseña Chileplacer";
+            var body = "Tu codigo para cambio de contraseña es : " + codigo;
+
+            var model=  util.ConstruirChangePassword(email, codigo);
+            changePassword.InsertChangePassword(model);
+            sendMail.EnviarMailNotificacion(subject, body, email);
+
+            respuesta.Descripcion = "Enviamos un codigo a la cuenta: " + email + " revise su bandeja de entrada";
+            respuesta.Status = "true";
             return Json(respuesta);
         }
     }

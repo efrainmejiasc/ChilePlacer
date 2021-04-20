@@ -13,7 +13,11 @@
     <input type="password" id="password" class="form form-control" required [(ngModel)]="password" />
 
 
-    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot</label><br /><br />
+    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot</label><br />
+
+     <div style="text-align:center;">
+       <a class ='btn' style="color:cornflowerblue"> <i (click)="olvidoPassword()">Olvidaste la contraseña ?</i></a>
+    </div>
 
   </div>
 
@@ -38,6 +42,51 @@
     <div class="modal-content">
       <div class="formulario-campo">
         <label id="msj" [(ngModel)]="msj"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div id="olvido" class="modalTipo">
+    <div class="modal-content">
+      <div class="formulario-campo">
+
+        <span style="float:left;font-size:16px;"> Email </span>
+        <input type="email" class="form form-control" id="_mail" placeholder="Ingresa tu email registrado" />
+        <span style="float:left;font-size:16px;"> Codigo </span>
+        <input type="text" class="form form-control" id="_codigo" placeholder="Ingresa codigo" />
+
+        <div class="row">
+          <div class="col-md-6 text-left">
+            <a class='btn' style="color:cornflowerblue;float:left;"> <i (click)="getCodigo()"> Obtener codigo ?</i></a>
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a class='btn' style="color:cornflowerblue;float:right"> <i (click)="haveCodigo()"> Tengo un codigo !!</i></a>
+          </div>
+
+        </div>
+
+        <div id="_msj" style="display:block;font-size:14px;text-align:center;">
+          <label id="_mensaje">  </label>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-6 text-left">
+                <button type="submit" id="send_mail" (click)="sendMail()" class="btn btn-success" style="width:100px;">Enviar</button>
+              </div>
+              <div class="col-md-6 text-right">
+                <button type="submit" id="no_send_mail" (click)="noSendMail();" class="btn btn-danger" style="width:100px;">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

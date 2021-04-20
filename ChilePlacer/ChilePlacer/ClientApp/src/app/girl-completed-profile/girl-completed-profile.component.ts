@@ -11,7 +11,7 @@ import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from
 
 export class GirlCompletedProfileComponent implements OnInit {
 
-  public imgPerfil : string;
+  public imgPerfil: string;
   public nombre: string;
   public apellido: string;
   public dni: string;
@@ -57,7 +57,8 @@ export class GirlCompletedProfileComponent implements OnInit {
   }
 
   public cancelar() {
-    window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+    //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
+    window.location.href = 'http://localhost:4200/';
   }
 
   public uploadFile = (files) => {
@@ -73,7 +74,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://chileplacercl-001-site1.itempurl.com/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
+    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -128,7 +129,8 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+       // setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
       },
       complete: function () {
         console.log('SaveProfileGirls');
@@ -147,6 +149,34 @@ export class GirlCompletedProfileComponent implements OnInit {
     this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
     $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
     console.log(nameImg);
+
+    return false;
+  }
+
+  public validarUserName() {
+    let valor = $('#username').val();
+    var nvalor = valor.toString();
+    const soloNum = /^[0-9a]+$/;
+    const soloLet = /^[aA-zZ]+$/;
+    $('#msj').html('');
+
+    if (nvalor.length > 0) {
+      if (soloNum.test(nvalor) || soloLet.test(nvalor) || !nvalor.includes('-')) {
+        $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        $('#username').val('');
+      }
+
+      var svalor = nvalor.split('-');
+      if (!soloNum.test(svalor[1]) || !soloLet.test(svalor[0])) {
+        $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        $('#username').val('');
+      }
+
+    }
 
     return false;
   }

@@ -6,7 +6,7 @@
     <span style="font-size:14px;color:silver;">Ingresa una direccion de correo electronico valida</span><br />
 
     <label>Contraseña</label>
-    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" />
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password"  (blur)="validarPassword();"/>
 
     <label>Confirmar contraseña</label>
     <input type="password" id="confirmaPassword" class="form form-control" required [(ngModel)]="confirmaPassword" />

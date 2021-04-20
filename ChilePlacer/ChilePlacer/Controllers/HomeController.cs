@@ -53,7 +53,7 @@ namespace ChilePlacer.Controllers
             var identificador = Guid.Parse(identidad);
             var girl = girls.ActivarUsuario(identificador, true);
 
-            respuesta.Descripcion = "La cuenta de: " + email + " fue activado...Ahora completa tu perfil";
+            respuesta.Descripcion = "La cuenta de: " + email + " fue activada...Ahora completa tu perfil";
             respuesta.Status = "true";
             respuesta.Username = email;
             respuesta.Identidad = identificador.ToString();

@@ -1,5 +1,6 @@
 
 
+
 <div class="container">
 
   <span style="font-size:14px;color:silver;"><strong>Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.</strong></span><br />
@@ -7,7 +8,7 @@
   <div class="container">
     <div class="row">
       <div class="col col-4">
-        <img class="imgSkill" id="foto"/><br />
+        <img class="imgSkill" id="foto" /><br />
         <span style="font-size:12px;color:silver;font-weight:bold;">El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)</span>
       </div>
 
@@ -37,8 +38,8 @@
     <input type="text" id="apellido" class="form form-control" required [(ngModel)]="apellido" />
 
     <label>Nombre de fantasia</label>
-    <input type="text" id="username" class="form form-control" required [(ngModel)]="username" />
-    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y 4 digitos, ej: <strong> Katerina-2210 </strong></span><br />
+    <input type="text" id="username" class="form form-control" required [(ngModel)]="username"  (blur)="validarUserName()"/>
+    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span><br />
 
     <label>Rut / Nº Pasaporte</label>
     <input type="text" id="dni" class="form form-control" required [(ngModel)]="dni" />
@@ -57,7 +58,7 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="SaveprofileGirls()"class="btn btn-success" style="width:200px;">Actualizar</button>
+          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="btn btn-success" style="width:200px;">Actualizar</button>
         </div>
         <div class="col-md-6 text-right">
           <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:200px;">Cancelar</button>

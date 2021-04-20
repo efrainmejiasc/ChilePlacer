@@ -12,7 +12,6 @@
     <input type="hidden" id="descripcion" name="descripcion" value="@Model.Descripcion" />
     <input type="hidden" id="status" name="status" value="@Model.Status" />
     <input type="hidden" id="identidad" name="identidad" value="@Model.Identidad" />
-    <input type="hidden" id="username" name="username" value="@Model.Username" />
     <label> ChilePlacer </label>
 </div>
 
@@ -58,13 +57,15 @@
 
 
     function CompletarRegistro() {
-        let parametro = 'username=' + $('#username').val() + '&identidad=' + $('#identidad').val();
-        window.location = "http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?" + parametro;
+        let parametro = '&identidad=' + $('#identidad').val();
+       // window.location = "http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?" + parametro;
+        window.location = "http://localhost:4200/girl-completed-profile?" + parametro;
     }
 
 
     function IrHome () {
-        window.location = "http://chileplacercl-001-site1.itempurl.com/";
+        //window.location = "http://chileplacercl-001-site1.itempurl.com/";
+        window.location = "http://localhost:4200/";
     }
 
 </script>
