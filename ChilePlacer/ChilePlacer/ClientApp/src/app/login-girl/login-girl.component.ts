@@ -100,26 +100,25 @@ export class LoginGirlComponent implements OnInit {
       url: "Registro/SendMailChangePassword",
       data: { email: _mail },
       dataType: "json",
-      success: function (data) {
-
+      success: function (data) 
+      {
         if (data.status === 'true')
         {
           $('#_mensaje').css("color", "green");
           $('#_mensaje').html(data.descripcion);
           $('#_msj').show();
-          //setTimeout(function() { $('#_msj').hide(); }, 4000);
+          setTimeout(function() { $('#_msj').hide(); }, 4000);
         }
-        else
-        {
+        else {
           $('#_mensaje').css("color", "red");
           $('#_mensaje').html(data.descripcion);
           $('#_msj').show();
-          //setTimeout(function() { $('#_msj').hide(); }, 3000);
+          setTimeout(function() { $('#_msj').hide(); }, 3000);
           $('#olvido').hide();
           return false;
         }
-
-      },
+      }
+     ,
       complete: function () {
         console.log('SendEmail');
       }
