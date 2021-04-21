@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
@@ -17,15 +18,18 @@ namespace ChilePlacer.Controllers
         private readonly ISendMail sendMail;
         private readonly IGirlsRepository girls;
         private readonly IWebHostEnvironment hostEnv;
+        private readonly IHttpContextAccessor httpContext;
         private readonly IProfileGirlsRepository profileGirls;
         private readonly IChangePasswordRepository changePassword;
 
-        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword)
+
+        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword, IHttpContextAccessor _httpContext)
         {
             util = _util;
             girls = _girls;
             hostEnv = _hostEnv;
             sendMail = _sendMail;
+            httpContext = _httpContext;
             profileGirls = _profileGirls;
             changePassword = _changePassword;
         }
@@ -113,9 +117,46 @@ namespace ChilePlacer.Controllers
                 respuesta.Descripcion = "Usuario correctamente logeado";
                 respuesta.Identidad = s.Identidad.ToString();
                 respuesta.Username = s.Email;
+                SetIdentityUser(s);
             }
             else
                 respuesta.Descripcion = "Usuario y password no existe";
+
+            return Json(respuesta);
+        }
+
+        private void SetIdentityUser(Girls s) 
+        {
+            httpContext.HttpContext.Session.SetString("Identidad", s.Identidad.ToString());
+            httpContext.HttpContext.Session.SetString("Email", s.Email);
+            httpContext.HttpContext.Session.SetString("Username", "");
+        }
+
+        [HttpPost]
+        public JsonResult GetIdentityUser()
+        {
+            var girl = new Girls();
+            if (string.IsNullOrEmpty(httpContext.HttpContext.Session.GetString("Identidad")))
+            {
+                girl = null;
+                return Json(girl);
+            }
+
+            girl.Identidad = Guid.Parse(httpContext.HttpContext.Session.GetString("Identidad"));
+            girl.Email = httpContext.HttpContext.Session.GetString("Email");
+            girl.Password = httpContext.HttpContext.Session.GetString("Username");
+
+            return Json(girl);
+        }
+
+        [HttpPost]
+        public JsonResult ChangePassword(string email, string password)
+        {
+            RespuestaModel respuesta = new RespuestaModel();
+            var password64 = util.CodeBase64(email + "#" + password);
+            var s = girls.ChangePassword(email, password64);
+            respuesta.Descripcion = "Actualizacion de contraseña exitosa";
+            respuesta.Status = "true";
 
             return Json(respuesta);
         }
@@ -136,12 +177,35 @@ namespace ChilePlacer.Controllers
             var subject = "Cambio de contraseña Chileplacer";
             var body = "Tu codigo para cambio de contraseña es : " + codigo;
 
-            var model=  util.ConstruirChangePassword(email, codigo);
+            var model=  util.ConstruirChangePassword(email, codigo,false);
             changePassword.InsertChangePassword(model);
             sendMail.EnviarMailNotificacion(subject, body, email);
 
             respuesta.Descripcion = "Enviamos un codigo a la cuenta: " + email + " revise su bandeja de entrada";
             respuesta.Status = "true";
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult ValidarCodigoChangePassword (string email, string codigo)
+        {
+            RespuestaModel respuesta = new RespuestaModel();
+            var model = changePassword.GetChangePassword(email, codigo, false);
+            if (model == null)
+            {
+                respuesta.Descripcion = "El email y el codigo no coinciden";
+                respuesta.Status = "false";
+                return Json(respuesta);
+            }
+
+            changePassword.ActualizarCodigos(email);
+
+            respuesta.Descripcion = "OK";
+            respuesta.Status = "true";
+            respuesta.Username = email;
+            respuesta.Email = util.CodeBase64(email);
+
             return Json(respuesta);
         }
     }

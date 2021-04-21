@@ -27,5 +27,8 @@ namespace ChilePlacer.DataModels
         [Column(Order = 4, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
 
+        [Column(Order = 5, TypeName = "BIT")]
+        public bool Activo { get; set; }
+
     }
 }

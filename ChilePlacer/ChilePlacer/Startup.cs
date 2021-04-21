@@ -44,7 +44,7 @@ namespace ChilePlacer
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
@@ -58,6 +58,7 @@ namespace ChilePlacer
             services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
             services.AddTransient<IGirlsRepository, GirlsRepository>();
             services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
+            services.AddTransient<IChangePasswordRepository, ChangePasswordRepository>();
 
 
             EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHost");

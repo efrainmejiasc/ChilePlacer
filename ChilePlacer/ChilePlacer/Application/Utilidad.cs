@@ -119,13 +119,14 @@ namespace ChilePlacer.Application
             return profileGirls;
         }
 
-        public ChangePassword ConstruirChangePassword(string email,string codigo)
+        public ChangePassword ConstruirChangePassword(string email,string codigo,bool activo)
         {
             ChangePassword model = new ChangePassword()
             {
                 Email = email,
                 Codigo = codigo,
-                Fecha = DateTime.UtcNow
+                Fecha = DateTime.UtcNow,
+                Activo = activo
             };
 
             return model;

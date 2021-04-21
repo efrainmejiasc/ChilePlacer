@@ -6,7 +6,8 @@
     <span style="font-size:14px;color:silver;">Ingresa una direccion de correo electronico valida</span><br />
 
     <label>Contraseña</label>
-    <input type="password" id="password" class="form form-control" required [(ngModel)]="password"  (blur)="validarPassword();"/>
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" (blur)="validarPassword();" />
+    <span style="font-size:14px;color:silver;">Debe contener numeros ,letras y su tamaño debe ser mayor o igual a ocho (8) caracteres</span><br />
 
     <label>Confirmar contraseña</label>
     <input type="password" id="confirmaPassword" class="form form-control" required [(ngModel)]="confirmaPassword" />
@@ -19,10 +20,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="getRegister();" class="btn btn-success" style="width:200px;">Registrar</button>
+          <button type="submit" id="registrar" (click)="getRegister();" class="btn btn-success" style="width:45%;">Registrar</button>
         </div>
         <div class="col-md-6 text-right">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:200px;">Cancelar</button>
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:45%;">Cancelar</button>
         </div>
       </div>
     </div>

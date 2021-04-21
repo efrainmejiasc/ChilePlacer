@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\dist\assets\ProfileImageGirls\" />
-    <Folder Include="Migrations\" />
+    <Folder Include="Views\Registro\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />

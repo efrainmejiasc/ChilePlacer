@@ -25,10 +25,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="loginGirls()" class="btn btn-success" style="width:200px;">Login</button>
+          <button type="submit" id="registrar" (click)="loginGirls();" class="btn btn-success" style="width:45%;">Login</button>
         </div>
         <div class="col-md-6 text-right">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:200px;">Cancelar</button>
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:45%;">Cancelar</button>
         </div>
       </div>
     </div>
@@ -59,11 +59,11 @@
 
         <div class="row">
           <div class="col-md-6 text-left">
-            <a class='btn' style="color:cornflowerblue;float:left;"> <i (click)="getCodigo()"> Obtener codigo ?</i></a>
+            <a class='btn' style="color:cornflowerblue;float:left;"> <i (click)="getCodigo();"> Obtener codigo ?</i></a>
           </div>
 
           <div class="col-md-6 text-right">
-            <a class='btn' style="color:cornflowerblue;float:right"> <i (click)="haveCodigo()"> Tengo un codigo !!</i></a>
+            <a class='btn' style="color:cornflowerblue;float:right"> <i (click)="haveCodigo();"> Tengo un codigo !!</i></a>
           </div>
 
         </div>
@@ -78,10 +78,10 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-6 text-left">
-                <button type="submit" id="send_mail" (click)="sendMail()" class="btn btn-success" style="width:100px;">Enviar</button>
+                <button type="submit" id="send_mail" (click)="validarCodigo();" class="btn btn-success" style="width:45%;">Enviar</button>
               </div>
               <div class="col-md-6 text-right">
-                <button type="submit" id="no_send_mail" (click)="noSendMail();" class="btn btn-danger" style="width:100px;">Cancelar</button>
+                <button type="submit" id="no_send_mail" (click)="cerrarOlvido();" class="btn btn-danger" style="width:45%;">Cancelar</button>
               </div>
             </div>
           </div>

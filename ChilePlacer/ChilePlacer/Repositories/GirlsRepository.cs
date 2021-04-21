@@ -46,5 +46,15 @@ namespace ChilePlacer.Repositories
         {
             return db.Girls.Where(x => x.Email == email && x.Password == password && x.Activo == true).FirstOrDefault();
         }
+
+        public Girls ChangePassword(string email,string password)
+        {
+            var girl = db.Girls.Where(x => x.Email == email).FirstOrDefault();
+            db.Girls.Attach(girl);
+            girl.Password = password;
+            db.SaveChanges();
+
+            return girl;
+        }
     }
 }

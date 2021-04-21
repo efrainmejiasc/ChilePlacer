@@ -8,6 +8,8 @@ namespace ChilePlacer.Repositories.Interfaces
 {
     public interface IChangePasswordRepository
     {
+        void ActualizarCodigos(string email);
         ChangePassword InsertChangePassword(ChangePassword model);
+        ChangePassword GetChangePassword(string email, string codigo,bool activo);
     }
 }

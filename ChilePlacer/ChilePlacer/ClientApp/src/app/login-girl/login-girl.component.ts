@@ -134,6 +134,58 @@ export class LoginGirlComponent implements OnInit {
     setTimeout(function () { $('#_msj').hide(); }, 4000);
   }
 
+  public validarCodigo() {
+
+    var _mail = $('#_mail').val();
+    var _codigo =  $('#_codigo').val();
+
+    if (_mail === '' || _codigo === '') {
+      $('#_mensaje').css("color", "red");
+      $('#_mensaje').html('Todos los campos son requeridos');
+      $('#_msj').show();
+      setTimeout(function () { $('#_msj').hide(); }, 4000);
+
+      return false;
+    }
+
+
+    if (!this.emailValido(_mail.toString())) {
+      $('#_mensaje').css("color", "red");
+      $('#_mensaje').html('El email no es una direccion valida');
+      $('#_msj').show();
+      setTimeout(function () { $('#_msj').hide(); }, 4000);
+      return false;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/ValidarCodigoChangePassword ",
+      data: { email: _mail , codigo: _codigo},
+      dataType: "json",
+      success: function (data) {
+        if (data.status === 'true') {
+          var parametro = '?email='+ data.email
+          //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/cambiar-password/' + parametro; }, 3000);
+          setTimeout(function () { window.location.href = 'http://localhost:4200/cambiar-password/' + parametro; }, 3000);
+        }
+        else {
+          $('#_mensaje').css("color", "red");
+          $('#_mensaje').html(data.descripcion);
+          $('#_msj').show();
+          setTimeout(function () { $('#_msj').hide(); }, 3000);
+          return false;
+        }
+      }
+      ,
+      complete: function () {
+        console.log('SendEmail');
+      }
+    });
+
+    return false;
+
+  }
+
   public emailValido(mail: string): boolean {
     const regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(mail);
