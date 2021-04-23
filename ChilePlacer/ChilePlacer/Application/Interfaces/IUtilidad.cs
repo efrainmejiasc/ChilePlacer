@@ -17,7 +17,7 @@ namespace ChilePlacer.Application.Interfaces
         string ConstruirEnlazeRegistro(string email, Guid identidad);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
         Girls SetGirlsModel(string email, string password, Guid identiificador);
-        ActivacioMailModel SetEstructuraMailRegister(string enlaze, string email);
+        ActivacionMailModel SetEstructuraMailRegister(string enlaze, string email);
         ChangePassword ConstruirChangePassword(string email, string codigo, bool activo);
         ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username);
     }

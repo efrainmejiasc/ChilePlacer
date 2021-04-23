@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ChilePlacer.Models
 {
-    public class ActivacioMailModel
+    public class ActivacionMailModel
     {
         public string Asunto { get; set; }
 

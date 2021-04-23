@@ -50,6 +50,7 @@ namespace ChilePlacer
             });
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddMvc();
             //*****************************************************************************
 
             services.AddTransient<MyAppContext, MyAppContext>();
@@ -78,6 +79,7 @@ namespace ChilePlacer
             }
 
             app.UseStaticFiles();
+            app.UseSession();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();

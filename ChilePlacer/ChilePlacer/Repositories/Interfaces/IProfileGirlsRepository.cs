@@ -8,6 +8,7 @@ namespace ChilePlacer.Repositories.Interfaces
 {
     public interface IProfileGirlsRepository
     {
+        string GetUserName(Guid identidad);
         string GetProfileImage(Guid identidad);
         bool ExisteProfileGirls(Guid identidad);
         bool GetExisteUserName(string username);

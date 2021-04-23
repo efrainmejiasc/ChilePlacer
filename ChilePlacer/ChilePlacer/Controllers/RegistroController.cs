@@ -1,6 +1,7 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
 using ChilePlacer.Models;
+using ChilePlacer.Models.App;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace ChilePlacer.Controllers
 {
@@ -129,24 +131,25 @@ namespace ChilePlacer.Controllers
         {
             httpContext.HttpContext.Session.SetString("Identidad", s.Identidad.ToString());
             httpContext.HttpContext.Session.SetString("Email", s.Email);
-            httpContext.HttpContext.Session.SetString("Username", "");
+            httpContext.HttpContext.Session.SetString("Username", profileGirls.GetUserName(s.Identidad));
         }
 
         [HttpPost]
         public JsonResult GetIdentityUser()
         {
-            var girl = new Girls();
-            if (string.IsNullOrEmpty(httpContext.HttpContext.Session.GetString("Identidad")))
+            var identityUser = new IdentityUser();
+            var test = httpContext.HttpContext.Session.GetString("Identidad");
+            if (string.IsNullOrEmpty(test))
             {
-                girl = null;
-                return Json(girl);
+                identityUser = null;
+                return Json(identityUser);
             }
 
-            girl.Identidad = Guid.Parse(httpContext.HttpContext.Session.GetString("Identidad"));
-            girl.Email = httpContext.HttpContext.Session.GetString("Email");
-            girl.Password = httpContext.HttpContext.Session.GetString("Username");
+            identityUser.Identidad = Guid.Parse(httpContext.HttpContext.Session.GetString("Identidad"));
+            identityUser.Email = httpContext.HttpContext.Session.GetString("Email");
+            identityUser.Username = httpContext.HttpContext.Session.GetString("Username");
 
-            return Json(girl);
+            return Json(identityUser);
         }
 
         [HttpPost]

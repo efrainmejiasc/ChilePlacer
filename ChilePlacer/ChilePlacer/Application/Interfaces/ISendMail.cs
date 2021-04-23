@@ -11,6 +11,6 @@ namespace ChilePlacer.Application.Interfaces
     public interface ISendMail
     {
         bool EnviarMailNotificacion(string subject, string body, string emailDestiny);
-        bool EnviarMailNotificacion(ActivacioMailModel model, IWebHostEnvironment _hostEnv);
+        bool EnviarMailNotificacion(ActivacionMailModel model, IWebHostEnvironment _hostEnv);
     }
 }

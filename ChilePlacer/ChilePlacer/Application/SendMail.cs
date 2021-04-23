@@ -13,7 +13,7 @@ namespace ChilePlacer.Application
 {
     public class SendMail:ISendMail
     {
-        public bool EnviarMailNotificacion(ActivacioMailModel model, IWebHostEnvironment hostEnv)
+        public bool EnviarMailNotificacion(ActivacionMailModel model, IWebHostEnvironment hostEnv)
         {
             bool result = false;
             model = ConstruccionNotificacion(model,hostEnv);
@@ -45,7 +45,7 @@ namespace ChilePlacer.Application
         }
 
 
-        private ActivacioMailModel ConstruccionNotificacion(ActivacioMailModel model, IWebHostEnvironment hostEnv)
+        private ActivacionMailModel ConstruccionNotificacion(ActivacionMailModel model, IWebHostEnvironment hostEnv)
         {
             string body = Path.Combine(hostEnv.WebRootPath, model.PathLecturaArchivo);
             body = File.ReadAllText(body);

@@ -37,8 +37,14 @@ export class GirlCompletedProfileComponent implements OnInit {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    this.username = urlParams.get('username');
     this.identidad = urlParams.get('identidad');
+
+    console.log(this.username);
+
+    if (this.identidad == '' || this.identidad == null) {
+      this.getIdentityUser();
+      return false;
+    }
 
     $.ajax({
       type: "POST",
@@ -177,6 +183,31 @@ export class GirlCompletedProfileComponent implements OnInit {
       }
 
     }
+
+    return false;
+  }
+
+  public getIdentityUser() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetIdentityUser",
+      dataType: "json",
+      success: function (data) {
+        if (data === null) {
+          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/login-girl/;
+          window.location.href = 'http://localhost:4200/login-girl/' ;
+        }
+        else {
+
+          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?identidad=' + data.identidad;
+          window.location.href = 'http://localhost:4200/girl-completed-profile?identidad=' + data.identidad;
+        }
+      },
+      complete: function () {
+        console.log('GetIdentityUser');
+      }
+    });
 
     return false;
   }

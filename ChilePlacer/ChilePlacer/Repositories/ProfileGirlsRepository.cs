@@ -66,5 +66,10 @@ namespace ChilePlacer.Repositories
             return false;
         }
 
+        public string GetUserName (Guid identidad)
+        {
+            return db.ProfileGirls.Where(x => x.Identidad == identidad).Select(x => x.Username).FirstOrDefault();
+        }
+
     }
 }

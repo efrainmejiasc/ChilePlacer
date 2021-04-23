@@ -64,9 +64,9 @@ namespace ChilePlacer.Application
             return girl;
         }
 
-        public ActivacioMailModel SetEstructuraMailRegister(string enlaze, string email)
+        public ActivacionMailModel SetEstructuraMailRegister(string enlaze, string email)
         {
-            ActivacioMailModel model = new ActivacioMailModel();
+            ActivacionMailModel model = new ActivacionMailModel();
             model.Link = enlaze;
             model.Saludo = "Hola: ";
             model.EmailDestinatario = email;

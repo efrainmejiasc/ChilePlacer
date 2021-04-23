@@ -11,6 +11,7 @@ import { RegistroGirlsComponent } from './registro-girls/registro-girls.componen
 import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-completed-profile.component';
 import { LoginGirlComponent } from './login-girl/login-girl.component';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';
+import { ProfileGirlComponent } from './profile-girl/profile-girl.component';
 
 
 
@@ -23,6 +24,7 @@ import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.co
     GirlCompletedProfileComponent,
     LoginGirlComponent,
     CambiarPasswordComponent,
+    ProfileGirlComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,6 +36,7 @@ import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.co
       { path: 'login-girl', component: LoginGirlComponent },
       { path: 'girl-completed-profile', component: GirlCompletedProfileComponent },
       { path: 'cambiar-password', component: CambiarPasswordComponent },
+      { path: 'profile-girl', component: ProfileGirlComponent },
 
     ])
   ],
