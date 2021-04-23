@@ -18,6 +18,7 @@ namespace ChilePlacer.DataModels
         public virtual DbSet<TypeSex> TypeSex { get; set; }
         public virtual DbSet<TypeGirls> TypeGirls { get; set; }
         public virtual DbSet<GaleriaGirls> GaleriaGirls { get; set; }
+        public virtual DbSet<PortadaGirls> PortadaGirls { get; set; }
         public virtual DbSet<ChangePassword> ChangePassword { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
