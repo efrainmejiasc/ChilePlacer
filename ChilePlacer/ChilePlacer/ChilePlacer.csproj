@@ -36,8 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\dist\assets\PortadaGirls\" />
     <Folder Include="ClientApp\dist\assets\ProfileImageGirls\" />
+    <Folder Include="ClientApp\src\assets\PortadaGirls\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />

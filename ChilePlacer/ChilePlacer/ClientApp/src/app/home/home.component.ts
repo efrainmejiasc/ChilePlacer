@@ -21,10 +21,29 @@ export class HomeComponent implements OnInit{
 
     $.ajax({
       type: "POST",
-      url: "Aplicacion/GetImagenesPortada(",
+      url: "Aplicacion/GetImagenesPortada",
       dataType: "json",
       success: function (data) {
-        this.tablaPortada();
+        console.log(data);
+        $("#tablaPortada thead tr").remove();
+        $('#tablaPortada tbody tr').remove();
+
+        let title = `<tr>
+                        <th> Id </th>
+                        <th> IdGirls </th>
+                        <th> PathImagen </th>
+               </tr>`;
+
+        $("#tablaPortada thead").append(title);
+
+        $.each(data, function (index, item) {
+          let tr = `<tr> 
+                      <td> ${item.id} </td>
+                      <td> ${item.idGirl} </td>
+                      <td> <img src='${item.pathImagen}' /> </td>
+                      </tr>`;
+          $('#tablaPortada tbody').append(tr);
+        });
       },
       complete: function () {
         console.log('GetIdentityUser');
@@ -34,28 +53,6 @@ export class HomeComponent implements OnInit{
     return false;
   }
 
-
-  public tablaPortada(emp) {
-    $("#tablaPortada thead tr").remove();
-    $('#tablaPortada tbody tr').remove();
-
-    let title = `<tr>
-                        <th> Id </th>
-                        <th> IdGirls </th>
-                        <th> PathImagen </th>
-               </tr>`;
-
-    $("#tablaPortada thead").append(title); 
-   
-    $.each(emp, function (index, item) {
-      let tr = `<tr> 
-                      <td> ${item.Id} </td>
-                      <td> ${item.IdGirls} </td>
-                      <td> ${item.PathImagen}</td>
-                      </tr >`;
-      $('#tablaPortada tbody').append(tr);
-    });
-  }
 
 
 }

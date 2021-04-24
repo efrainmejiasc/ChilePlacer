@@ -9,7 +9,7 @@ namespace ChilePlacer.Models
     {
         public int Id { get; set; }
         public int IdGirl { get; set; }
-        public Guid Identidad { get; set; }
+        public string Identidad { get; set; }
         public string Username { get; set; }
         public string PathImagen { get; set; }
     }
