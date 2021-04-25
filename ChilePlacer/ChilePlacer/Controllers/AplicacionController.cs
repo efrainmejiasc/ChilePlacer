@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,10 +49,12 @@ namespace ChilePlacer.Controllers
             var a = new ImagenPortadaModel()
             {
                 Id = 1,
-                IdGirl=  1,  
-                Identidad =  "BCDE6EC1-D8FA-4D4C-ACB9-86FD213B2B2E" ,
-                Username ="Katerina",
-                PathImagen= "./assets/PortadaGirls/Katerina.jpg"
+                IdGirl = 1,
+                Identidad = "BCDE6EC1-D8FA-4D4C-ACB9-86FD213B2B2E",
+                Username = "Katerina",
+                PathImagen =  "assets/PortadaGirls/Katerina.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "EfrainMejiasC-2020",
+                Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales"
             };
             list.Add(a);
 
@@ -61,7 +64,9 @@ namespace ChilePlacer.Controllers
                 IdGirl = 2,
                 Identidad = "1B9CC4D1-2319-4F5C-ACC8-03C8F357EA4A",
                 Username = "Melissa",
-                PathImagen = "./assets/PortadaGirls/Melissa.jpg"
+                PathImagen = "../assets/PortadaGirls/Melissa.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "yahoo-3456",
+                Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales"
             };
             list.Add(b);
 
@@ -70,8 +75,10 @@ namespace ChilePlacer.Controllers
                 Id = 3,
                 IdGirl = 3,
                 Identidad = "61F8BE30-6AE1-45E2-97A9-D0AC2D8CE3A6",
-                Username = "Yorkina",
-                PathImagen = "assets/PortadaGirls/Yorkina.jpg"
+                Username = "Yorkira",
+                PathImagen = "assets/PortadaGirls/Yorkina.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "Katerina",
+                Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales"
             };
 
             list.Add(c);
@@ -82,7 +89,9 @@ namespace ChilePlacer.Controllers
                 IdGirl = 4,
                 Identidad = "61F8BE30-6AE1-45E2-97A9-D0AC2D8CE3A6",
                 Username = "Karelis",
-                PathImagen = "assets/PortadaGirls/Karelis.jpg"
+                PathImagen = "assets/PortadaGirls/Karelis.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "Katerina",
+                 Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales"
             };
 
             list.Add(d);
@@ -93,7 +102,9 @@ namespace ChilePlacer.Controllers
                 IdGirl = 5,
                 Identidad = "61F8BE30-6AE1-45E2-97A9-D0AC2D8CE3A6",
                 Username = "Brus",
-                PathImagen = "assets/PortadaGirls/Brus.jpg"
+                PathImagen = "assets/PortadaGirls/Brus.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "Katerina",
+                Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales",
             };
 
             list.Add(e);
@@ -104,7 +115,9 @@ namespace ChilePlacer.Controllers
                 IdGirl = 6,
                 Identidad = "61F8BE30-6AE1-45E2-97A9-D0AC2D8CE3A6",
                 Username = "Geraldin",
-                PathImagen = "assets/PortadaGirls/Geraldin.jpg"
+                PathImagen = "assets/PortadaGirls/Geraldin.jpg",
+                UrlProfile = "http://localhost:4200/profile-girl?user=" + "Katerina",
+                Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales",
             };
 
             list.Add(f);

@@ -29,18 +29,18 @@ export class HomeComponent implements OnInit{
         $('#tablaPortada tbody tr').remove();
 
         let title = `<tr>
-                        <th> Id </th>
-                        <th> IdGirls </th>
-                        <th> PathImagen </th>
-               </tr>`;
+                        <th> </th>
+                      </tr>`;
 
         $("#tablaPortada thead").append(title);
 
         $.each(data, function (index, item) {
           let tr = `<tr> 
-                      <td> ${item.id} </td>
-                      <td> ${item.idGirl} </td>
-                      <td> <img src='${item.pathImagen}' /> </td>
+                      <td>
+                           <a href="${item.urlProfile}" style="color:silver;"> ${item.username} </a>
+                           <img src= ${item.pathImagen} style="widt:15%;height:10%;"/>
+                           <label id=${item.id}> ${item.texto} <label>
+                      </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
         });

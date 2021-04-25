@@ -12,5 +12,7 @@ namespace ChilePlacer.Models
         public string Identidad { get; set; }
         public string Username { get; set; }
         public string PathImagen { get; set; }
+        public string UrlProfile { get; set; }
+        public string Texto { get; set; }
     }
 }

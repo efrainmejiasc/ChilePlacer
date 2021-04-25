@@ -23,5 +23,8 @@ namespace ChilePlacer.DataModels
 
         [Column(Order = 4, TypeName = "VARCHAR(250)")]
         public string PathImagen { get; set; }
+
+        [Column(Order = 5, TypeName = "VARCHAR(200)")]
+        public string Texto{ get; set; }
     }
 }
