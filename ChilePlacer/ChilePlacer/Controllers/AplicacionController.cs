@@ -124,5 +124,23 @@ namespace ChilePlacer.Controllers
 
             return list;
         }
+
+        [HttpPost]
+        public JsonResult GetUsuario(string username)
+        {
+            var model = new GirlProfileModel();
+            model = girls.GetUsuario(username, true);
+
+            return Json(model);
+        }
+
+        [HttpPost]
+        public JsonResult GetUsuarioProfile(string username)
+        {
+            var  model = new GirlProfileModel();
+            model = girls.GetGirls(username, true);
+
+            return Json(model);
+        }
     }
 }

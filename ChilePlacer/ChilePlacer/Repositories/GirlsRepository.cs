@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,42 @@ namespace ChilePlacer.Repositories
             db.SaveChanges();
 
             return girl;
+        }
+
+
+        public GirlProfileModel GetUsuario(string username, bool activo)
+        {
+            var model = (from girl in db.Girls
+                         join profile in db.ProfileGirls on girl.Identidad equals profile.Identidad
+                         where girl.Activo == activo && profile.Username == username
+                         select new { girl, profile }).AsEnumerable()
+                        .Select(x => new GirlProfileModel
+                        {
+                            Id = x.girl.Id,
+                            Identidad = x.girl.Identidad.ToString(),
+                            Username = x.profile.Username
+
+                        }).FirstOrDefault();
+
+            return model;
+        }
+
+        public GirlProfileModel GetGirls(string username, bool activo)
+        {
+            var model = (from girl in db.Girls
+                         join profile in db.ProfileGirls on girl.Identidad equals profile.Identidad
+                         where girl.Activo == activo && profile.Username == username
+                         select new { girl, profile}).AsEnumerable()
+                        .Select(x => new GirlProfileModel
+                        {
+                            Id = x.girl.Id,
+                            Identidad = x.girl.Identidad.ToString(),
+                            Username = x.profile.Username,
+                            Imagenes = db.GaleriaGirls.Where(y => y.Girls.Id == x.girl.Id).OrderByDescending(y => y.Fecha).Select(y => y.PathImagen).ToList()
+
+                        }).FirstOrDefault();
+
+            return model;
         }
     }
 }

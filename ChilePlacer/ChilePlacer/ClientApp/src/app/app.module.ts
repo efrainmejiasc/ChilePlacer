@@ -12,6 +12,7 @@ import { GirlCompletedProfileComponent } from './girl-completed-profile/girl-com
 import { LoginGirlComponent } from './login-girl/login-girl.component';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';
 import { ProfileGirlComponent } from './profile-girl/profile-girl.component';
+import { ClComponent } from './cl/cl.component';
 
 
 
@@ -25,6 +26,7 @@ import { ProfileGirlComponent } from './profile-girl/profile-girl.component';
     LoginGirlComponent,
     CambiarPasswordComponent,
     ProfileGirlComponent,
+    ClComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

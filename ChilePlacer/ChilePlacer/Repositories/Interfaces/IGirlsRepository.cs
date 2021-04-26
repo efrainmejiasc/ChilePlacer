@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace ChilePlacer.Repositories.Interfaces
         Girls LoginGirls(string email, string password);
         Girls ChangePassword(string email, string password);
         Girls ActivarUsuario(Guid identificador, bool activo);
+        GirlProfileModel GetGirls(string username, bool activo);
+        GirlProfileModel GetUsuario(string username, bool activo);
     }
 }

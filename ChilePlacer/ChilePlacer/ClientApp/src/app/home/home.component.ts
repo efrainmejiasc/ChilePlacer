@@ -5,15 +5,17 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+
 
   constructor() { }
 
   ngOnInit() {
 
     console.log(window.location.pathname);
-    this.getImagenesPortada() 
+    this.getImagenesPortada()
   }
 
 
@@ -37,8 +39,10 @@ export class HomeComponent implements OnInit{
         $.each(data, function (index, item) {
           let tr = `<tr> 
                       <td>
-                           <a href="${item.urlProfile}" style="color:silver;"> ${item.username} </a><br>
-                           <img src= ${item.pathImagen} style="widt:5%;height:5%;border-radius:30%;"/>
+                           <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
+
+                           <img src= ${item.pathImagen} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                           
                            <label id=${item.id}> ${item.texto} <label>
                       </td>
                       </tr>`;
@@ -53,7 +57,36 @@ export class HomeComponent implements OnInit{
     return false;
   }
 
+  public buscarUsuario() {
+    var username = $('#searchUsuario').val();
+    if (username === '')
+      return false;
+
+    $.ajax({
+      type: "POST",
+      url: "Aplicacion/GetUsuario",
+      data: {username: username},
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        if (data === null) {
+          $('#msj').html('');
+          $('#msj').html( username + ' No se encuentra registrado');
+          $('#mensaje').show();
+          setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        }
+        else {
+          window.location.href = 'http://localhost:4200/cl?user=' + data.username;
+        }
+      },
+      complete: function () {
+        console.log('GetIdentityUser');
+      }
+    });
+  }
+
+
+
 
 
 }
-
