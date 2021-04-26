@@ -64,7 +64,7 @@ namespace ChilePlacer.Controllers
                 IdGirl = 2,
                 Identidad = "1B9CC4D1-2319-4F5C-ACC8-03C8F357EA4A",
                 Username = "Melissa",
-                PathImagen = "../assets/PortadaGirls/Melissa.jpg",
+                PathImagen = "assets/PortadaGirls/Melissa.jpg",
                 UrlProfile = "http://localhost:4200/profile-girl?user=" + "yahoo-3456",
                 Texto = "Una chica de compañía, acompañante o escort es una mujer remunerada para eventos sociales"
             };

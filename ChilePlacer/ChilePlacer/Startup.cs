@@ -56,8 +56,9 @@ namespace ChilePlacer
             services.AddTransient<MyAppContext, MyAppContext>();
             services.AddTransient<IUtilidad, Utilidad>();
             services.AddTransient<ISendMail, SendMail>();
-            services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
+            services.AddTransient<IImageTool, ImageTool>();
             services.AddTransient<IGirlsRepository, GirlsRepository>();
+            services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
             services.AddTransient<IPortadaGirlsRepository, PortadaGirlsRepository>();
             services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
             services.AddTransient<IChangePasswordRepository, ChangePasswordRepository>();

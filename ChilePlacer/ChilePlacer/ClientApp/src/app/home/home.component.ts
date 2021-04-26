@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit{
         $.each(data, function (index, item) {
           let tr = `<tr> 
                       <td>
-                           <a href="${item.urlProfile}" style="color:silver;"> ${item.username} </a>
-                           <img src= ${item.pathImagen} style="widt:15%;height:10%;"/>
+                           <a href="${item.urlProfile}" style="color:silver;"> ${item.username} </a><br>
+                           <img src= ${item.pathImagen} style="widt:5%;height:5%;border-radius:30%;"/>
                            <label id=${item.id}> ${item.texto} <label>
                       </td>
                       </tr>`;
