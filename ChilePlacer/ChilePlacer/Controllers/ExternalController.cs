@@ -72,7 +72,7 @@ namespace ChilePlacer.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("api/PruebaApi")]
+        [Route("api/")]
         public RespuestaModel PruebaApi (string id)
         {
             var respuesta = new RespuestaModel();
