@@ -39,6 +39,7 @@ import { ClComponent } from './cl/cl.component';
       { path: 'girl-completed-profile', component: GirlCompletedProfileComponent },
       { path: 'cambiar-password', component: CambiarPasswordComponent },
       { path: 'profile-girl', component: ProfileGirlComponent },
+      { path: 'cl', component: ClComponent },
 
     ])
   ],
