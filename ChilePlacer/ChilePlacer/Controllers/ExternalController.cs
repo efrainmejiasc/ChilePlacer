@@ -1,4 +1,5 @@
-﻿using ChilePlacer.Models;
+﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,9 +19,11 @@ namespace ChilePlacer.Controllers
     public class ExternalController : ControllerBase
     {
         private readonly IWebHostEnvironment hostEnv;
+        private readonly IUtilidad util;
 
-        public ExternalController(IWebHostEnvironment _hostEnv)
+        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util)
         {
+            util = _util;
             hostEnv = _hostEnv;
         }
 
@@ -38,11 +41,8 @@ namespace ChilePlacer.Controllers
                     var name = p[0] + "_" + identidad + "." + p[1];
                     if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
                     {
+                        util.CrearDirectorio("ClientApp/dist/assets/ProfileImageGirls");
                         string path = "ClientApp/dist/assets/ProfileImageGirls/" + name;
-                        if (!Directory.Exists("ClientApp/dist/assets/ProfileImageGirls"))
-                        {
-                            Directory.CreateDirectory("ClientApp/dist/assets/ProfileImageGirls/");
-                        }
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
@@ -72,12 +72,69 @@ namespace ChilePlacer.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("api/")]
+        [Route("api/UploadFilePublication")]
+        public RespuestaModel UploadFilePublication(IFormFile file, string identidad)
+        {
+            var respuesta = new RespuestaModel();
+            if (file != null)
+            {
+                try
+                {
+                    var p = file.FileName.Replace("_", "").Split('.');
+                    var name = p[0] + "_" + identidad + "." + p[1];
+                    string path = "ClientApp/dist/assets/Girls/";
+                    util.CrearDirectorio("ClientApp/dist/assets/Girls");
+
+                    if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
+                    {
+                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Photo");
+                        path = "ClientApp/dist/assets/Girls/Photo/" + name;
+                    }
+                    else if (file.FileName.Contains(".GIF"))
+                    {
+                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Gift");
+                        path = "ClientApp/dist/assets/Girls/Gift/" + name;
+                    }
+                    else if (file.FileName.Contains(".MP3") || file.FileName.Contains(".MP4"))
+                    {
+                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Audio");
+                        path = "ClientApp/dist/assets/Girls/Audio/" + name;
+                    }
+                    else
+                    {
+                        respuesta.Descripcion = "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png .gif)";
+                        return respuesta;
+                    }
+
+                    var stream = System.IO.File.Create(path);
+                    file.CopyTo(stream);
+                    stream.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    respuesta.Descripcion = ex.ToString();
+                    return respuesta;
+                }
+            }
+            else
+            {
+                respuesta.Descripcion = "El valor no puede ser nulo";
+                return respuesta;
+            }
+
+            respuesta.Descripcion = "OK: Exito";
+            return respuesta;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/{id?}")]
         public RespuestaModel PruebaApi (string id)
         {
             var respuesta = new RespuestaModel();
             respuesta.Descripcion = "OK: " + id;
             return respuesta;
         }
+
     }
 }

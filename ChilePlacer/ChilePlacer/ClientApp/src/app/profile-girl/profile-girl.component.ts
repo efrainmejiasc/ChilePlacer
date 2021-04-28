@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as $ from 'jquery';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http'
 
 @Component({
   selector: 'app-profile-girl',
   templateUrl: './profile-girl.component.html',
   styleUrls: ['./profile-girl.component.css']
 })
+
 export class ProfileGirlComponent implements OnInit {
 
-  constructor() { }
+  public msj: string;
+  public _guid: string;
+  public _user: string;
+
+  public progress: number;
+  public message: string;
+  @Output() public onUploadFinished = new EventEmitter();
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.progress = 0; this.message = "";
+
     var url = window.location.href;
     if (!url.includes('='))
-          this.getIdentityUser();
+      this.getIdentityUser('true');
+    else
+      this.getIdentityUser('false');
   }
 
-  public getIdentityUser() {
+  public getIdentityUser(s) {
 
     $.ajax({
       type: "POST",
@@ -28,9 +42,12 @@ export class ProfileGirlComponent implements OnInit {
           window.location.href = 'http://localhost:4200/login-girl/';
         }
         else {
-
-          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/profile-girl?user=' + data.username;
-          window.location.href = 'http://localhost:4200/profile-girl?user=' + data.username;
+          if (s === 'true') {
+            //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/profile-girl?user=' + data.username;
+            window.location.href = 'http://localhost:4200/profile-girl?user=' + data.username;
+          }
+          this._user = data.username; $('#_user').val(data.username);
+          this._guid = data.identidad; $('#_guid').val(data.identidad);
           console.log(data);
         }
       },
@@ -40,6 +57,32 @@ export class ProfileGirlComponent implements OnInit {
     });
 
     return false;
+  }
+
+
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return false;
+    }
+    this.progress = 0;
+    this._guid = $('#_guid').val().toString();
+
+    let fileToUpload = <File>files[0];
+    $('#filename').val(fileToUpload.name);
+
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.http.post('http://localhost:4200/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid}, withCredentials: false })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        }
+        else if (event.type === HttpEventType.Response) {
+          this.message = 'Exito';
+          this.onUploadFinished.emit(event.body);
+        }
+      });
   }
 
 }

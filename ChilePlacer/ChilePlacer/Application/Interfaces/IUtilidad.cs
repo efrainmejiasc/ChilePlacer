@@ -12,6 +12,7 @@ namespace ChilePlacer.Application.Interfaces
         string ConstruirCodigo();
         Guid NuevoIdentificador();
         string CodeBase64(string cadena);
+        void CrearDirectorio(string path);
         string DecodeBase64(string cadena);
         bool CompararString(string a, string b);
         string ConstruirEnlazeRegistro(string email, Guid identidad);

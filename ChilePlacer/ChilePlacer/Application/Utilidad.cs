@@ -3,6 +3,7 @@ using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -171,6 +172,15 @@ namespace ChilePlacer.Application
             Random rnd = new Random(semilla);
             double n = rnd.NextDouble();
             return n;
+        }
+
+        public void CrearDirectorio(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
         }
     }
 }

@@ -37,11 +37,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\dist\assets\Girls\Photo\" />
     <Folder Include="ClientApp\dist\assets\PortadaGirls\" />
     <Folder Include="ClientApp\dist\assets\ProfileImageGirls\" />
+    <Folder Include="ClientApp\src\assets\Girls\Audio\" />
+    <Folder Include="ClientApp\src\assets\Girls\Gift\" />
+    <Folder Include="ClientApp\src\assets\Girls\Video\" />
     <Folder Include="ClientApp\src\assets\PortadaGirls\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
+    <Folder Include="wwwroot\Files\Girls\Photo\" />
     <Folder Include="wwwroot\Files\Girls\Video\" />
     <Folder Include="wwwroot\Files\ImagesSite\" />
   </ItemGroup>

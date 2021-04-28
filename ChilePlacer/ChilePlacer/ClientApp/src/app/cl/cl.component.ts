@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import * as $ from 'jquery';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http'
 
 @Component({
   selector: 'app-cl',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClComponent implements OnInit {
 
+  public msj: string;
+
+
   constructor() { }
 
   ngOnInit() {
   }
+
+
+
 
 }

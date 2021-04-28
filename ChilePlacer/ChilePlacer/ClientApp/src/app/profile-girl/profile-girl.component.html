@@ -1,5 +1,39 @@
 
+<div class="container" style="margin-top:2%;border-radius:30%;">
 
-<div>
+  <div class="container">
+    <div style="text-align:center;">
+      <div>
+        <span style="font-size:12px;color:silver;font-weight:bold;">Nueva publicacion</span>
+      </div>
+      <div>
+
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+        <a class='btn' style="color:cornflowerblue;"> <i (click)="file.click();"> Seleccionar</i></a>
+      </div>
+      <div>
+      
+       
+      </div>
+    </div>
+  </div>
+
+  <table id="tablaFotos" class="table table-hover" style="border:none;text-align:center;">
+    <thead style="display:none;"></thead>
+    <tbody></tbody>
+  </table>
 
 </div>
+
+<div>
+  <div id="mensaje" class="modalTipo">
+    <div class="modal-content">
+      <div class="formulario-campo">
+        <label id="msj" [(ngModel)]="msj"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="_user" [(ngModel)]="_user"/>
+<input type="hidden" id="_guid" [(ngModel)]="_guid"/>
