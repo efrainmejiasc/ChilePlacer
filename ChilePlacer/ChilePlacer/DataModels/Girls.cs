@@ -34,5 +34,8 @@ namespace ChilePlacer.DataModels
         [Column(Order = 6, TypeName = "VARCHAR(250)")]
         public string Password { get; set; }
 
+       // [Column(Order = 5, TypeName = "DATETIME")]
+        //public DateTime FechaNacimiento { get; set; }
+
     }
 }

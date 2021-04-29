@@ -13,6 +13,7 @@ export class ProfileGirlComponent implements OnInit {
   public msj: string;
   public _guid: string;
   public _user: string;
+  public _texto: string;
 
   public progress: number;
   public message: string;
@@ -56,16 +57,20 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    return false;
+    setTimeout(this.getImagenes, 3000);
+
   }
 
 
   public uploadFile = (files) => {
+    console.log('SF');
+
     if (files.length === 0) {
       return false;
     }
     this.progress = 0;
     this._guid = $('#_guid').val().toString();
+    this._texto = $('#_texto').val().toString();
 
     let fileToUpload = <File>files[0];
     $('#filename').val(fileToUpload.name);
@@ -73,7 +78,7 @@ export class ProfileGirlComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://localhost:4200/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid}, withCredentials: false })
+    this.http.post('http://localhost:4200/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid, texto: this._texto}, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -83,6 +88,54 @@ export class ProfileGirlComponent implements OnInit {
           this.onUploadFinished.emit(event.body);
         }
       });
+
+    $('#_texto').val('');
+    this.getImagenes();
+  }
+
+  public getImagenes() {
+
+    var identidad = $('#_guid').val();
+    if (identidad === '' || identidad === null) {
+      console.log('identidad no puede ser vacio')
+      return false;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "Aplicacion/GetImagenesPerfil",
+      data: {identidad: identidad},
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        $("#tablaPortada thead tr").remove();
+        $('#tablaPortada tbody tr').remove();
+
+        let title = `<tr>
+                        <th> </th>
+                      </tr>`;
+
+        $("#tablaPortada thead").append(title);
+
+        $.each(data, function (index, item) {
+          let tr = `<tr> 
+                      <td>
+                           <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
+
+                           <img src= ${item.pathImagen} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                           
+                           <label id=${item.id}> ${item.texto} <label>
+                      </td>
+                      </tr>`;
+          $('#tablaPortada tbody').append(tr);
+        });
+      },
+      complete: function () {
+        console.log('GetIdentityUser');
+      }
+    });
+
+    return false;
   }
 
 }

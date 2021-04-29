@@ -4,14 +4,16 @@ using ChilePlacer.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20210429155609_ide")]
+    partial class ide
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace ChilePlacer.Migrations
 
                     b.Property<string>("PathImagen")
                         .HasColumnType("VARCHAR(250)");
-
-                    b.Property<string>("Texto")
-                        .HasColumnType("VARCHAR(500)");
 
                     b.HasKey("Id");
 

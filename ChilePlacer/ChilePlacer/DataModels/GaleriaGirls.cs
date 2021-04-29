@@ -15,14 +15,20 @@ namespace ChilePlacer.DataModels
         [Column(Order = 1, TypeName = "INT")]
         public int Id { get; set; }
 
-        [Column(Order = 2, TypeName = "INT")]
         [Required]
-        public Girls Girls { get; set; }
+        [Column(Order = 2, TypeName = "UNIQUEIDENTIFIER")]
+        public Guid Identidad { get; set; }
 
         [Column(Order = 3, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(250)")]
         public string PathImagen { get; set; }
+
+        [Column(Order = 5, TypeName = "VARCHAR(8000)")]
+        public string Img64 { get; set; }
+
+        [Column(Order = 6, TypeName = "VARCHAR(500)")]
+        public string Texto { get; set; }
     }
 }

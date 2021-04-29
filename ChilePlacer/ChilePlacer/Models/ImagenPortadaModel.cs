@@ -14,5 +14,6 @@ namespace ChilePlacer.Models
         public string PathImagen { get; set; }
         public string UrlProfile { get; set; }
         public string Texto { get; set; }
+        public string Img64 { get; set; }
     }
 }

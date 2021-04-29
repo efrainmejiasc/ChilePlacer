@@ -39,5 +39,8 @@ namespace ChilePlacer.DataModels
 
         [Column(Order = 9, TypeName = "VARCHAR(50)")]
         public string Username { get; set; }
+
+        [Column(Order = 10, TypeName = "VARCHAR(8000)")]
+        public string Img64 { get; set; }
     }
 }

@@ -15,11 +15,13 @@ namespace ChilePlacer.Application.Interfaces
         void CrearDirectorio(string path);
         string DecodeBase64(string cadena);
         bool CompararString(string a, string b);
+        string CodeBase64(string path, bool opt = false);
         string ConstruirEnlazeRegistro(string email, Guid identidad);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
         Girls SetGirlsModel(string email, string password, Guid identiificador);
         ActivacionMailModel SetEstructuraMailRegister(string enlaze, string email);
         ChangePassword ConstruirChangePassword(string email, string codigo, bool activo);
-        ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username);
+        GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, string path, string texto = "");
+        ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64);
     }
 }

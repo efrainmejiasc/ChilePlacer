@@ -87,11 +87,15 @@ namespace ChilePlacer.Repositories
                             Id = x.girl.Id,
                             Identidad = x.girl.Identidad.ToString(),
                             Username = x.profile.Username,
-                            Imagenes = db.GaleriaGirls.Where(y => y.Girls.Id == x.girl.Id).OrderByDescending(y => y.Fecha).Select(y => y.PathImagen).ToList()
-
+                            Imagenes = db.GaleriaGirls.Where(y => y.Identidad == x.girl.Identidad).OrderByDescending(y => y.Fecha).Select(y => y.PathImagen).ToList()
                         }).FirstOrDefault();
 
             return model;
+        }
+
+        public Girls GetGirls(Guid identidad)
+        {
+            return db.Girls.Where(x => x.Identidad == identidad).FirstOrDefault();
         }
     }
 }

@@ -42,6 +42,14 @@ namespace ChilePlacer.Controllers
             return imagenes;
         }
 
+        [HttpPost]
+        public List<ImagenPortadaModel> GetImagenesPerfil(string identidad)
+        {
+            var imagenes = new List<ImagenPortadaModel>();
+            imagenes = MockImagenes();
+            return imagenes;
+        }
+
         public List<ImagenPortadaModel> MockImagenes()
         {
             var list = new List<ImagenPortadaModel>();

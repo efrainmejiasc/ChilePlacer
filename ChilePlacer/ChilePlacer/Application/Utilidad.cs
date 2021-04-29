@@ -3,6 +3,7 @@ using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,22 @@ namespace ChilePlacer.Application
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
             var cadenaBase64 = Convert.ToBase64String(comprobanteXmlPlainTextBytes);
+            return cadenaBase64;
+        }
+
+        public string CodeBase64(string path, bool opt = false)
+        {
+            string cadenaBase64 = string.Empty;
+            using (Image image = Image.FromFile(path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+                    cadenaBase64 = Convert.ToBase64String(imageBytes);
+                }
+            }
+
             return cadenaBase64;
         }
 
@@ -103,7 +120,7 @@ namespace ChilePlacer.Application
             return resultado;
         }
 
-        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username)
+        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64)
         {
             var profileGirls = new ProfileGirls()
             {
@@ -114,7 +131,8 @@ namespace ChilePlacer.Application
                 Telefono = telefono,
                 Path = path,
                 Fecha = DateTime.UtcNow,
-                Username = username
+                Username = username,
+                Img64 = img64
             };
 
             return profileGirls;
@@ -129,6 +147,18 @@ namespace ChilePlacer.Application
                 Fecha = DateTime.UtcNow,
                 Activo = activo
             };
+
+            return model;
+        }
+
+        public GaleriaGirls SetGaleriaGirls (Girls girls,string nameFile,string path,string texto = "")
+        {
+            var model = new GaleriaGirls();
+            model.Identidad= girls.Identidad;
+            model.Fecha = DateTime.UtcNow;
+            model.PathImagen = nameFile;
+            model.Img64 = CodeBase64(path);
+            model.Texto = texto;
 
             return model;
         }
@@ -182,5 +212,7 @@ namespace ChilePlacer.Application
             }
 
         }
+
+
     }
 }

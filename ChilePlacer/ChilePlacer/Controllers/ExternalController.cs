@@ -1,5 +1,6 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.Models;
+using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +21,14 @@ namespace ChilePlacer.Controllers
     {
         private readonly IWebHostEnvironment hostEnv;
         private readonly IUtilidad util;
-
-        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util)
+        private readonly IGirlsRepository girls;
+        private readonly IGaleriaGirlsRepository galeriaGirls;
+        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls)
         {
             util = _util;
             hostEnv = _hostEnv;
+            girls = _girls;
+            galeriaGirls = _galeriaGirls;
         }
 
         [HttpPost]
@@ -39,7 +43,7 @@ namespace ChilePlacer.Controllers
                 {
                     var p = file.FileName.Replace("_","").Split('.');
                     var name = p[0] + "_" + identidad + "." + p[1];
-                    if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
+                    if (file.FileName.ToUpper().Contains(".JPG") || file.FileName.ToUpper().Contains(".JPEG") || file.FileName.ToUpper().Contains(".BMP") || file.FileName.ToUpper().Contains(".PNG"))
                     {
                         util.CrearDirectorio("ClientApp/dist/assets/ProfileImageGirls");
                         string path = "ClientApp/dist/assets/ProfileImageGirls/" + name;
@@ -70,10 +74,12 @@ namespace ChilePlacer.Controllers
             return respuesta;
         }
 
+
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/UploadFilePublication")]
-        public RespuestaModel UploadFilePublication(IFormFile file, string identidad)
+        public RespuestaModel UploadFilePublication(IFormFile file, string identidad,string texto = "")
         {
             var respuesta = new RespuestaModel();
             if (file != null)
@@ -85,17 +91,17 @@ namespace ChilePlacer.Controllers
                     string path = "ClientApp/dist/assets/Girls/";
                     util.CrearDirectorio("ClientApp/dist/assets/Girls");
 
-                    if (file.FileName.Contains(".JPG") || file.FileName.Contains(".JPEG") || file.FileName.Contains(".BMP") || file.FileName.Contains(".PNG"))
+                    if (file.FileName.ToUpper().Contains(".JPG") || file.FileName.ToUpper().Contains(".JPEG") || file.FileName.ToUpper().Contains(".BMP") || file.FileName.ToUpper().Contains(".PNG"))
                     {
                         util.CrearDirectorio("ClientApp/dist/assets/Girls/Photo");
                         path = "ClientApp/dist/assets/Girls/Photo/" + name;
                     }
-                    else if (file.FileName.Contains(".GIF"))
+                    else if (file.FileName.ToUpper().Contains(".GIF"))
                     {
                         util.CrearDirectorio("ClientApp/dist/assets/Girls/Gift");
                         path = "ClientApp/dist/assets/Girls/Gift/" + name;
                     }
-                    else if (file.FileName.Contains(".MP3") || file.FileName.Contains(".MP4"))
+                    else if (file.FileName.ToUpper().Contains(".MP3") || file.FileName.ToUpper().Contains(".MP4"))
                     {
                         util.CrearDirectorio("ClientApp/dist/assets/Girls/Audio");
                         path = "ClientApp/dist/assets/Girls/Audio/" + name;
@@ -109,6 +115,11 @@ namespace ChilePlacer.Controllers
                     var stream = System.IO.File.Create(path);
                     file.CopyTo(stream);
                     stream.Dispose();
+
+                    var girlsModel = girls.GetGirls(Guid.Parse(identidad));
+                    var galeria = util.SetGaleriaGirls(girlsModel, name, path, texto);
+                    galeriaGirls.InsertGaleriaGirls(galeria);
+                   
                 }
                 catch (Exception ex)
                 {
@@ -134,6 +145,7 @@ namespace ChilePlacer.Controllers
             var respuesta = new RespuestaModel();
             respuesta.Descripcion = "OK: " + id;
             return respuesta;
+            //return RedirectPermanent("https://www.google.com");
         }
 
     }
