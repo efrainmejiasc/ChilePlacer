@@ -20,10 +20,10 @@ namespace ChilePlacer.Controllers
         private readonly IWebHostEnvironment hostEnv;
         private readonly IHttpContextAccessor httpContext;
         private readonly IProfileGirlsRepository profileGirls;
-        private readonly IPortadaGirlsRepository portadaGirls;
+        private readonly IGaleriaGirlsRepository galeriaGirls;
 
 
-        public AplicacionController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IPortadaGirlsRepository _portadaGirls, IHttpContextAccessor _httpContext)
+        public AplicacionController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IGaleriaGirlsRepository _galeriaGirls, IHttpContextAccessor _httpContext)
         {
             util = _util;
             girls = _girls;
@@ -31,23 +31,23 @@ namespace ChilePlacer.Controllers
             sendMail = _sendMail;
             httpContext = _httpContext;
             profileGirls = _profileGirls;
-            portadaGirls = _portadaGirls;
+            galeriaGirls = _galeriaGirls;
         }
 
         [HttpPost]
         public List<ImagenPortadaModel> GetImagenesPortada()
         {
-            var imagenes = new List<ImagenPortadaModel>();
-            imagenes = MockImagenes();
-            return imagenes;
+            var portadaContent = new List<ImagenPortadaModel>();
+            portadaContent = galeriaGirls.GetImagenesGaleria();
+            return portadaContent;
         }
 
         [HttpPost]
         public List<ImagenPortadaModel> GetImagenesPerfil(string identidad)
         {
-            var imagenes = new List<ImagenPortadaModel>();
-            imagenes = MockImagenes();
-            return imagenes;
+            var perfilContent = new List<ImagenPortadaModel>();
+            perfilContent = galeriaGirls.GetImagenesGaleria(Guid.Parse(identidad));
+            return perfilContent;
         }
 
         public List<ImagenPortadaModel> MockImagenes()

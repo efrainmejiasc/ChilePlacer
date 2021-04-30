@@ -32,6 +32,27 @@ namespace ChilePlacer.Repositories
             var model = new List<ImagenPortadaModel>();
             model = (from perfil in db.ProfileGirls
                      join galeria in db.GaleriaGirls on perfil.Identidad equals galeria.Identidad
+                     where perfil.Identidad == identidad
+                     select new { perfil, galeria }).AsEnumerable()
+                    .Select(x => new ImagenPortadaModel
+                    {
+                        Id = x.perfil.Id,
+                        Username = x.perfil.Username,
+                        Identidad = x.perfil.Identidad.ToString(),
+                        Texto = x.galeria.Texto,
+                        Img64 = x.galeria.Img64,
+                        PathImagen = x.galeria.PathImagen,
+
+                    }).ToList();
+
+            return model;
+        }
+
+        public List<ImagenPortadaModel> GetImagenesGaleria()
+        {
+            var model = new List<ImagenPortadaModel>();
+            model = (from perfil in db.ProfileGirls
+                     join galeria in db.GaleriaGirls on perfil.Identidad equals galeria.Identidad
                      select new { perfil, galeria }).AsEnumerable()
                     .Select(x => new ImagenPortadaModel
                     {

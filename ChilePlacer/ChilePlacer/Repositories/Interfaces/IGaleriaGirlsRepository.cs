@@ -9,6 +9,7 @@ namespace ChilePlacer.Repositories.Interfaces
 {
     public interface IGaleriaGirlsRepository
     {
+        List<ImagenPortadaModel> GetImagenesGaleria();
         GaleriaGirls InsertGaleriaGirls(GaleriaGirls model);
         List<ImagenPortadaModel> GetImagenesGaleria(Guid identidad);
     }
