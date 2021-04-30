@@ -140,12 +140,9 @@ namespace ChilePlacer.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/{id?}")]
-        public RespuestaModel PruebaApi (string id)
+        public RedirectResult PruebaApi (string id)
         {
-            var respuesta = new RespuestaModel();
-            respuesta.Descripcion = "OK: " + id;
-            return respuesta;
-            //return RedirectPermanent("https://www.google.com");
+          return RedirectPermanent("http://chileplacercl-001-site1.itempurl.com/cl?user=" + id);
         }
 
     }

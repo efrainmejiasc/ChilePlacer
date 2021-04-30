@@ -42,6 +42,7 @@ namespace ChilePlacer.Repositories
                         Texto = x.galeria.Texto,
                         Img64 = x.galeria.Img64,
                         PathImagen = x.galeria.PathImagen,
+                        UrlProfile = "http://chileplacercl-001-site1.itempurl.com/cl?user=" + x.perfil.Username
 
                     }).ToList();
 
@@ -62,6 +63,7 @@ namespace ChilePlacer.Repositories
                         Texto = x.galeria.Texto,
                         Img64 = x.galeria.Img64,
                         PathImagen = x.galeria.PathImagen,
+                        UrlProfile = "http://chileplacercl-001-site1.itempurl.com/cl?user=" + x.perfil.Username
 
                     }).ToList();
 

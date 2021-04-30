@@ -22,7 +22,7 @@ namespace ChilePlacer.Application
 
         public string CodeBase64(string path, bool opt = false)
         {
-            /*string cadenaBase64 = string.Empty;
+            string cadenaBase64 = string.Empty;
             using (Image image = Image.FromFile(path))
             {
                 using (MemoryStream m = new MemoryStream())
@@ -31,14 +31,20 @@ namespace ChilePlacer.Application
                     byte[] imageBytes = m.ToArray();
                     cadenaBase64 = Convert.ToBase64String(imageBytes);
                 }
-            }*/
-
-            byte[] imageBytes = System.IO.File.ReadAllBytes(path);
-            string cadenaBase64 = Convert.ToBase64String(imageBytes);
-
+            }
 
             return cadenaBase64;
         }
+
+        public  string CodeBase64(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, image.RawFormat);
+                return Convert.ToBase64String(ms.ToArray());
+            }
+        }
+
 
         public string DecodeBase64(string cadena)
         {
@@ -162,6 +168,18 @@ namespace ChilePlacer.Application
             model.Fecha = DateTime.UtcNow;
             model.PathImagen = nameFile;
             model.Img64 = CodeBase64(path);
+            model.Texto = texto;
+
+            return model;
+        }
+
+        public GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, Image image, string texto = "")
+        {
+            var model = new GaleriaGirls();
+            model.Identidad = girls.Identidad;
+            model.Fecha = DateTime.UtcNow;
+            model.PathImagen = nameFile;
+            model.Img64 = CodeBase64(image);
             model.Texto = texto;
 
             return model;

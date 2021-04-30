@@ -121,8 +121,8 @@ export class ProfileGirlComponent implements OnInit {
           let tr = `<tr> 
                       <td>
                            <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
-
-                           <img src = data:image/jpg;base64,${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+ 
+                           <img src= ${item.pathImagen} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
                            <label id=${item.id}> ${item.texto} <label>
                       </td>
