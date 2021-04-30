@@ -22,7 +22,7 @@ namespace ChilePlacer.Application
 
         public string CodeBase64(string path, bool opt = false)
         {
-            string cadenaBase64 = string.Empty;
+            /*string cadenaBase64 = string.Empty;
             using (Image image = Image.FromFile(path))
             {
                 using (MemoryStream m = new MemoryStream())
@@ -31,7 +31,11 @@ namespace ChilePlacer.Application
                     byte[] imageBytes = m.ToArray();
                     cadenaBase64 = Convert.ToBase64String(imageBytes);
                 }
-            }
+            }*/
+
+            byte[] imageBytes = System.IO.File.ReadAllBytes(path);
+            string cadenaBase64 = Convert.ToBase64String(imageBytes);
+
 
             return cadenaBase64;
         }
