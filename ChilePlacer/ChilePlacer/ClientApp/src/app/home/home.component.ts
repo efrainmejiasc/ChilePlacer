@@ -1,7 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
 import { AppConfiguration } from "read-appsettings-json";
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-home',
@@ -14,14 +15,14 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    //console.log(AppConfiguration.Setting().urlServerHost);
+    console.log(AppConfiguration.Setting().urlServerHost);
     console.log(window.location.pathname);
     this.getImagenesPortada()
   }
 
 
   public getImagenesPortada() {
-
+   
     $.ajax({
       type: "POST",
       url: "Aplicacion/GetImagenesPortada",
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
+
   public buscarUsuario() {
     var username = $('#searchUsuario').val();
     if (username === '')
@@ -77,17 +79,15 @@ export class HomeComponent implements OnInit {
           setTimeout(function () { $('#mensaje').hide(); }, 3000);
         }
         else {
-          window.location.href = 'http://localhost:4200/cl?user=' + data.username;
+          window.location.href = AppConfiguration.Setting().urlServerHost + '/cl?user=' + data.username;
         }
       },
       complete: function () {
         console.log('GetIdentityUser');
       }
     });
+
   }
-
-
-
 
 
 }

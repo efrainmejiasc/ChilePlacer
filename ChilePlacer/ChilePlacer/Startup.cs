@@ -33,10 +33,12 @@ namespace ChilePlacer
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+#if DEBUG
+            services.AddDbContext<MyAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionLocal")));
+#else
+            services.AddDbContext<MyAppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+#endif
 
-            services.AddDbContext<MyAppContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 
             //**************************************************************************
@@ -63,9 +65,21 @@ namespace ChilePlacer
             services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
             services.AddTransient<IChangePasswordRepository, ChangePasswordRepository>();
 
+#if DEBUG
+            EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHostLocal");
+            EngineData.UrlServerActivacion = Configuration.GetValue<string>("HostSettings:UrlServerActivacionLocal");
+            EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnectionLocal");
 
-            EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHost");
-            EngineData.UrlServerActivacion= Configuration.GetValue<string>("HostSettings:UrlServerActivacion");
+#else
+
+           EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHost");
+           EngineData.UrlServerActivacion = Configuration.GetValue<string>("HostSettings:UrlServerActivacion");
+           EngineData.ConnectionDb = Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
+#endif
+
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

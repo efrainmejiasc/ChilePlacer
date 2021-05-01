@@ -22,7 +22,10 @@ namespace ChilePlacer.Application
         public static string[] AlfabetoP = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
         public static string UrlServerHost { get; set; }
+
         public static string UrlServerActivacion { get; set; }
+
+        public static string ConnectionDb { get; set; }
 
     }
 }

@@ -32,6 +32,7 @@ namespace ChilePlacer.Repositories
             profile.Telefono = model.Telefono;
             profile.Dni = model.Dni;
             profile.Path = model.Path;
+            profile.Username = model.Username;
             db.SaveChanges();
 
             return profile;
