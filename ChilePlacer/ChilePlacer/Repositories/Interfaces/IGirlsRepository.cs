@@ -11,6 +11,7 @@ namespace ChilePlacer.Repositories.Interfaces
     {
         Girls InsertGirls(Girls model);
         Girls GetGirls(Guid identidad);
+        GirlProfileModel GetGirls(string username);
         bool GetExisteEmail(string email, bool activo);
         Girls LoginGirls(string email, string password);
         Girls ChangePassword(string email, string password);

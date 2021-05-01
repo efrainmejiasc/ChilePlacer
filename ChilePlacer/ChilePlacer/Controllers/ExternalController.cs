@@ -1,4 +1,5 @@
-﻿using ChilePlacer.Application.Interfaces;
+﻿using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -140,9 +141,16 @@ namespace ChilePlacer.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/{id?}")]
-        public RedirectResult PruebaApi (string id)
+        public RedirectResult PruebaApi (string id) // id = username
         {
-          return RedirectPermanent("http://chileplacercl-001-site1.itempurl.com/cl?user=" + id);
+            if (string.IsNullOrEmpty(id))
+                return RedirectPermanent(EngineData.UrlServerHost);
+
+            var girl = girls.GetGirls(id);
+            if (girl == null)
+                 return RedirectPermanent(EngineData.UrlServerHost);
+            else
+                return RedirectPermanent(EngineData.UrlServerHost + "cl?user=" + girl.Username + "&ide=" + util.CodeBase64(girl.Identidad));
         }
 
     }

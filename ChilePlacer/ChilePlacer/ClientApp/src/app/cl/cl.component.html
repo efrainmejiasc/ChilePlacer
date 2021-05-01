@@ -4,19 +4,24 @@
 
   <div class="container">
 
-  <table id="tablaFotos" class="table table-hover" style="border:none;text-align:center;">
-    <thead style="display:none;"></thead>
-    <tbody></tbody>
-  </table>
+    <table id="tablaFotos" class="table table-hover" style="border:none;text-align:center;">
+      <thead style="display:none;"></thead>
+      <tbody></tbody>
+    </table>
 
+  </div>
 </div>
 
-<div>
-  <div id="mensaje" class="modalTipo">
-    <div class="modal-content">
-      <div class="formulario-campo">
-        <label id="msj" [(ngModel)]="msj"></label>
+  <div>
+    <div id="mensaje" class="modalTipo">
+      <div class="modal-content">
+        <div class="formulario-campo">
+          <label id="msj" [(ngModel)]="msj"></label>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <input type="hidden" id="_username" [(ngModel)]="_username" />
+  <input type="hidden" id="_identidad"  [(ngModel)]="_identidad" />
+

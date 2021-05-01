@@ -67,6 +67,8 @@ namespace ChilePlacer.Controllers
         public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username)
         {
             var respuesta = new RespuestaModel();
+            respuesta.Status = "false";
+
             if (string.IsNullOrEmpty(id))
             {
                 respuesta.Descripcion = "Error: valores vacios";
@@ -77,11 +79,26 @@ namespace ChilePlacer.Controllers
             var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto);
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64);
             if (!profileGirls.ExisteProfileGirls(identidad))
+            {
+                if (profileGirls.GetExisteUserName(username))
+                {
+                    respuesta.Descripcion = "El nombre de usuario existe, intente con otros digitos";
+                    return Json(respuesta);
+                }
                 profile = profileGirls.InsertProfileGirls(profile);
+            }
             else
+            {
+                if (profileGirls.GetExisteUserName(username,identidad))
+                {
+                    respuesta.Descripcion = "El nombre de usuario existe, intente con otros digitos";
+                    return Json(respuesta);
+                }
                 profile = profileGirls.UpdateProfileGirls(profile);
+            }
 
             respuesta.Descripcion = "Perfil actualizado correctamente";
+            respuesta.Status = "true";
 
             return Json(respuesta);
         }

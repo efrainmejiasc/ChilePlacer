@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { AppConfiguration } from "read-appsettings-json";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    //console.log(AppConfiguration.Setting().urlServerHost);
     console.log(window.location.pathname);
     this.getImagenesPortada()
   }

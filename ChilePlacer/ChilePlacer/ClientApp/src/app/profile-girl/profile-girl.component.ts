@@ -138,4 +138,9 @@ export class ProfileGirlComponent implements OnInit {
     return false;
   }
 
+  public actualizarPerfil() {
+    this._guid = $('#_guid').val().toString();
+    window.location.href = "http://localhost:4200/girl-completed-profile?identidad=" + this._guid;
+  }
+
 }

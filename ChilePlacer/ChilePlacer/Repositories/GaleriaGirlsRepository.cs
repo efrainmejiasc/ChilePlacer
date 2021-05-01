@@ -1,4 +1,6 @@
-﻿using ChilePlacer.DataModels;
+﻿using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +14,11 @@ namespace ChilePlacer.Repositories
     public class GaleriaGirlsRepository : IGaleriaGirlsRepository
     {
         private readonly MyAppContext db;
-        public GaleriaGirlsRepository(MyAppContext _db)
+        private readonly IUtilidad util;
+        public GaleriaGirlsRepository(MyAppContext _db, IUtilidad _util)
         {
             db = _db;
+            util = _util;
         }
 
         public GaleriaGirls InsertGaleriaGirls (GaleriaGirls model)
@@ -27,7 +31,7 @@ namespace ChilePlacer.Repositories
             return model;
         }
 
-        public List<ImagenPortadaModel> GetImagenesGaleria (Guid identidad)
+        public List<ImagenPortadaModel> GetImagenesGaleria (Guid identidad)//Perfil
         {
             var model = new List<ImagenPortadaModel>();
             model = (from perfil in db.ProfileGirls
@@ -39,17 +43,17 @@ namespace ChilePlacer.Repositories
                         Id = x.perfil.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
-                        Texto = x.galeria.Texto,
+                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
                         Img64 = x.galeria.Img64,
                         PathImagen = x.galeria.PathImagen,
-                        UrlProfile = "http://chileplacercl-001-site1.itempurl.com/cl?user=" + x.perfil.Username
+                        UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
 
-                    }).ToList();
+                    }).OrderByDescending(x => x.Id).ToList();
 
             return model;
         }
 
-        public List<ImagenPortadaModel> GetImagenesGaleria()
+        public List<ImagenPortadaModel> GetImagenesGaleria()//Portada
         {
             var model = new List<ImagenPortadaModel>();
             model = (from perfil in db.ProfileGirls
@@ -60,12 +64,12 @@ namespace ChilePlacer.Repositories
                         Id = x.perfil.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
-                        Texto = x.galeria.Texto,
+                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
                         Img64 = x.galeria.Img64,
                         PathImagen = x.galeria.PathImagen,
-                        UrlProfile = "http://chileplacercl-001-site1.itempurl.com/cl?user=" + x.perfil.Username
+                        UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
 
-                    }).ToList();
+                    }).OrderByDescending(x => x.Id).ToList();
 
             return model;
         }

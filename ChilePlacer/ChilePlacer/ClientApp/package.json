@@ -27,6 +27,7 @@
     "jquery": "^3.5.1",
     "oidc-client": "^1.11.3",
     "popper.js": "^1.16.0",
+    "read-appsettings-json": "^1.0.98",
     "rxjs": "^6.6.3",
     "zone.js": "0.9.1"
   },

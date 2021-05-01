@@ -14,5 +14,6 @@ namespace ChilePlacer.Repositories.Interfaces
         bool GetExisteUserName(string username);
         ProfileGirls InsertProfileGirls(ProfileGirls model);
         ProfileGirls UpdateProfileGirls(ProfileGirls model);
+        bool GetExisteUserName(string username, Guid identidad);
     }
 }

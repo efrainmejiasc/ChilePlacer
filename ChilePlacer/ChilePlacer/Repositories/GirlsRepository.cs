@@ -63,7 +63,7 @@ namespace ChilePlacer.Repositories
         {
             var model = (from girl in db.Girls
                          join profile in db.ProfileGirls on girl.Identidad equals profile.Identidad
-                         where girl.Activo == activo && profile.Username == username
+                         where girl.Activo == activo && profile.Username.ToUpper() == username.ToUpper()
                          select new { girl, profile }).AsEnumerable()
                         .Select(x => new GirlProfileModel
                         {
@@ -80,7 +80,7 @@ namespace ChilePlacer.Repositories
         {
             var model = (from girl in db.Girls
                          join profile in db.ProfileGirls on girl.Identidad equals profile.Identidad
-                         where girl.Activo == activo && profile.Username == username
+                         where girl.Activo == activo && profile.Username.ToUpper() == username.ToUpper()
                          select new { girl, profile}).AsEnumerable()
                         .Select(x => new GirlProfileModel
                         {
@@ -88,6 +88,23 @@ namespace ChilePlacer.Repositories
                             Identidad = x.girl.Identidad.ToString(),
                             Username = x.profile.Username,
                             Imagenes = db.GaleriaGirls.Where(y => y.Identidad == x.girl.Identidad).OrderByDescending(y => y.Fecha).Select(y => y.PathImagen).ToList()
+
+                        }).FirstOrDefault();
+
+            return model;
+        }
+
+        public GirlProfileModel GetGirls(string username)
+        {
+            var model = (from girl in db.Girls
+                         join profile in db.ProfileGirls on girl.Identidad equals profile.Identidad
+                         where girl.Activo == true && profile.Username.ToUpper() == username.ToUpper()
+                         select new { girl, profile }).AsEnumerable()
+                        .Select(x => new GirlProfileModel
+                        {
+                            Identidad = x.girl.Identidad.ToString(),
+                            Username = x.profile.Username,
+
                         }).FirstOrDefault();
 
             return model;

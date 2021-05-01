@@ -135,8 +135,10 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-       // setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
-        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
+        if (data.status === 'true') {
+          // setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
+          setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
+        }
       },
       complete: function () {
         console.log('SaveProfileGirls');
