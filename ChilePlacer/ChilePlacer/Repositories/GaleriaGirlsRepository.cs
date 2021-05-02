@@ -45,7 +45,7 @@ namespace ChilePlacer.Repositories
                         Identidad = x.perfil.Identidad.ToString(),
                         Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
                         Img64 = x.galeria.Img64,
-                        PathImagen = x.galeria.PathImagen,
+                        PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
                         UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
 
                     }).OrderByDescending(x => x.Id).ToList();
@@ -66,7 +66,7 @@ namespace ChilePlacer.Repositories
                         Identidad = x.perfil.Identidad.ToString(),
                         Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
                         Img64 = x.galeria.Img64,
-                        PathImagen = x.galeria.PathImagen,
+                        PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
                         UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
 
                     }).OrderByDescending(x => x.Id).ToList();
