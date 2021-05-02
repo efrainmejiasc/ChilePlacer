@@ -1,4 +1,5 @@
-﻿using ChilePlacer.Application.Interfaces;
+﻿using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
@@ -64,6 +65,16 @@ namespace ChilePlacer.Controllers
         {
             var  model = new GirlProfileModel();
             model = girls.GetGirls(username, true);
+
+            return Json(model);
+        }
+
+
+        [HttpPost]
+        public JsonResult UrlServerHost ()
+        {
+            var model = new ServerHostModel();
+            model.UrlServerHostModel =  EngineData.UrlServerHost; 
 
             return Json(model);
         }

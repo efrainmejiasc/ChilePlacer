@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import * as $ from 'jquery';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http'
+import { AppConfiguration } from "read-appsettings-json";
+import * as $ from 'jquery';
 
 
 @Component({
@@ -63,8 +64,7 @@ export class GirlCompletedProfileComponent implements OnInit {
   }
 
   public cancelar() {
-    //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
-    window.location.href = 'http://localhost:4200/';
+    window.location.href = AppConfiguration.Setting().urlServerHost;
   }
 
   public uploadFile = (files) => {
@@ -80,7 +80,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://localhost:4200/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
+    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -136,8 +136,7 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
         if (data.status === 'true') {
-          // setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
-          setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
+          setTimeout(function () { window.location.href = AppConfiguration.Setting().urlServerHost; }, 3000);
         }
       },
       complete: function () {
@@ -197,13 +196,10 @@ export class GirlCompletedProfileComponent implements OnInit {
       dataType: "json",
       success: function (data) {
         if (data === null) {
-          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/login-girl/;
-          window.location.href = 'http://localhost:4200/login-girl/' ;
+          window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/' ;
         }
         else {
-
-          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/girl-completed-profile?identidad=' + data.identidad;
-          window.location.href = 'http://localhost:4200/girl-completed-profile?identidad=' + data.identidad;
+          window.location.href = AppConfiguration.Setting().urlServerHost + '/girl-completed-profile?identidad=' + data.identidad;
         }
       },
       complete: function () {

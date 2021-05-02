@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfiguration } from "read-appsettings-json";
 import * as $ from 'jquery';
 
 @Component({
@@ -44,8 +45,7 @@ export class RegistroGirlsComponent  {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
-        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
+        setTimeout(function () { window.location.href = AppConfiguration.Setting().urlServerHost ; }, 3000);
       },
       complete: function () {
         console.log('REGITROGIRLS');
@@ -80,8 +80,7 @@ export class RegistroGirlsComponent  {
   }
 
   public cancelar() {
-    //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
-    window.location.href = 'http://localhost:4200/';
+    window.location.href = AppConfiguration.Setting().urlServerHost ;
   }
 
    public validarPassword() {

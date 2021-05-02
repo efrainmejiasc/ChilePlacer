@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import * as $ from 'jquery';
 import { HttpClient, HttpRequest, HttpEventType, HttpResponse, HttpParams } from '@angular/common/http'
+import { AppConfiguration } from "read-appsettings-json";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-profile-girl',
@@ -39,13 +40,11 @@ export class ProfileGirlComponent implements OnInit {
       dataType: "json",
       success: function (data) {
         if (data === null) {
-          //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/login-girl/;
-          window.location.href = 'http://localhost:4200/login-girl/';
+          window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
         }
         else {
           if (s === 'true') {
-            //window.location.href = 'http://chileplacercl-001-site1.itempurl.com/profile-girl?user=' + data.username;
-            window.location.href = 'http://localhost:4200/profile-girl?user=' + data.username;
+            window.location.href = AppConfiguration.Setting().urlServerHost + '/profile-girl?user=' + data.username;
           }
           this._user = data.username; $('#_user').val(data.username);
           this._guid = data.identidad; $('#_guid').val(data.identidad);
@@ -78,7 +77,7 @@ export class ProfileGirlComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post('http://localhost:4200/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid, texto: this._texto}, withCredentials: false })
+    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid, texto: this._texto}, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -140,7 +139,7 @@ export class ProfileGirlComponent implements OnInit {
 
   public actualizarPerfil() {
     this._guid = $('#_guid').val().toString();
-    window.location.href = "http://localhost:4200/girl-completed-profile?identidad=" + this._guid;
+    window.location.href = AppConfiguration.Setting().urlServerHost + "/girl-completed-profile?identidad=" + this._guid;
   }
 
 }

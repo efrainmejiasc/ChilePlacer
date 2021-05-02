@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfiguration } from "read-appsettings-json";
 import * as $ from 'jquery';
 
 @Component({
@@ -21,8 +22,7 @@ export class LoginGirlComponent implements OnInit {
 
 
   public cancelar() {
-   // window.location.href = 'http://chileplacercl-001-site1.itempurl.com/';
-    window.location.href = 'http://localhost:4200/';
+    window.location.href = AppConfiguration.Setting().urlServerHost;
   }
 
 
@@ -53,9 +53,7 @@ export class LoginGirlComponent implements OnInit {
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
         setTimeout(function () { $('#mensaje').hide(); }, 3000);
-        //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/'; }, 3000);
-        setTimeout(function () { window.location.href = 'http://localhost:4200/'; }, 3000);
-
+        setTimeout(function () { window.location.href = AppConfiguration.Setting().urlServerHost ; }, 3000);
       },
       complete: function () {
         console.log('LoginGIRLS');
@@ -165,8 +163,7 @@ export class LoginGirlComponent implements OnInit {
       success: function (data) {
         if (data.status === 'true') {
           var parametro = '?email='+ data.email
-          //setTimeout(function () { window.location.href = 'http://chileplacercl-001-site1.itempurl.com/cambiar-password/' + parametro; }, 3000);
-          setTimeout(function () { window.location.href = 'http://localhost:4200/cambiar-password/' + parametro; }, 3000);
+          setTimeout(function () { window.location.href = AppConfiguration.Setting().urlServerHost + '/cambiar-password/' + parametro; }, 3000);
         }
         else {
           $('#_mensaje').css("color", "red");

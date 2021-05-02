@@ -1,4 +1,5 @@
-﻿using ChilePlacer.Application.Interfaces;
+﻿using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -33,6 +34,8 @@ namespace ChilePlacer.Controllers
         public IActionResult Index(string email,string identidad, string date)
         {
             var respuesta = new RespuestaModel();
+            respuesta.UrlServerHost = EngineData.UrlServerHost;
+
             if (string.IsNullOrEmpty(email))
             {
                 respuesta.Descripcion = "";
