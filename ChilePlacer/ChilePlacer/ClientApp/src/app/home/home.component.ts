@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
           setTimeout(function () { $('#mensaje').hide(); }, 3000);
         }
         else {
-          window.location.href = AppConfiguration.Setting().urlServerHost + '/cl?user=' + data.username;
+          window.location.href = AppConfiguration.Setting().urlServerHost + '/cl?user=' + data.username + "&ide=" + data.identidad64;
         }
       },
       complete: function () {

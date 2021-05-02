@@ -1,4 +1,5 @@
-﻿using ChilePlacer.DataModels;
+﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using System;
@@ -11,9 +12,11 @@ namespace ChilePlacer.Repositories
     public class GirlsRepository:IGirlsRepository
     {
         private readonly MyAppContext db;
-        public GirlsRepository(MyAppContext _db)
+        private readonly IUtilidad util;
+        public GirlsRepository(MyAppContext _db, IUtilidad _util)
         {
             db = _db;
+            util = _util;
         }
    
         public bool GetExisteEmail(string email,bool activo)
@@ -69,6 +72,7 @@ namespace ChilePlacer.Repositories
                         {
                             Id = x.girl.Id,
                             Identidad = x.girl.Identidad.ToString(),
+                            Identidad64 = util.CodeBase64(x.girl.Identidad.ToString()),
                             Username = x.profile.Username
 
                         }).FirstOrDefault();
