@@ -89,7 +89,7 @@ export class ProfileGirlComponent implements OnInit {
       });
 
     $('#_texto').val('');
-    this.getImagenes();
+    setTimeout(this.getImagenes, 2000);
   }
 
   public getImagenes() {
