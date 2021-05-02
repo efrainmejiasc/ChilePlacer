@@ -44,6 +44,7 @@
     <Folder Include="ClientApp\src\assets\Girls\Gift\" />
     <Folder Include="ClientApp\src\assets\Girls\Video\" />
     <Folder Include="ClientApp\src\assets\PortadaGirls\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Files\Girls\Audio\" />
     <Folder Include="wwwroot\Files\Girls\Gift\" />
     <Folder Include="wwwroot\Files\Girls\Photo\" />

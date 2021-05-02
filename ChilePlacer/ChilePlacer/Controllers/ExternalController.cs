@@ -1,5 +1,6 @@
 ﻿using ChilePlacer.Application;
 using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -24,12 +25,14 @@ namespace ChilePlacer.Controllers
         private readonly IUtilidad util;
         private readonly IGirlsRepository girls;
         private readonly IGaleriaGirlsRepository galeriaGirls;
-        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls)
+        private readonly IAppLogRepository log;
+        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls, IAppLogRepository _log)
         {
             util = _util;
             hostEnv = _hostEnv;
             girls = _girls;
             galeriaGirls = _galeriaGirls;
+            log = _log;
         }
 
         [HttpPost]
@@ -124,12 +127,20 @@ namespace ChilePlacer.Controllers
                 }
                 catch (Exception ex)
                 {
+                    var error = new AppLog()
+                    {
+                        Error = ex.ToString(),
+                        Metodo = "ExternalController,UploadFilePublication",
+                        Fecha = DateTime.UtcNow,
+                    };
+                    log.InserAppLog(error);
                     respuesta.Descripcion = ex.ToString();
                     return respuesta;
                 }
             }
             else
             {
+                
                 respuesta.Descripcion = "El valor no puede ser nulo";
                 return respuesta;
             }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210423204400_portadagirl")]
-    partial class portadagirl
+    [Migration("20210502190104_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace ChilePlacer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ChilePlacer.DataModels.AppLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Error")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("Metodo")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppLog");
+                });
 
             modelBuilder.Entity("ChilePlacer.DataModels.ChangePassword", b =>
                 {
@@ -57,15 +80,19 @@ namespace ChilePlacer.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int?>("GirlsId")
-                        .HasColumnType("INT");
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("Img64")
+                        .HasColumnType("VARCHAR(MAX)");
 
                     b.Property<string>("PathImagen")
                         .HasColumnType("VARCHAR(250)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Texto")
+                        .HasColumnType("VARCHAR(500)");
 
-                    b.HasIndex("GirlsId");
+                    b.HasKey("Id");
 
                     b.ToTable("GaleriaGirls");
                 });
@@ -112,8 +139,14 @@ namespace ChilePlacer.Migrations
                     b.Property<int>("IdGirls")
                         .HasColumnType("INT");
 
+                    b.Property<string>("Img64")
+                        .HasColumnType("VARCHAR(MAX)");
+
                     b.Property<string>("PathImagen")
                         .HasColumnType("VARCHAR(250)");
+
+                    b.Property<string>("Texto")
+                        .HasColumnType("VARCHAR(200)");
 
                     b.HasKey("Id");
 
@@ -138,6 +171,9 @@ namespace ChilePlacer.Migrations
 
                     b.Property<Guid>("Identidad")
                         .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("Img64")
+                        .HasColumnType("VARCHAR(8000)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("VARCHAR(80)");
@@ -182,15 +218,6 @@ namespace ChilePlacer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TypeSex");
-                });
-
-            modelBuilder.Entity("ChilePlacer.DataModels.GaleriaGirls", b =>
-                {
-                    b.HasOne("ChilePlacer.DataModels.Girls", "Girls")
-                        .WithMany()
-                        .HasForeignKey("GirlsId");
-
-                    b.Navigation("Girls");
                 });
 #pragma warning restore 612, 618
         }

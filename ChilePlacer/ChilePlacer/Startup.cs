@@ -56,6 +56,7 @@ namespace ChilePlacer
             //*****************************************************************************
 
             services.AddTransient<MyAppContext, MyAppContext>();
+            services.AddTransient<IAppLogRepository, AppLogRepository>();
             services.AddTransient<IUtilidad, Utilidad>();
             services.AddTransient<ISendMail, SendMail>();
             services.AddTransient<IImageTool, ImageTool>();

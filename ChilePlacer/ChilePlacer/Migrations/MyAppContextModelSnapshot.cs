@@ -19,6 +19,29 @@ namespace ChilePlacer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ChilePlacer.DataModels.AppLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Error")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<string>("Metodo")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppLog");
+                });
+
             modelBuilder.Entity("ChilePlacer.DataModels.ChangePassword", b =>
                 {
                     b.Property<int>("Id")

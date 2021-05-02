@@ -13,7 +13,7 @@ namespace ChilePlacer.DataModels
             : base(options)
         {
         }
-
+        public virtual DbSet<AppLog> AppLog { get; set; }
         public virtual DbSet<Girls> Girls { get; set; }
         public virtual DbSet<ProfileGirls> ProfileGirls { get; set; }
         public virtual DbSet<TypeSex> TypeSex { get; set; }
