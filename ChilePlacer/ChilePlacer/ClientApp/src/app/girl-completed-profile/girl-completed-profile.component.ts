@@ -30,8 +30,32 @@ export class GirlCompletedProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getImagenProfile();
+    //this.getImagenProfile();
+      this.getSexo();
   }
+
+
+  public getSexo() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetSexo",
+      dataType: "json",
+      success: function (data) {
+        $("#sexo").empty();
+        $('#sexo').append('<option selected disabled value="-1">Seleccione sexo...</option>');
+        $.each(data, function (index, value) {
+          $('#sexo').append('<option  value="' + value.id + '">' + value.sexo + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+
+
+
 
 
   public getImagenProfile() {

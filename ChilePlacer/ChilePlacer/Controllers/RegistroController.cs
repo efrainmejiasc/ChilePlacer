@@ -18,6 +18,7 @@ namespace ChilePlacer.Controllers
     {
         private readonly IUtilidad util;
         private readonly ISendMail sendMail;
+        private readonly ITypesRepository typeSex;
         private readonly IGirlsRepository girls;
         private readonly IWebHostEnvironment hostEnv;
         private readonly IHttpContextAccessor httpContext;
@@ -25,10 +26,11 @@ namespace ChilePlacer.Controllers
         private readonly IChangePasswordRepository changePassword;
 
 
-        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword, IHttpContextAccessor _httpContext)
+        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword, IHttpContextAccessor _httpContext, ITypesRepository _typeSex)
         {
             util = _util;
             girls = _girls;
+            typeSex = _typeSex;
             hostEnv = _hostEnv;
             sendMail = _sendMail;
             httpContext = _httpContext;
@@ -228,6 +230,13 @@ namespace ChilePlacer.Controllers
             respuesta.Email = util.CodeBase64(email);
 
             return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult GetSexo ()
+        {
+            var sexo = typeSex.GetSex();
+            return Json(sexo);
         }
     }
 }
