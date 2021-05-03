@@ -125,6 +125,10 @@ export class GirlCompletedProfileComponent implements OnInit {
       return false;
     }
 
+    console.log(nameImg)
+    if (p[0] === '' || p[1] === '')
+         nameImg = '';
+
     $.ajax({
       type: "POST",
       url: "Registro/CompletedRegistroGirls",

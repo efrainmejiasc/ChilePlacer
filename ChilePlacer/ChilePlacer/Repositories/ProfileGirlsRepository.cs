@@ -27,12 +27,12 @@ namespace ChilePlacer.Repositories
         {
             var profile = db.ProfileGirls.Where(x => x.Identidad == model.Identidad).FirstOrDefault();
             db.ProfileGirls.Attach(profile);
-            profile.Nombre = model.Nombre;
-            profile.Apellido = model.Apellido;
-            profile.Telefono = model.Telefono;
-            profile.Dni = model.Dni;
-            profile.Path = model.Path;
-            profile.Username = model.Username;
+            profile.Nombre = !string.IsNullOrEmpty(model.Nombre) ? model.Nombre : profile.Nombre;
+            profile.Apellido = !string.IsNullOrEmpty(model.Apellido) ? model.Apellido :profile.Apellido;
+            profile.Telefono = !string.IsNullOrEmpty(model.Telefono) ? model.Telefono : profile.Telefono;
+            profile.Dni = !string.IsNullOrEmpty(model.Dni) ? model.Dni : profile.Dni;
+            profile.Path = !string.IsNullOrEmpty(model.Path) ? model.Path : profile.Path;
+            profile.Username = !string.IsNullOrEmpty(model.Username) ? model.Username : profile.Username;
             db.SaveChanges();
 
             return profile;

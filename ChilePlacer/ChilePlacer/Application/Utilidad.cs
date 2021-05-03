@@ -142,7 +142,7 @@ namespace ChilePlacer.Application
                 Path = path,
                 Fecha = DateTime.UtcNow,
                 Username = username,
-                Img64 = img64
+                Img64 = string.IsNullOrEmpty(path)?string.Empty:img64
             };
 
             return profileGirls;
