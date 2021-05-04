@@ -10,11 +10,15 @@ namespace ChilePlacer.DataModels
     [Table("TypeDepilacion")]
     public class TypeDepilacion
     {
-        [Key]
-        [Column(Order = 1, TypeName = "VARCHAR(50)")]
-        public string Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(Order = 1, TypeName = "INT")]
+        public int Id { get; set; }
 
-        [Column(Order = 2, TypeName = "VARCHAR(50)")]
+        [Key]
+        [Column(Order = 2, TypeName = "VARCHAR(100)")]
+        public string Ide { get; set; }
+
+        [Column(Order = 3, TypeName = "VARCHAR(100)")]
         public string Depilacion { get; set; }
     }
 }

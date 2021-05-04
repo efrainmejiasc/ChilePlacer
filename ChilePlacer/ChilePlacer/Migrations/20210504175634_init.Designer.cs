@@ -4,14 +4,16 @@ using ChilePlacer.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20210504175634_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,7 +303,7 @@ namespace ChilePlacer.Migrations
 
                     b.HasKey("Ide");
 
-                    b.ToTable("TypeContextura");
+                    b.ToTable("Contextura");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypeCountry", b =>

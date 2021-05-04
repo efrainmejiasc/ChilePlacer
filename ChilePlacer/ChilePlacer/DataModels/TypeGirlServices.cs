@@ -11,14 +11,15 @@ namespace ChilePlacer.DataModels
     public class TypeGirlServices
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(Order = 1, TypeName = "INT")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        [Column(Order = 2, TypeName = "VARCHAR(50)")]
+        [Column(Order = 2, TypeName = "UNIQUEIDENTIFIER")]
         public Guid Identidad { get; set; }
 
-        [Column(Order = 3, TypeName = "INT")]
-        public string IdTypeServices { get; set; }
+        [Column(Order = 3, TypeName = "VARCHAR(100)")]
+        public string TypeServices { get; set; }
 
     }
 }

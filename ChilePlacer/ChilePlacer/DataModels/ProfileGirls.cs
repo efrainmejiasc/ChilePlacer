@@ -37,16 +37,16 @@ namespace ChilePlacer.DataModels
         [Column(Order = 8, TypeName = "VARCHAR(50)")]
         public string Dni { get; set; }
 
-        [Column(Order = 9, TypeName = "VARCHAR(50)")]
+        [Column(Order = 9, TypeName = "VARCHAR(100)")]
         public string Username { get; set; }
 
-        [Column(Order = 10, TypeName = "VARCHAR(8000)")]
+        [Column(Order = 10, TypeName = "VARCHAR(MAX)")]
         public string Img64 { get; set; }
 
         [Column(Order = 11, TypeName = "DATETIME")]
         public DateTime FechaNacimiento { get; set; }
 
-        [Column(Order = 12, TypeName = "VARCHAR(50)")]
+        [Column(Order = 12, TypeName = "VARCHAR(100)")]
         public string Sexo { get; set; }
 
         [Column(Order = 13, TypeName = "DECIMAL")]
@@ -55,35 +55,35 @@ namespace ChilePlacer.DataModels
         [Column(Order = 14, TypeName = "DECIMAL")]
         public decimal Peso { get; set; }
 
-        [Column(Order = 15, TypeName = "VARCHAR(50)")]
+        [Column(Order = 15, TypeName = "VARCHAR(100)")]
         public string Medidas { get; set; }
 
-        [Column(Order = 16, TypeName = "VARCHAR(50)")]
+        [Column(Order = 16, TypeName = "VARCHAR(100)")]
         public string Contextura { get; set; }
 
-        [Column(Order = 17, TypeName = "VARCHAR(50)")]
-        public string Cabello { get; set; }
+        [Column(Order = 17, TypeName = "VARCHAR(100)")]
+        public string Hair { get; set; }
 
-        [Column(Order = 18, TypeName = "VARCHAR(50)")]
+        [Column(Order = 18, TypeName = "VARCHAR(100)")]
         public string Piel { get; set; }
 
-        [Column(Order = 19, TypeName = "VARCHAR(50)")]
-        public string Ojos { get; set; }
+        [Column(Order = 19, TypeName = "VARCHAR(100)")]
+        public string Eyes { get; set; }
 
-        [Column(Order = 19, TypeName = "VARCHAR(50)")]
+        [Column(Order = 19, TypeName = "VARCHAR(100)")]
         public string Depilacion { get; set; }
 
-        [Column(Order = 20, TypeName = "VARCHAR(50)")]
-        public string Bebedor { get; set; }
+        [Column(Order = 20, TypeName = "VARCHAR(100)")]
+        public string Drink { get; set; }
 
-        [Column(Order = 21, TypeName = "VARCHAR(50)")]
-        public string  Fumador { get; set; }
+        [Column(Order = 21, TypeName = "VARCHAR(100)")]
+        public string  Smoke { get; set; }
 
         [Column(Order = 22, TypeName = "VARCHAR(150)")]
-        public string Pais { get; set; }
+        public string Country { get; set; }
 
         [Column(Order = 23, TypeName = "VARCHAR(150)")]
-        public string Ubicacion { get; set; }
+        public string Location { get; set; }
 
         [Column(Order = 24, TypeName = "VARCHAR(200)")]
         public string Presentacion { get; set; }
@@ -101,6 +101,6 @@ namespace ChilePlacer.DataModels
         public decimal ValorMediaHora { get; set; }
 
         [Column(Order = 29, TypeName = "VARCHAR(100)")]
-        public decimal LugarAtencion { get; set; }
+        public string Atencion { get; set; }
     }
 }

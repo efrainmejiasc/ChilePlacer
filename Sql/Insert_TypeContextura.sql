@@ -1,0 +1,5 @@
+INSERT INTO TypeContextura VALUES ('Delgada','Delgada')
+INSERT INTO TypeContextura VALUES ('Mediana','Mediana')
+INSERT INTO TypeContextura VALUES ('Atletica','Atletica')
+INSERT INTO TypeContextura VALUES ('Robusta','Robusta')
+INSERT INTO TypeContextura VALUES ('Voluptuosa','Voluptuosa')
