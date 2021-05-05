@@ -1,0 +1,8 @@
+ INSERT INTO TypeEscort VALUES ('Escort Mujeres','Escort Mujeres') 
+ INSERT INTO TypeEscort VALUES ('Escort Maduras','Escort Maduras')
+ INSERT INTO TypeEscort VALUES ('Escort Lésbicas','Escort Lésbicas')
+ INSERT INTO TypeEscort VALUES ('Masajes','Masajes')
+ INSERT INTO TypeEscort VALUES ('Chicas Under','Chicas Under')
+ INSERT INTO TypeEscort VALUES ('Escort Hombres','Escort Hombres')
+ INSERT INTO TypeEscort VALUES ('Escort Gay','Escort Gay')
+ INSERT INTO TypeEscort VALUES ('Escort Trans', 'Escort Trans')

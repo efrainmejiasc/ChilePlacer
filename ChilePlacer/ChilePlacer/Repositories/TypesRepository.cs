@@ -20,5 +20,15 @@ namespace ChilePlacer.Repositories
         {
             return db.TypeSex.ToList();
         }
+
+        public List<TypeEscort> GetEscort()
+        {
+            return db.TypeEscort.ToList();
+        }
+
+        public List<TypeContextura> GetContextura()
+        {
+            return db.TypeContextura.ToList();
+        }
     }
 }

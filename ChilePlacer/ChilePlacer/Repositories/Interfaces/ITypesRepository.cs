@@ -9,5 +9,8 @@ namespace ChilePlacer.Repositories.Interfaces
     public interface ITypesRepository
     {
         List<TypeSex> GetSex();
+        List<TypeEscort> GetEscort();
+        List<TypeContextura> GetContextura();
+
     }
 }

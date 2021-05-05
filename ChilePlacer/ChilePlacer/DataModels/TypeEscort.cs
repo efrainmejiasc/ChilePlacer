@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChilePlacer.DataModels
 {
-    [Table("CategoriaEscort")]
+    [Table("TypeEscort")]
     public class TypeEscort
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
