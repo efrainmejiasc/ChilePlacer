@@ -30,6 +30,8 @@ namespace ChilePlacer.DataModels
         public virtual DbSet<TypeAtencionGirl> TypeAtencionGirl { get; set; }
         //_______________________________________________________________________________
         public virtual DbSet<TypeCountry> TypeCountry { get; set; }
+        public virtual DbSet<TypeLocation> TypeLocation { get; set; }
+        //________________________________________________________________________________
         public virtual DbSet<TypeContextura> TypeContextura{ get; set; }
         public virtual DbSet<TypeDepilacion> TypeDepilacion { get; set; }
         public virtual DbSet<TypeDrink> TypeDrink { get; set; }
@@ -44,7 +46,7 @@ namespace ChilePlacer.DataModels
         public virtual DbSet<TypePiel> TypePiel { get; set; }
         public virtual DbSet<TypeSex> TypeSex { get; set; }
         public virtual DbSet<TypeSmoke> TypeSmoke{ get; set; }
-        public virtual DbSet<TypeLocation> TypeLocation { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

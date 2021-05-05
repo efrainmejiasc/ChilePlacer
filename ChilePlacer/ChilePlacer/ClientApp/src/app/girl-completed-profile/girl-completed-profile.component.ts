@@ -27,10 +27,19 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   ngOnInit() {
     //this.getImagenProfile();
-       $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
+    $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
     this.getSexo();
     this.getEscort();
     this.getContextura();
+    this.getAtencion();
+    this.getServicios();
+    this.getPiel();
+    this.getHair();
+    this.getEyes();
+    this.getDrink();
+    this.getSmoke();
+    this.getCountry();
+    this.getLocation();
   }
 
 
@@ -79,7 +88,7 @@ export class GirlCompletedProfileComponent implements OnInit {
       dataType: "json",
       success: function (data) {
         $("#contextura").empty();
-        $('#contextura').append('<option selected disabled value="-1">Seleccione  contextura...</option>');
+        $('#contextura').append('<option selected disabled value="-1">Seleccione contextura...</option>');
         $.each(data, function (index, value) {
           $('#contextura').append('<option  value="' + value.ide + '">' + value.contextura + '</option>');
         });
@@ -89,6 +98,167 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
+
+  public getPiel() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetPiel",
+      dataType: "json",
+      success: function (data) {
+        $("#piel").empty();
+        $('#piel').append('<option selected disabled value="-1">Seleccione color de piel...</option>');
+        $.each(data, function (index, value) {
+          $('#piel').append('<option  value="' + value.ide + '">' + value.piel + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getEyes() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetEyes",
+      dataType: "json",
+      success: function (data) {
+        $("#eyes").empty();
+        $('#eyes').append('<option selected disabled value="-1">Seleccione color de ojos...</option>');
+        $.each(data, function (index, value) {
+          $('#eyes').append('<option  value="' + value.ide + '">' + value.ojos + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getHair() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetHair",
+      dataType: "json",
+      success: function (data) {
+        $("#hair").empty();
+        $('#hair').append('<option selected disabled value="-1">Seleccione color de cabello...</option>');
+        $.each(data, function (index, value) {
+          $('#hair').append('<option  value="' + value.ide + '">' + value.colorCabello + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getDrink() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetDrink",
+      dataType: "json",
+      success: function (data) {
+        $("#drink").empty();
+        $('#drink').append('<option selected disabled value="-1">Seleccione...</option>');
+        $.each(data, function (index, value) {
+          $('#drink').append('<option  value="' + value.ide + '">' + value.drink + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getSmoke() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetSmoke",
+      dataType: "json",
+      success: function (data) {
+        $("#smoke").empty();
+        $('#smoke').append('<option selected disabled value="-1">Seleccione...</option>');
+        $.each(data, function (index, value) {
+          $('#smoke').append('<option  value="' + value.ide + '">' + value.smoke + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getAtencion() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetAtencion",
+      dataType: "json",
+      success: function (data) {
+        $("#atencion").empty();
+        $('#atencion').append('<option selected disabled value="-1">Seleccione lugar de atencion...</option>');
+        $.each(data, function (index, value) {
+          $('#atencion').append('<option  value="' + value.ide + '">' + value.atencion + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getServicios() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetServicios",
+      dataType: "json",
+      success: function (data) {
+        $("#servicios").empty();
+        $.each(data, function (index, value) {
+          $('#servicios').append('<option  value="' + value.ide + '">' + value.servicio + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+  public getCountry() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetCountry",
+      dataType: "json",
+      success: function (data) {
+        $("#country").empty();
+        $.each(data, function (index, value) {
+          $('#country').append('<option  value="' + value.ide + '">' + value.pais + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
+
+
+  public getLocation() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetLocation",
+      dataType: "json",
+      success: function (data) {
+        $("#location").empty();
+        $('#location').append('<option selected disabled value="-1">Seleccione ubicacion...</option>');
+        $.each(data, function (index, value) {
+          $('#location').append('<option  value="' + value.ide + '">' + value.location + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
 
 
 

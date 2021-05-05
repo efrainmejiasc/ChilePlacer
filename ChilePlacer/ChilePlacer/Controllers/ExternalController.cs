@@ -54,6 +54,7 @@ namespace ChilePlacer.Controllers
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
+                        util.MarcaDeAgua(path);
                     }
                     else
                     {

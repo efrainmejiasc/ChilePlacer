@@ -4,14 +4,16 @@ using ChilePlacer.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20210505220203_Sp")]
+    partial class Sp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -304,24 +306,6 @@ namespace ChilePlacer.Migrations
                     b.ToTable("TypeContextura");
                 });
 
-            modelBuilder.Entity("ChilePlacer.DataModels.TypeCountry", b =>
-                {
-                    b.Property<string>("Ide")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Pais")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.HasKey("Ide");
-
-                    b.ToTable("TypeCountry");
-                });
-
             modelBuilder.Entity("ChilePlacer.DataModels.TypeDepilacion", b =>
                 {
                     b.Property<string>("Ide")
@@ -446,28 +430,6 @@ namespace ChilePlacer.Migrations
                     b.HasKey("Ide");
 
                     b.ToTable("TypeHair");
-                });
-
-            modelBuilder.Entity("ChilePlacer.DataModels.TypeLocation", b =>
-                {
-                    b.Property<string>("Ide")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Location")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.HasKey("Ide");
-
-                    b.ToTable("TypeLocation");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypePiel", b =>

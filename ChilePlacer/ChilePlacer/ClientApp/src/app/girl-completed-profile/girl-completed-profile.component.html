@@ -32,13 +32,23 @@
 
   <br />
 
-  <div style="padding:5%;text-align:center;">
-    <span style="font-size:14px;color:silver;"><strong>Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.</strong></span><br />
+  <div style="padding:2%;text-align:center;">
+    <span style="font-size:14px;color:silver;">
+      <strong>
+        Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.
+        <br />(*) Campo requerido
+      </strong>
+    </span><br />
+  </div>
+
+  <div style="padding:5px;font-size:18px;color:dimgray;">
+    <hr />
+    <label>Datos personales</label>
   </div>
 
   <div style="padding:5px;">
     <label>Nombre</label>
-    <input type="text" id="Nombre" class="form form-control" placeholder="campo opcional" />
+    <input type="text" id="nombre" class="form form-control" placeholder="campo opcional" />
   </div>
 
   <div style="padding:5px;">
@@ -47,14 +57,8 @@
   </div>
 
   <div style="padding:5px;">
-    <label>Fecha de nacimiento</label>
+    <label>* Fecha de nacimiento</label>
     <input type="date" id="fechaNacimiento" class="form form-control" />
-  </div>
-
-  <div style="padding:5px;">
-    <label>Nombre de fantasia</label>
-    <input type="text" id="username" class="form form-control" (blur)="validarUserName()" placeholder="campo requerido" />
-    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span>
   </div>
 
   <div style="padding:5px;">
@@ -63,8 +67,9 @@
   </div>
 
   <div style="padding:5px;">
-    <label>Telefono</label>
+    <label>Telefono / Whatsapp</label>
     <input type="text" id="telefono" class="form form-control" placeholder="campo opcional" />
+    <span style="font-size:14px;color:silver;">Puede ser utilizado para que el cliente te contacte</span>
   </div>
 
   <div style="padding:5px;">
@@ -72,41 +77,150 @@
     <select id="sexo" class="form form-control"></select>
   </div>
 
+  <div style="padding:5px;font-size:18px;color:dimgray;">
+    <hr />
+    <label>Datos del servicio</label>
+  </div>
+
   <div style="padding:5px;">
-    <label>Categoria escort</label>
+    <label>* Nombre de fantasia</label>
+    <input type="text" id="username" class="form form-control" (blur)="validarUserName()" placeholder="campo requerido" />
+    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Presentacion</label>
+    <input type="text" id="presntacion" class="form form-control" placeholder="campo requerido" />
+    <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales </span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Descripcion</label>
+    <input type="text" id="descripcion" class="form form-control" placeholder="campo requerido" />
+    <span style="font-size:14px;color:silver;">Es un texto libre sobre tus gustos y preferencias</span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Categoria escort</label>
     <select id="escort" class="form form-control"></select>
   </div>
 
   <div style="padding:5px;">
-    <label>Estatura en metros, ejemplo 1,64</label>
+    <label>Lugar de atencion</label>
+    <select id="atencion" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Opciones de servicios (puede seleccionar multiples servicios)</label>
+    <select id="servicios" class="form form-control" multiple style="height:600px;"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Valor del servicio 1 hora</label>
+    <input type="number" id="valor1" class="form form-control" placeholder="campo requerido" min="1" max="10000" step="1" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>Valor del servicio 1/2 hora</label>
+    <input type="number" id="valor2" class="form form-control" placeholder="campo opcional" min="1" max="10000" step="1" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Consumo de alchol</label>
+    <select id="drink" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Consumo de tabaco</label>
+    <select id="smoke" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;font-size:18px;color:dimgray;">
+    <hr />
+    <label>Datos de apariencia</label>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Estatura en metros, ejemplo 1,64</label>
     <input type="number" id="estatura" class="form form-control" placeholder="campo requerido" min="1" max="2" step="0.5" />
   </div>
 
   <div style="padding:5px;">
-    <label>Peso en kilogramos, ejemplo 56,70</label>
+    <label>* Peso en kilogramos, ejemplo 56,70</label>
     <input type="number" id="peso" class="form form-control" placeholder="campo requerido" min="1" max="100" step="0.5" />
   </div>
 
   <div style="padding:5px;">
-    <label>Medidas, ejemplo 90-60-90</label>
+    <label>* Medidas, ejemplo 90-60-90</label>
     <input type="text" id="medidas" class="form form-control" placeholder="campo requerido" />
   </div>
 
   <div style="padding:5px;">
-    <label>Contextura</label>
+    <label>* Contextura</label>
     <select id="contextura" class="form form-control"></select>
   </div>
 
+  <div style="padding:5px;">
+    <label>* Color de piel</label>
+    <select id="piel" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Color de cabello</label>
+    <select id="hair" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Color de ojos</label>
+    <select id="eyes" class="form form-control"></select>
+  </div>
+
+  <!--          -->
+  <div style="padding:5px;font-size:18px;color:dimgray;">
+    <hr />
+    <label>Datos de ubicacion</label>
+  </div>
 
 
+  <div style="padding:5px;">
+    <label>* Pais</label>
+    <select id="country" class="form form-control"></select>
+  </div>
 
+  <div style="padding:5px;">
+    <label>* Ubicacion</label>
+    <select id="location" class="form form-control"></select>
+  </div>
 
+  <div style="padding:5px;">
+    <label>* Sector / Barrio </label>
+    <input type="text" id="sector" class="form form-control" placeholder="campo requerido" />
+  </div>
 
+  <hr />
 
-
-
-
+  <div class="form-group">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="form btn btn-success" style="float:left;">Actualizar</button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="float:right;">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>
 
+<div>
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+</div>

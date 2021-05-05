@@ -253,5 +253,69 @@ namespace ChilePlacer.Controllers
             var tipo = types.GetContextura();
             return Json(tipo);
         }
+
+
+        [HttpPost]
+        public JsonResult GetPiel()
+        {
+            var tipo = types.GetPiel();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetHair()
+        {
+            var tipo = types.GetHair();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetEyes()
+        {
+            var tipo = types.GetEyes();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetDrink()
+        {
+            var tipo = types.GetDrink();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetSmoke()
+        {
+            var tipo = types.GetSmoke();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetAtencion()
+        {
+            var tipo = types.GetAtencion();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetServicios()
+        {
+            var tipo = types.GetServicios();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetCountry()
+        {
+            var tipo = types.GetCountry();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetLocation()
+        {
+            var tipo = types.GetLocation();
+            return Json(tipo);
+        }
     }
 }

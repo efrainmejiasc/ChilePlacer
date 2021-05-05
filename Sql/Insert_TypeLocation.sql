@@ -1,0 +1,5 @@
+ INSERT INTO TypeLocation Values ('Arica', 'Arica','Chile')
+ INSERT INTO TypeLocation Values ('Santiago', 'Arica','Chile')
+ INSERT INTO TypeLocation Values ('Centro', 'Centro','Chile')
+ INSERT INTO TypeLocation Values ('Providencia','Providencia','Chile')
+ INSERT INTO TypeLocation Values ('Las Condes','Las Condes','Chile')								  

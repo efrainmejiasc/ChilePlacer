@@ -1,0 +1,1 @@
+INSERT INTO TypeCountry VALUES ('Chile','Chile')
