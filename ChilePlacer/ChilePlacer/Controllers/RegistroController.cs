@@ -317,5 +317,13 @@ namespace ChilePlacer.Controllers
             var tipo = types.GetLocation();
             return Json(tipo);
         }
+
+
+        [HttpPost]
+        public JsonResult GetNacionalidad()
+        {
+            var tipo = types.GetNacionalidad();
+            return Json(tipo);
+        }
     }
 }

@@ -27,8 +27,13 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   ngOnInit() {
     //this.getImagenProfile();
+    this.inicioDocumento();
+  }
+
+  public inicioDocumento() {
     $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
     this.getSexo();
+    this.getNacion();
     this.getEscort();
     this.getContextura();
     this.getAtencion();
@@ -42,6 +47,79 @@ export class GirlCompletedProfileComponent implements OnInit {
     this.getLocation();
   }
 
+
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return false;
+    }
+    this.progress = 0;
+    this.getParametros();
+
+    let fileToUpload = <File>files[0];
+    $('#filename').val(fileToUpload.name);
+
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress)
+          this.progress = Math.round(100 * event.loaded / event.total);
+        else if (event.type === HttpEventType.Response) {
+          this.message = 'Exito';
+          this.onUploadFinished.emit(event.body);
+        }
+      });
+
+    setTimeout(this.setImageProfile, 3000);
+  }
+
+  public getParametros() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let guid = urlParams.get('identidad');
+    this.identidad = guid;
+    $('#identidad').val();
+    return false;
+  }
+
+
+  public setImageProfile() {
+    this.namefile = $('#filename').val() as string;
+    this.identidad = $('#identidad').val() as string;
+    var p = this.namefile.replace('_', '').split('.');
+    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
+
+    this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
+    $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
+    console.log(nameImg);
+
+    return false;
+  }
+
+  public cancelar() {
+    window.location.href = AppConfiguration.Setting().urlServerHost;
+  }
+
+  // Funciones catalogos
+
+  public getNacion() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetNacionalidad",
+      dataType: "json",
+      success: function (data) {
+        $("#nacion").empty();
+        $('#nacion').append('<option selected disabled value="-1">Seleccione nacionalidad...</option>');
+        $.each(data, function (index, value) {
+          $('#nacion').append('<option  value="' + value.ide + '">' + value.nacionalidad + '</option>');
+        });
+      }
+    });
+
+    return false;
+  }
 
   public getSexo() {
 
@@ -197,7 +275,6 @@ export class GirlCompletedProfileComponent implements OnInit {
       dataType: "json",
       success: function (data) {
         $("#atencion").empty();
-        $('#atencion').append('<option selected disabled value="-1">Seleccione lugar de atencion...</option>');
         $.each(data, function (index, value) {
           $('#atencion').append('<option  value="' + value.ide + '">' + value.atencion + '</option>');
         });
@@ -260,54 +337,14 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
+ 
 
 
 
-  public uploadFile = (files) => {
-    if (files.length === 0) {
-      return false;
-    }
-    this.progress = 0;
-    this.getParametros();
 
-    let fileToUpload = <File>files[0];
-    $('#filename').val(fileToUpload.name);
+  
 
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFileMethod', formData, { reportProgress: true, observe: 'events', params: { identidad: this.identidad }, withCredentials: false })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
-          this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
-          this.message = 'Exito';
-          this.onUploadFinished.emit(event.body);
-        }
-      });
 
-    setTimeout(this.setImageProfile, 6000);
-  }
-
-  public getParametros() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    this.identidad = urlParams.get('identidad');
-
-    return false;
-  }
-
-  public setImageProfile() {
-    this.namefile = $('#filename').val() as string;
-    this.identidad = $('#identidad').val() as string;
-    var p = this.namefile.replace('_', '').split('.');
-    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
-
-    this.imgPerfil = "assets/ProfileImageGirls/" + nameImg;
-    $('#foto').attr("src", "assets/ProfileImageGirls/" + nameImg);
-    console.log(nameImg);
-
-    return false;
-  }
 
 }

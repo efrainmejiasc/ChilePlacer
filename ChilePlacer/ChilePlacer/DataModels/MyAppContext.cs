@@ -31,6 +31,7 @@ namespace ChilePlacer.DataModels
         //_______________________________________________________________________________
         public virtual DbSet<TypeCountry> TypeCountry { get; set; }
         public virtual DbSet<TypeLocation> TypeLocation { get; set; }
+        public virtual DbSet<TypeNacionalidad> TypeNacionalidad { get; set; }
         //________________________________________________________________________________
         public virtual DbSet<TypeContextura> TypeContextura{ get; set; }
         public virtual DbSet<TypeDepilacion> TypeDepilacion { get; set; }

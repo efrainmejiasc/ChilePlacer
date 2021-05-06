@@ -4,14 +4,16 @@ using ChilePlacer.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20210506161713_sitioservicio")]
+    partial class sitioservicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,24 +470,6 @@ namespace ChilePlacer.Migrations
                     b.HasKey("Ide");
 
                     b.ToTable("TypeLocation");
-                });
-
-            modelBuilder.Entity("ChilePlacer.DataModels.TypeNacionalidad", b =>
-                {
-                    b.Property<string>("Ide")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nacionalidad")
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.HasKey("Ide");
-
-                    b.ToTable("TypeNacionalidad");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypePiel", b =>

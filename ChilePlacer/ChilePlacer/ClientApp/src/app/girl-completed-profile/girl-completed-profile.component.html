@@ -1,6 +1,5 @@
 
 
-
 <div>
   <input type="hidden" id="identidad" />
   <input type="hidden" id="filename" />
@@ -41,7 +40,8 @@
     </span><br />
   </div>
 
-  <div style="padding:5px;font-size:18px;color:dimgray;">
+  <!--DATOS PERSONALES-->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight:bold;">
     <hr />
     <label>Datos personales</label>
   </div>
@@ -69,7 +69,7 @@
   <div style="padding:5px;">
     <label>Telefono / Whatsapp</label>
     <input type="text" id="telefono" class="form form-control" placeholder="campo opcional" />
-    <span style="font-size:14px;color:silver;">Puede ser utilizado para que el cliente te contacte</span>
+    <span style="font-size:14px;color:silver;">Puede ser utilizado para que los clientes te contacten</span>
   </div>
 
   <div style="padding:5px;">
@@ -77,7 +77,14 @@
     <select id="sexo" class="form form-control"></select>
   </div>
 
-  <div style="padding:5px;font-size:18px;color:dimgray;">
+  <div style="padding:5px;">
+    <label>Nacionalidad</label>
+    <select id="nacion" class="form form-control"></select>
+    <span style="font-size:14px;color:silver;">Puede ser utilizado para visualizaciones de los clientes</span>
+  </div>
+
+  <!--DATOS SERVICIO-->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
     <hr />
     <label>Datos del servicio</label>
   </div>
@@ -106,8 +113,8 @@
   </div>
 
   <div style="padding:5px;">
-    <label>Lugar de atencion</label>
-    <select id="atencion" class="form form-control"></select>
+    <label>Lugar de atencion (puede seleccionar multiples lugares)</label>
+    <select id="atencion" class="form form-control" multiple style="height:150px;" ></select>
   </div>
 
   <div style="padding:5px;">
@@ -135,7 +142,7 @@
     <select id="smoke" class="form form-control"></select>
   </div>
 
-  <div style="padding:5px;font-size:18px;color:dimgray;">
+  <div style="padding:5px;font-size:18px;color:dimgray;font-weight:bold;">
     <hr />
     <label>Datos de apariencia</label>
   </div>
@@ -175,8 +182,8 @@
     <select id="eyes" class="form form-control"></select>
   </div>
 
-  <!--          -->
-  <div style="padding:5px;font-size:18px;color:dimgray;">
+  <!--    DATOS UBICACION      -->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
     <hr />
     <label>Datos de ubicacion</label>
   </div>

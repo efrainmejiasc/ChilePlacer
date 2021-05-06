@@ -1,0 +1,1 @@
+INSERT INTO chileplacer..TypeNacionalidad VALUES ('Chilena','Chilena')

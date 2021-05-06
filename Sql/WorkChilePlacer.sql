@@ -15,6 +15,9 @@ SELECT * FROM ChilePlacer..TypePiel
 SELECT * FROM ChilePlacer..TypeServicesSex
 SELECT * FROM ChilePlacer..TypeSex
 SELECT * FROM ChilePlacer..TypeSmoke
+SELECT * FROM ChilePlacer..TypeCountry
+SELECT * FROM ChilePlacer..TypeLocation
+SELECT * FROM ChilePlacer..TypeNacionalidad
 
 
 

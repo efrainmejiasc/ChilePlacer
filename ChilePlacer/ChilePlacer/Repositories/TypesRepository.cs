@@ -76,5 +76,10 @@ namespace ChilePlacer.Repositories
         {
             return db.TypeLocation.OrderBy(x => x.Id).ToList();
         }
+
+        public List<TypeNacionalidad> GetNacionalidad()
+        {
+            return db.TypeNacionalidad.OrderBy(x => x.Id).ToList();
+        }
     }
 }
