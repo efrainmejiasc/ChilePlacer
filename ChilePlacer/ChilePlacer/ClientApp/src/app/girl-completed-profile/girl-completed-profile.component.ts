@@ -101,6 +101,188 @@ export class GirlCompletedProfileComponent implements OnInit {
     window.location.href = AppConfiguration.Setting().urlServerHost;
   }
 
+  // Vallidaciones de perfil
+
+  public validarUserName() {
+    let valor = $('#username').val();
+    var nvalor = valor.toString();
+    const soloNum = /^[0-9a]+$/;
+    const soloLet = /^[aA-zZ]+$/;
+    $('#msj').html('');
+
+    if (nvalor.length > 0) {
+      if (soloNum.test(nvalor) || soloLet.test(nvalor) || !nvalor.includes('-')) {
+        $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        $('#username').val('');
+      }
+
+      var svalor = nvalor.split('-');
+      if (!soloNum.test(svalor[1]) || !soloLet.test(svalor[0])) {
+        $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        $('#username').val('');
+      }
+
+    }
+
+    return false;
+  }
+
+  //Guardar perfil
+
+  public SaveprofileGirls() {
+
+    this.namefile = $('#filename').val() as string;
+    this.identidad = $('#identidad').val() as string;
+    var p = this.namefile.replace('_', '').split('.');
+    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
+
+    var nombre = $('#nombre').val();
+    var apellido = $('#apellido').val();
+    var telefono = $('#telefono').val();
+    var fechaNacimiento = $('#fechaNacimiento').val();
+    var dni = $('#dni').val();
+    var sexo = $('#sexo').val();
+
+    var username = $('#username').val();
+    var presentacion = $('#presentacion').val();
+    var descripcion = $('#descripcion').val();
+    var escort = $('#escort').val();
+    var atencion = $('#atencion').val();
+    var servicios = $('#servicios').val();
+    var valor1 = $('#valor1').val();
+    var valor2 = $('#valor2').val();
+    var drink = $('#drink').val();
+    var smoke = $('#smoke').val();
+
+    var estatura = $('#estatura').val();
+    var peso = $('#peso').val();
+    var medidas = $('#medidas').val();
+    var contextura = $('#contextura').val();
+    var piel = $('#piel').val();
+    var hair = $('#hair').val();
+    var eyes = $('#eyes').val();
+
+    var country = $('#country').val();
+    var location = $('#location').val();
+    var sector = $('#sector').val();
+
+    if (sexo == '') {
+      this.mostrarMensaje('El campo sexo es requerido');
+      return false;
+    }
+    else if (username == '') {
+      this.mostrarMensaje('El campo nombre de fantasia es requerido');
+      return false;
+    }
+    else if (presentacion == '') {
+      this.mostrarMensaje('El campo presentacion es requerido');
+      return false;
+    }
+    else if (descripcion == '') {
+      this.mostrarMensaje('El campo descripcion es requerido');
+      return false;
+    }
+    else if (escort == '') {
+      this.mostrarMensaje('El campo tipo escort es requerido');
+      return false;
+    }
+    else if (atencion == '') {
+      this.mostrarMensaje('El campo lugares de atencion es requerido');
+      return false;
+    }
+    else if (servicios == '') {
+      this.mostrarMensaje('El campo opciones de servicio es requerido');
+      return false;
+    }
+    else if (drink == '') {
+      this.mostrarMensaje('El campo opciones de alchol es requerido');
+      return false;
+    }
+    else if (smoke == '') {
+      this.mostrarMensaje('El campo opciones de tabaco es requerido');
+      return false;
+    }
+    else if (estatura == '') {
+      this.mostrarMensaje('El campo es estatura requerido');
+      return false;
+    }
+    else if (peso == '') {
+      this.mostrarMensaje('El campo es peso requerido');
+      return false;
+    }
+    else if (medidas == '') {
+      this.mostrarMensaje('El campo medidas es requerido');
+      return false;
+    }
+    else if (contextura == '') {
+      this.mostrarMensaje('El campo contextura es requerido');
+      return false;
+    }
+    else if (piel == '') {
+      this.mostrarMensaje('El campo color de piel es requerido');
+      return false;
+    }
+    else if (hair == '') {
+      this.mostrarMensaje('El campo color de cabello es requerido');
+      return false;
+    }
+    else if (eyes == '') {
+      this.mostrarMensaje('El campo color de ojos  es requerido');
+      return false;
+    }
+
+    else if (country == '') {
+      this.mostrarMensaje('El campo pais es requerido');
+      return false;
+    }
+    else if (location == '') {
+      this.mostrarMensaje('El campo  ubicacion es requerido');
+      return false;
+    }
+    else if (sector == '') {
+      this.mostrarMensaje('El campo sector/barrio es requerido');
+      return false;
+    }
+
+    console.log(nameImg)
+
+    if (p[0] === '' || p[1] === '')
+      nameImg = '';
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/CompletedRegistroGirls",
+      data: {} ,
+      dataType: "json",
+      success: function (data) {
+        $('#msj').html('');
+        $('#msj').html(data.descripcion);
+        $('#mensaje').show();
+        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+      },
+      complete: function () {
+        console.log('SaveProfileGirls');
+      }
+    });
+
+    return false;
+  }
+
+  public mostrarMensaje(msj: string) {
+    $('#msj').html('');
+    $('#msj').html(msj);
+    $('#mensaje').show();
+    setTimeout(this.ocultarmensaje, 3000);
+  }
+
+  public ocultarmensaje() {
+    $('#mensaje').hide();
+  }
+
   // Funciones catalogos
 
   public getNacion() {

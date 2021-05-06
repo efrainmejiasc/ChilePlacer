@@ -15,6 +15,7 @@ SELECT * FROM ChilePlacer..TypePiel
 SELECT * FROM ChilePlacer..TypeServicesSex
 SELECT * FROM ChilePlacer..TypeSex
 SELECT * FROM ChilePlacer..TypeSmoke
+SELECT * FROM ChilePlacer..TypeDrink
 SELECT * FROM ChilePlacer..TypeCountry
 SELECT * FROM ChilePlacer..TypeLocation
 SELECT * FROM ChilePlacer..TypeNacionalidad
@@ -29,5 +30,7 @@ SELECT * FROM ChilePlacer..TypeNacionalidad
 --TRUNCATE TABLE ChilePlacer..ChangePassword
 --TRUNCATE TABLE ChilePlacer..TypeGirls
 --DELETE ChilePlacer..Girls Where Id > 1
- --UPDATE ChilePlacer..Girls set Activo = 0 where id = 3 
+ --UPDATE ChilePlacer..Girls set Activo = 0 
+  --UPDATE ChilePlacer..TypeNacionalidad set Nacionalidad = 'Chile', Ide = 'Chile' 
+  --UPDATE ChilePlacer..TypeDrink set Drink= 'Ocacionalmente', Ide = 'Ocacionalmente' Where Id = 3 
 --UPDATE ChilePlacer..Girls Set password ='ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbSMxMjM0'

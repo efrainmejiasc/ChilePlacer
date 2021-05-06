@@ -50,11 +50,12 @@ namespace ChilePlacer.Controllers
                     if (file.FileName.ToUpper().Contains(".JPG") || file.FileName.ToUpper().Contains(".JPEG") || file.FileName.ToUpper().Contains(".BMP") || file.FileName.ToUpper().Contains(".PNG"))
                     {
                         util.CrearDirectorio("ClientApp/dist/assets/ProfileImageGirls");
-                        string path = "ClientApp/dist/assets/ProfileImageGirls/" + name;
+                        string path = "ClientApp/dist/assets/ProfileImageGirls/" + file.FileName.Replace("_", "");
+                        string pathName = "ClientApp/dist/assets/ProfileImageGirls/" + name;
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
-                        util.MarcaDeAgua(path);
+                        util.MarcaDeAgua(path,pathName);
                     }
                     else
                     {

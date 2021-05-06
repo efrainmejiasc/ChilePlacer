@@ -78,7 +78,7 @@ namespace ChilePlacer.Controllers
             }
 
             var identidad = Guid.Parse(id);
-            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto);
+            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64);
             if (!profileGirls.ExisteProfileGirls(identidad))
             {

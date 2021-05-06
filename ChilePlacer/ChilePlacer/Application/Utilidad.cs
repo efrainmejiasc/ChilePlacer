@@ -235,17 +235,16 @@ namespace ChilePlacer.Application
 
         }
 
-
-        public void MarcaDeAgua(string path)
+        public void MarcaDeAgua(string path,string pathName)
         {
             Image image = Image.FromFile(path);
             Bitmap bmp = new Bitmap(image);
             Graphics graphicsobj = Graphics.FromImage(bmp);
             Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 6), (bmp.Height / 2));
+            Point postionWaterMark = new Point((bmp.Width / 6), (bmp.Height / 4));
             graphicsobj.DrawString("www.chilePlacer.com", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
             Image img = (Image)bmp;
-            img.Save(path, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
             graphicsobj.Dispose();
         }
 

@@ -78,7 +78,7 @@
   </div>
 
   <div style="padding:5px;">
-    <label>Nacionalidad</label>
+    <label>Pais de origen </label>
     <select id="nacion" class="form form-control"></select>
     <span style="font-size:14px;color:silver;">Puede ser utilizado para visualizaciones de los clientes</span>
   </div>
@@ -97,7 +97,7 @@
 
   <div style="padding:5px;">
     <label>* Presentacion</label>
-    <input type="text" id="presntacion" class="form form-control" placeholder="campo requerido" />
+    <input type="text" id="presentacion" class="form form-control" placeholder="campo requerido" />
     <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales </span>
   </div>
 
@@ -114,7 +114,7 @@
 
   <div style="padding:5px;">
     <label>Lugar de atencion (puede seleccionar multiples lugares)</label>
-    <select id="atencion" class="form form-control" multiple style="height:150px;" ></select>
+    <select id="atencion" class="form form-control" multiple style="height:100px;"></select>
   </div>
 
   <div style="padding:5px;">
@@ -124,7 +124,7 @@
 
   <div style="padding:5px;">
     <label>* Valor del servicio 1 hora</label>
-    <input type="number" id="valor1" class="form form-control" placeholder="campo requerido" min="1" max="10000" step="1" />
+    <input type="number" id="valor1" class="form form-control" placeholder="campo opcional" min="1" max="10000" step="1" />
   </div>
 
   <div style="padding:5px;">
@@ -221,6 +221,19 @@
 
 
 </div>
+
+
+
+<div>
+  <div id="mensaje" class="modalTipo">
+    <div class="modal-content">
+      <div class="formulario-campo">
+        <label id="msj" [(ngModel)]="msj"></label>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div>
   <br /><br />
