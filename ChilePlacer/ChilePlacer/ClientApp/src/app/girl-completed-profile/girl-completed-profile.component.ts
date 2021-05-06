@@ -234,7 +234,6 @@ export class GirlCompletedProfileComponent implements OnInit {
       this.mostrarMensaje('El campo color de ojos  es requerido');
       return false;
     }
-
     else if (country == '') {
       this.mostrarMensaje('El campo pais es requerido');
       return false;
