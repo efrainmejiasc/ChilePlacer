@@ -81,5 +81,10 @@ namespace ChilePlacer.Repositories
         {
             return db.TypeNacionalidad.OrderBy(x => x.Id).ToList();
         }
+
+        public List<TypeDepilacion> GetDepilacion()
+        {
+            return db.TypeDepilacion.OrderBy(x => x.Id).ToList();
+        }
     }
 }

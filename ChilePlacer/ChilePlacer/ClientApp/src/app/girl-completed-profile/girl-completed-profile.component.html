@@ -97,14 +97,14 @@
 
   <div style="padding:5px;">
     <label>* Presentacion</label>
-    <input type="text" id="presentacion" class="form form-control" placeholder="campo requerido" />
-    <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales </span>
+    <input type="text" id="presentacion" class="form form-control" placeholder="campo requerido" maxlength="50" />
+    <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales (Maximo 50 caracteres)</span>
   </div>
 
   <div style="padding:5px;">
     <label>* Descripcion</label>
-    <input type="text" id="descripcion" class="form form-control" placeholder="campo requerido" />
-    <span style="font-size:14px;color:silver;">Es un texto libre sobre tus gustos y preferencias</span>
+    <input type="text" id="descripcion" class="form form-control" placeholder="campo requerido" maxlength="100" />
+    <span style="font-size:14px;color:silver;">Es un texto libre sobre tus gustos y preferencias (Maximo 100 caracteres)</span>
   </div>
 
   <div style="padding:5px;">
@@ -181,6 +181,13 @@
     <label>* Color de ojos</label>
     <select id="eyes" class="form form-control"></select>
   </div>
+
+  <div style="padding:5px;">
+    <label>* Tipo de depilacion</label>
+    <select id="depilacion" class="form form-control"></select>
+  </div>
+
+
 
   <!--    DATOS UBICACION      -->
   <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">

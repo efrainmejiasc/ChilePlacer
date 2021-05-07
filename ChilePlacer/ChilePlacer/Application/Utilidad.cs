@@ -119,18 +119,21 @@ namespace ChilePlacer.Application
         public bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion)
         {
             bool resultado = false;
-            if (fechaEnvio.Date != fechaActivacion.Date)
-                return resultado;
+            //if (fechaEnvio.Date != fechaActivacion.Date)
+                //return resultado;
 
             int horaEnvio = fechaEnvio.Hour;
             int horaActivacion = fechaActivacion.Hour;
             int diferenciaHora = horaActivacion - horaEnvio;
-            if (diferenciaHora <= 3)
+            if (diferenciaHora <= 120)
                 resultado = true;
             return resultado;
         }
 
-        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64)
+        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64, 
+                                           DateTime fechaNacimiento, string sexo, string presentacion, string descripcion, string escort, 
+                                           decimal valor1, decimal valor2, string drink, string smoke, decimal estatura, decimal peso,
+                                           string medidas, string contextura, string piel, string hair, string eyes, string country, string location, string sector,string depilacion,string nacionalidad)
         {
             var profileGirls = new ProfileGirls()
             {
@@ -142,7 +145,28 @@ namespace ChilePlacer.Application
                 Path = path,
                 Fecha = DateTime.UtcNow,
                 Username = username,
-                Img64 = string.IsNullOrEmpty(path)?string.Empty:img64
+                Img64 = string.IsNullOrEmpty(path)?string.Empty:img64,
+                FechaNacimiento = fechaNacimiento,
+                Sexo = sexo,
+                Presentacion = presentacion,
+                Descripcion = descripcion,
+                CategoriaEscort = escort,
+                ValorHora = valor1,
+                ValorMediaHora = valor2,
+                Drink = drink,
+                Smoke = smoke,
+                Estatura = estatura,
+                Peso= peso,
+                Medidas = medidas,
+                Contextura = contextura,
+                Piel= piel,
+                Hair = hair,
+                Eyes = eyes,
+                Country = country,
+                Location = location,
+                Sector = sector,
+                Depilacion = depilacion,
+                Nacionalidad = nacionalidad,
             };
 
             return profileGirls;

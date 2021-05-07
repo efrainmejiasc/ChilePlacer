@@ -26,6 +26,9 @@ namespace ChilePlacer.Application.Interfaces
         ChangePassword ConstruirChangePassword(string email, string codigo, bool activo);
         GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, string path, string texto = "");
         GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, Image image, string texto = "");
-        ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64);
+        ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad, string username, string img64,
+                                     DateTime fechaNacimiento, string sexo, string presentacion, string descripcion, string escort,
+                                     decimal valor1, decimal valor2, string drink, string smoke, decimal estatura, decimal peso, string medidas, string contextura,
+                                     string piel, string hair, string eyes, string country, string location, string sector,string depilacion,string nacionalidad);
     }
 }

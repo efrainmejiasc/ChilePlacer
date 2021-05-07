@@ -20,6 +20,7 @@ namespace ChilePlacer.Repositories.Interfaces
         List<TypeAtencion> GetAtencion();
         List<TypeContextura> GetContextura();
         List<TypeServicesSex> GetServicios();
+        List<TypeDepilacion> GetDepilacion();
         List<TypeNacionalidad> GetNacionalidad();
     }
 }

@@ -32,6 +32,8 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   public inicioDocumento() {
     $('#foto').attr("src", "assets/ImagesSite/unphoto.jpg");
+    this.getParametros();
+
     this.getSexo();
     this.getNacion();
     this.getEscort();
@@ -41,6 +43,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     this.getPiel();
     this.getHair();
     this.getEyes();
+    this.getDepilacion();
     this.getDrink();
     this.getSmoke();
     this.getCountry();
@@ -79,7 +82,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     const urlParams = new URLSearchParams(queryString);
     let guid = urlParams.get('identidad');
     this.identidad = guid;
-    $('#identidad').val();
+    $('#identidad').val(guid);
     return false;
   }
 
@@ -134,18 +137,24 @@ export class GirlCompletedProfileComponent implements OnInit {
   //Guardar perfil
 
   public SaveprofileGirls() {
+    this.getParametros();
 
     this.namefile = $('#filename').val() as string;
     this.identidad = $('#identidad').val() as string;
     var p = this.namefile.replace('_', '').split('.');
-    var nameImg = p[0] + "_" + this.identidad + "." + p[1];
+    var nameImg = '';
 
+    if (this.namefile !== '')
+      nameImg = p[0] + "_" + this.identidad + "." + p[1];
+
+    var _identidad = $('#identidad').val();
     var nombre = $('#nombre').val();
     var apellido = $('#apellido').val();
     var telefono = $('#telefono').val();
     var fechaNacimiento = $('#fechaNacimiento').val();
     var dni = $('#dni').val();
     var sexo = $('#sexo').val();
+    var nacionalidad = $('#nacion').val();
 
     var username = $('#username').val();
     var presentacion = $('#presentacion').val();
@@ -165,87 +174,97 @@ export class GirlCompletedProfileComponent implements OnInit {
     var piel = $('#piel').val();
     var hair = $('#hair').val();
     var eyes = $('#eyes').val();
+    var depilacion = $('#depilacion').val();
 
     var country = $('#country').val();
     var location = $('#location').val();
     var sector = $('#sector').val();
 
-    if (sexo == '') {
+    if (_identidad === '' || _identidad === null) {
+      this.mostrarMensaje('ERROR GRAVE');
+      return false;
+    }
+    else if (sexo === '') {
       this.mostrarMensaje('El campo sexo es requerido');
       return false;
     }
-    else if (username == '') {
+    else if (username === '') {
       this.mostrarMensaje('El campo nombre de fantasia es requerido');
       return false;
     }
-    else if (presentacion == '') {
+    else if (presentacion === '') {
       this.mostrarMensaje('El campo presentacion es requerido');
       return false;
     }
-    else if (descripcion == '') {
+    else if (descripcion === '') {
       this.mostrarMensaje('El campo descripcion es requerido');
       return false;
     }
-    else if (escort == '') {
+    else if (escort === '') {
       this.mostrarMensaje('El campo tipo escort es requerido');
       return false;
     }
-    else if (atencion == '') {
+    else if (atencion === '') {
       this.mostrarMensaje('El campo lugares de atencion es requerido');
       return false;
     }
-    else if (servicios == '') {
+    else if (servicios === '') {
       this.mostrarMensaje('El campo opciones de servicio es requerido');
       return false;
     }
-    else if (drink == '') {
+    else if (drink === '') {
       this.mostrarMensaje('El campo opciones de alchol es requerido');
       return false;
     }
-    else if (smoke == '') {
+    else if (smoke === '') {
       this.mostrarMensaje('El campo opciones de tabaco es requerido');
       return false;
     }
-    else if (estatura == '') {
+    else if (estatura === '') {
       this.mostrarMensaje('El campo es estatura requerido');
       return false;
     }
-    else if (peso == '') {
+    else if (peso === '') {
       this.mostrarMensaje('El campo es peso requerido');
       return false;
     }
-    else if (medidas == '') {
+    else if (medidas === '') {
       this.mostrarMensaje('El campo medidas es requerido');
       return false;
     }
-    else if (contextura == '') {
+    else if (contextura === '') {
       this.mostrarMensaje('El campo contextura es requerido');
       return false;
     }
-    else if (piel == '') {
+    else if (piel === '') {
       this.mostrarMensaje('El campo color de piel es requerido');
       return false;
     }
-    else if (hair == '') {
+    else if (hair === '') {
       this.mostrarMensaje('El campo color de cabello es requerido');
       return false;
     }
-    else if (eyes == '') {
+    else if (eyes === '') {
       this.mostrarMensaje('El campo color de ojos  es requerido');
       return false;
     }
-    else if (country == '') {
+    else if (depilacion === '') {
+      this.mostrarMensaje('El campo tipo de depilacion  es requerido');
+      return false;
+    }
+    else if (country === '') {
       this.mostrarMensaje('El campo pais es requerido');
       return false;
     }
-    else if (location == '') {
+    else if (location === '') {
       this.mostrarMensaje('El campo  ubicacion es requerido');
       return false;
     }
-    else if (sector == '') {
+    else if (sector === '') {
       this.mostrarMensaje('El campo sector/barrio es requerido');
       return false;
     }
+ 
 
     console.log(nameImg)
 
@@ -255,7 +274,38 @@ export class GirlCompletedProfileComponent implements OnInit {
     $.ajax({
       type: "POST",
       url: "Registro/CompletedRegistroGirls",
-      data: {} ,
+      data: {
+        nombre: nombre,
+        apellido: apellido,
+        dni: dni,
+        telefono: telefono,
+        nameImg: nameImg,
+        id: _identidad,
+        username: username,
+        fechaNacimiento: fechaNacimiento,
+        sexo: sexo,
+        presentacion: presentacion,
+        descripcion: descripcion,
+        escort: escort,
+        atencion: atencion,
+        servicios: servicios,
+        valor1: valor1,
+        valor2: valor2,
+        drink: drink,
+        smoke: smoke,
+        estatura: estatura,
+        peso: peso,
+        medidas: medidas,
+        contextura: contextura,
+        piel: piel,
+        hair: hair,
+        eyes: eyes,
+        country: country,
+        location: location,
+        sector: sector,
+        depilacion: depilacion,
+        nacionalidad: nacionalidad
+           },
       dataType: "json",
       success: function (data) {
         $('#msj').html('');
@@ -394,6 +444,23 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
+  public getDepilacion() {
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetDepilacion",
+      dataType: "json",
+      success: function (data) {
+        $("#depilacion").empty();
+        $('#depilacion').append('<option selected disabled value="-1">Seleccione tipo de depilacion...</option>');
+        $.each(data, function (index, value) {
+          $('#depilacion').append('<option  value="' + value.ide + '">' + value.depilacion + '</option>');
+        });
+      }
+    });
+
+    return false;
+  } 
   public getHair() {
 
     $.ajax({

@@ -66,7 +66,10 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpPost]
-        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username)
+        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username,
+                                                 DateTime fechaNacimiento, string sexo,string presentacion,string descripcion,string escort,List<string> atencion,
+                                                 List<string> servicios,decimal valor1,decimal valor2,string drink,string smoke,decimal estatura,decimal peso,
+                                                 string medidas,string contextura,string piel,string hair,string eyes,string country,string location,string sector,string depilacion,string nacionalidad)
         {
             var respuesta = new RespuestaModel();
             respuesta.Status = "false";
@@ -79,7 +82,9 @@ namespace ChilePlacer.Controllers
 
             var identidad = Guid.Parse(id);
             var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
-            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64);
+            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
+                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,estatura,
+                                               peso, medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
             if (!profileGirls.ExisteProfileGirls(identidad))
             {
                 if (profileGirls.GetExisteUserName(username))
@@ -323,6 +328,14 @@ namespace ChilePlacer.Controllers
         public JsonResult GetNacionalidad()
         {
             var tipo = types.GetNacionalidad();
+            return Json(tipo);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetDepilacion()
+        {
+            var tipo = types.GetDepilacion();
             return Json(tipo);
         }
     }
