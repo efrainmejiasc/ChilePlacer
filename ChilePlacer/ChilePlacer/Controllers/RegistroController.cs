@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -81,10 +82,17 @@ namespace ChilePlacer.Controllers
             }
 
             var identidad = Guid.Parse(id);
-            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
+            var t = Path.Combine(hostEnv.ContentRootPath,"ClientApp/dist/assets/ProfileImageGirls", nameFoto);
+           // var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
+            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto, false);
+
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
                                                sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,estatura,
                                                peso, medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
+
+            var lugarAtencion = util.SetAtencionEscort(atencion,identidad);
+            var serviciosSex = util.SetServiciosEscort(servicios, identidad);
+
             if (!profileGirls.ExisteProfileGirls(identidad))
             {
                 if (profileGirls.GetExisteUserName(username))
@@ -92,7 +100,10 @@ namespace ChilePlacer.Controllers
                     respuesta.Descripcion = "El nombre de usuario existe, intente con otros digitos";
                     return Json(respuesta);
                 }
+
                 profile = profileGirls.InsertProfileGirls(profile);
+                lugarAtencion = types.InsertTypeAtencionGirl(lugarAtencion);
+                serviciosSex = types.InsertTypeServiceSex(serviciosSex);
             }
             else
             {
@@ -102,6 +113,12 @@ namespace ChilePlacer.Controllers
                     return Json(respuesta);
                 }
                 profile = profileGirls.UpdateProfileGirls(profile);
+
+                if (lugarAtencion.Count > 0)
+                    types.DeleteTypeAtencionGirl(lugarAtencion, identidad);
+
+                if (serviciosSex.Count > 0)
+                    types.DeleteTypeServiceSex(serviciosSex,identidad);
             }
 
             respuesta.Descripcion = "Perfil actualizado correctamente";
@@ -124,7 +141,19 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetProfileImage(string id)
+        public JsonResult GetProfileGirl(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return Json(null);
+
+            var identidad = Guid.Parse(id);
+            var profile = profileGirls.GetProfileGirls(identidad);
+
+            return Json(profile);
+        }
+
+        [HttpPost]
+        public JsonResult GetProfile(string id)
         {
             var respuesta = new RespuestaModel();
             var identificador = Guid.Parse(id);

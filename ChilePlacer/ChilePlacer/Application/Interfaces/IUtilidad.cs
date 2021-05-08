@@ -24,6 +24,8 @@ namespace ChilePlacer.Application.Interfaces
         Girls SetGirlsModel(string email, string password, Guid identiificador);
         ActivacionMailModel SetEstructuraMailRegister(string enlaze, string email);
         ChangePassword ConstruirChangePassword(string email, string codigo, bool activo);
+        List<TypeGirlServices> SetServiciosEscort(List<string> servicios, Guid identidad);
+        List<TypeAtencionGirl> SetAtencionEscort(List<string> atenciones, Guid identidad);
         GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, string path, string texto = "");
         GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, Image image, string texto = "");
         ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad, string username, string img64,

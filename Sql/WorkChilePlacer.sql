@@ -3,6 +3,7 @@ SELECT * FROM ChilePlacer..ProfileGirls
 SELECT * FROM ChilePlacer..GaleriaGirls  
 SELECT * FROM ChilePlacer..ChangePassword
 SELECT * FROM ChilePlacer..PortadaGirls 
+SELECT * FROM ChilePlacer..AppLog
 
 
 SELECT * FROM ChilePlacer..TypeAtencion
@@ -21,6 +22,9 @@ SELECT * FROM ChilePlacer..TypeLocation
 SELECT * FROM ChilePlacer..TypeNacionalidad
 
 
+SELECT * FROM ChilePlacer..TypeAtencionGirl
+SELECT * FROM ChilePlacer..TypeGirlServices
+
 
 
 
@@ -30,7 +34,7 @@ SELECT * FROM ChilePlacer..TypeNacionalidad
 --TRUNCATE TABLE ChilePlacer..ChangePassword
 --TRUNCATE TABLE ChilePlacer..TypeGirls
 --DELETE ChilePlacer..Girls Where Id > 1
- --UPDATE ChilePlacer..Girls set Activo = 0 
+--UPDATE ChilePlacer..Girls set Activo = 0 
  --UPDATE ChilePlacer..TypeNacionalidad set Nacionalidad = 'Chile', Ide = 'Chile' 
 --UPDATE ChilePlacer..TypeDrink set Drink= 'Ocacionalmente', Ide = 'Ocacionalmente' Where Id = 3 
 --UPDATE ChilePlacer..Girls Set password ='ZWZyYWlubWVqaWFzY0Bob3RtYWlsLmNvbSMxMjM0'

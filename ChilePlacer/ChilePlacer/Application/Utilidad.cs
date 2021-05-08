@@ -1,6 +1,7 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
 using ChilePlacer.Models;
+using ChilePlacer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,6 +14,12 @@ namespace ChilePlacer.Application
 {
     public class Utilidad : IUtilidad
     {
+        private readonly IAppLogRepository log;
+        public Utilidad(IAppLogRepository _log)
+        {
+            log = _log;
+        }
+
         public string CodeBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -23,14 +30,30 @@ namespace ChilePlacer.Application
         public string CodeBase64(string path, bool opt = false)
         {
             string cadenaBase64 = string.Empty;
-            using (Image image = Image.FromFile(path))
-            {
-                using (MemoryStream m = new MemoryStream())
+            if (string.IsNullOrEmpty(path))
+                return cadenaBase64;
+
+
+            try {
+                using (Image image = Image.FromFile(path))
                 {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-                    cadenaBase64 = Convert.ToBase64String(imageBytes);
+                    using (MemoryStream m = new MemoryStream())
+                    {
+                        image.Save(m, image.RawFormat);
+                        byte[] imageBytes = m.ToArray();
+                        cadenaBase64 = Convert.ToBase64String(imageBytes);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                var error = new AppLog()
+                {
+                    Error = ex.ToString(),
+                    Metodo = "Utilidad,CodeBase64(string path, bool opt = false)",
+                    Fecha = DateTime.UtcNow,
+                };
+                log.InserAppLog(error);
             }
 
             return cadenaBase64;
@@ -265,11 +288,43 @@ namespace ChilePlacer.Application
             Bitmap bmp = new Bitmap(image);
             Graphics graphicsobj = Graphics.FromImage(bmp);
             Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 6), (bmp.Height / 4));
-            graphicsobj.DrawString("www.chilePlacer.com", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
+            Point postionWaterMark = new Point((bmp.Width / 6), (bmp.Height - 35));
+            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
             Image img = (Image)bmp;
             img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
             graphicsobj.Dispose();
+        }
+
+        public List<TypeGirlServices> SetServiciosEscort(List<string> servicios,Guid identidad)
+        {
+            var lst = new List<TypeGirlServices>();
+            var s = new TypeGirlServices();
+
+            foreach(var x in servicios)
+            {
+                s.Identidad = identidad;
+                s.TypeServices = x;
+                lst.Add(s);
+                s = new TypeGirlServices();
+            }
+
+            return lst;
+        }
+
+        public List<TypeAtencionGirl> SetAtencionEscort(List<string> atenciones, Guid identidad)
+        {
+            var lst = new List<TypeAtencionGirl>();
+            var s = new TypeAtencionGirl();
+
+            foreach (var x in atenciones)
+            {
+                s.Identidad = identidad;
+                s.TypeAtencion = x;
+                lst.Add(s);
+                s = new TypeAtencionGirl();
+            }
+
+            return lst;
         }
 
     }

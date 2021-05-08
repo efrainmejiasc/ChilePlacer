@@ -22,5 +22,10 @@ namespace ChilePlacer.Repositories.Interfaces
         List<TypeServicesSex> GetServicios();
         List<TypeDepilacion> GetDepilacion();
         List<TypeNacionalidad> GetNacionalidad();
+
+        void DeleteTypeServiceSex(List<TypeGirlServices> model, Guid identidad);
+        void DeleteTypeAtencionGirl(List<TypeAtencionGirl> model, Guid identidad);
+        List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model);
+        List<TypeAtencionGirl> InsertTypeAtencionGirl(List<TypeAtencionGirl> model);
     }
 }

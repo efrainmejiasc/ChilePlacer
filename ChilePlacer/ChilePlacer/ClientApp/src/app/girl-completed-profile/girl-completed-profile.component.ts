@@ -48,6 +48,8 @@ export class GirlCompletedProfileComponent implements OnInit {
     this.getSmoke();
     this.getCountry();
     this.getLocation();
+
+    setTimeout(this.getProfile,2000);
   }
 
 
@@ -144,7 +146,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     var p = this.namefile.replace('_', '').split('.');
     var nameImg = '';
 
-    if (this.namefile !== '')
+    if (this.namefile as string !== '')
       nameImg = p[0] + "_" + this.identidad + "." + p[1];
 
     var _identidad = $('#identidad').val();
@@ -279,7 +281,7 @@ export class GirlCompletedProfileComponent implements OnInit {
         apellido: apellido,
         dni: dni,
         telefono: telefono,
-        nameImg: nameImg,
+        nameFoto: nameImg,
         id: _identidad,
         username: username,
         fechaNacimiento: fechaNacimiento,
@@ -330,6 +332,56 @@ export class GirlCompletedProfileComponent implements OnInit {
 
   public ocultarmensaje() {
     $('#mensaje').hide();
+  }
+
+  //Obtener perfil si existe
+
+  public getProfile() {
+    var id = $('#identidad').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileGirl",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
+
+        if (data !== null) {
+          $('#identidad').val(data.identidad);
+          $('#foto').attr("src", "data:image/jpeg;base64," + data.img64);
+          $('#filename').val(data.path);
+          $('#nombre').val(data.nombre);
+          $('#apellido').val(data.apellido);
+          $('#telefono').val(data.telefono);
+          $('#fechaNacimiento').val(data.fechaNacimiento);
+          $('#dni').val(data.dni);
+          $('#sexo').val(data.sexo);
+          $('#nacion').val(data.nacionalidad);
+          $('#username').val(data.username);
+          $('#presentacion').val(data.presentacion);
+          $('#descripcion').val(data.descripcion);
+          $('#escort').val(data.categoriaEscort);
+          $('#valor1').val(data.valorHora);
+          $('#valor2').val(data.valorMediaHora);
+          $('#drink').val(data.drink);
+          $('#smoke').val(data.smoke);
+          $('#estatura').val(data.estatura);
+          $('#peso').val(data.peso);
+          $('#medidas').val(data.medidas);
+          $('#contextura').val(data.contextura);
+          $('#piel').val(data.piel);
+          $('#hair').val(data.hair);
+          $('#eyes').val(data.eyes);
+          $('#depilacion').val(data.depilacion);
+          $('#country').val(data.country);
+          $('#location').val(data.location);
+          $('#sector').val(data.sector);
+        }
+     
+      }
+    });
+
+    return false;
   }
 
   // Funciones catalogos

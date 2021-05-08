@@ -86,5 +86,39 @@ namespace ChilePlacer.Repositories
         {
             return db.TypeDepilacion.OrderBy(x => x.Id).ToList();
         }
+
+        public List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model)
+        {
+            db.TypeGirlServices.AddRange(model);
+            db.SaveChanges();
+
+            return model;
+        }
+
+        public List<TypeAtencionGirl> InsertTypeAtencionGirl(List<TypeAtencionGirl> model)
+        {
+            db.TypeAtencionGirl.AddRange(model);
+            db.SaveChanges();
+
+            return model;
+        }
+
+        public void DeleteTypeServiceSex(List<TypeGirlServices> model,Guid identidad)
+        {
+            var l = db.TypeGirlServices.Where(x => x.Identidad == identidad).ToList();
+            db.RemoveRange(l);
+            db.SaveChanges();
+
+            InsertTypeServiceSex(model);
+        }
+
+        public void DeleteTypeAtencionGirl(List<TypeAtencionGirl> model, Guid identidad)
+        {
+            var l = db.TypeAtencionGirl.Where(x => x.Identidad == identidad).ToList();
+            db.RemoveRange(l);
+            db.SaveChanges();
+
+            InsertTypeAtencionGirl(model);
+        }
     }
 }
