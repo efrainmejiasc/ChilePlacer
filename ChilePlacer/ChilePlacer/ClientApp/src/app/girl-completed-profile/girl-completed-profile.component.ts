@@ -642,7 +642,10 @@ export class GirlCompletedProfileComponent implements OnInit {
  
 
 
-
+  public escribirP() {
+    var p = $('#estatura').val();
+    console.log(p);
+  }
 
   
 

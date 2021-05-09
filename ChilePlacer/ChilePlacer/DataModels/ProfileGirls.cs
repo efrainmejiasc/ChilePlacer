@@ -49,7 +49,7 @@ namespace ChilePlacer.DataModels
         [Column(Order = 12, TypeName = "VARCHAR(50)")]
         public string CategoriaEscort { get; set; }
 
-        [Column(Order = 13, TypeName = "VARCHAR(100)")]
+        [Column(Order = 13, TypeName = "VARCHAR(500)")]
         public string Path { get; set; }
 
         [Column(Order = 14, TypeName = "VARCHAR(MAX)")]
