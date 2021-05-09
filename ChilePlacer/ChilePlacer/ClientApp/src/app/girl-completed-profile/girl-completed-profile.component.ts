@@ -143,7 +143,8 @@ export class GirlCompletedProfileComponent implements OnInit {
 
     this.namefile = $('#filename').val() as string;
     this.identidad = $('#identidad').val() as string;
-    var p = this.namefile.replace('_', '').split('.');
+    var re = /_/gi;
+    var p = this.namefile.replace(re, "").split('.');
     var nameImg = '';
 
     if (this.namefile as string !== '')
@@ -353,7 +354,8 @@ export class GirlCompletedProfileComponent implements OnInit {
           $('#nombre').val(data.nombre);
           $('#apellido').val(data.apellido);
           $('#telefono').val(data.telefono);
-          $('#fechaNacimiento').val(data.fechaNacimiento);
+          console.log(data.strFechaNacimiento);
+          $('#fechaNacimiento').val(data.strFechaNacimiento);
           $('#dni').val(data.dni);
           $('#sexo').val(data.sexo);
           $('#nacion').val(data.nacionalidad);

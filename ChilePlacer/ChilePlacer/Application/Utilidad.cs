@@ -148,7 +148,7 @@ namespace ChilePlacer.Application
             int horaEnvio = fechaEnvio.Hour;
             int horaActivacion = fechaActivacion.Hour;
             int diferenciaHora = horaActivacion - horaEnvio;
-            if (diferenciaHora <= 120)
+            if (diferenciaHora <= 72)
                 resultado = true;
             return resultado;
         }
@@ -282,19 +282,6 @@ namespace ChilePlacer.Application
 
         }
 
-        public void MarcaDeAgua(string path,string pathName)
-        {
-            Image image = Image.FromFile(path);
-            Bitmap bmp = new Bitmap(image);
-            Graphics graphicsobj = Graphics.FromImage(bmp);
-            Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 6), (bmp.Height - 35));
-            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
-            Image img = (Image)bmp;
-            img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
-            graphicsobj.Dispose();
-        }
-
         public List<TypeGirlServices> SetServiciosEscort(List<string> servicios,Guid identidad)
         {
             var lst = new List<TypeGirlServices>();
@@ -325,6 +312,28 @@ namespace ChilePlacer.Application
             }
 
             return lst;
+        }
+
+        public string StrFecha(DateTime fecha)
+        {
+            int  year = fecha.Year;
+            int  month = fecha.Month;
+            int day = fecha.Day;
+            string mes = string.Empty;
+            string dia = string.Empty;
+
+            if (month < 10)
+                mes = "0" + month.ToString();
+            else
+                mes = month.ToString();
+
+            if (day < 10)
+                dia = "0" + day.ToString();
+            else
+                dia = day.ToString();
+
+            return  year.ToString()  + "-" + mes + "-" + dia;
+
         }
 
     }

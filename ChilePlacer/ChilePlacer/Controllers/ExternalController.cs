@@ -26,12 +26,14 @@ namespace ChilePlacer.Controllers
         private readonly IGirlsRepository girls;
         private readonly IGaleriaGirlsRepository galeriaGirls;
         private readonly IAppLogRepository log;
-        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls, IAppLogRepository _log)
+        private readonly IImageTool imageTool;
+        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls, IAppLogRepository _log, IImageTool _imageTool)
         {
             util = _util;
             hostEnv = _hostEnv;
             girls = _girls;
             galeriaGirls = _galeriaGirls;
+            imageTool = _imageTool;
             log = _log;
         }
 
@@ -55,7 +57,7 @@ namespace ChilePlacer.Controllers
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
-                        util.MarcaDeAgua(path,pathName);
+                        imageTool.MarcaDeAgua(path,pathName);
                     }
                     else
                     {

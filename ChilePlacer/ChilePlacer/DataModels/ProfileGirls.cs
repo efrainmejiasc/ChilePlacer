@@ -105,6 +105,9 @@ namespace ChilePlacer.DataModels
 
         [Column(Order = 31, TypeName = "VARCHAR(100)")]
         public string Sector{ get; set; }
+
+        [NotMapped]
+        public string StrFechaNacimiento { get; set; }
     }
     
 }

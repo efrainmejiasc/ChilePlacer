@@ -69,7 +69,7 @@ namespace ChilePlacer.Controllers
         [HttpPost]
         public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username,
                                                  DateTime fechaNacimiento, string sexo,string presentacion,string descripcion,string escort,List<string> atencion,
-                                                 List<string> servicios,decimal valor1,decimal valor2,string drink,string smoke,decimal estatura,decimal peso,
+                                                 List<string> servicios,decimal valor1,decimal valor2,string drink,string smoke,string estatura,string peso,
                                                  string medidas,string contextura,string piel,string hair,string eyes,string country,string location,string sector,string depilacion,string nacionalidad)
         {
             var respuesta = new RespuestaModel();
@@ -84,11 +84,11 @@ namespace ChilePlacer.Controllers
             var identidad = Guid.Parse(id);
             var t = Path.Combine(hostEnv.ContentRootPath,"ClientApp/dist/assets/ProfileImageGirls", nameFoto);
            // var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
-            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto, false);
+            var img64 = util.CodeBase64(t, false);
 
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
-                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,estatura,
-                                               peso, medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
+                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,decimal.Parse(estatura),
+                                               decimal.Parse(peso), medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
 
             var lugarAtencion = util.SetAtencionEscort(atencion,identidad);
             var serviciosSex = util.SetServiciosEscort(servicios, identidad);
@@ -148,6 +148,7 @@ namespace ChilePlacer.Controllers
 
             var identidad = Guid.Parse(id);
             var profile = profileGirls.GetProfileGirls(identidad);
+            profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
 
             return Json(profile);
         }

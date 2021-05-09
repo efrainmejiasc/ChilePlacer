@@ -12,7 +12,7 @@ namespace ChilePlacer.Application.Interfaces
     {
         string ConstruirCodigo();
         Guid NuevoIdentificador();
-        void MarcaDeAgua(string path,string pathName);
+        string StrFecha(DateTime fecha);
         string CodeBase64(Image image);
         string CodeBase64(string cadena);
         void CrearDirectorio(string path);
