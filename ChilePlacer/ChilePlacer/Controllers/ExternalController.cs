@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,14 +26,16 @@ namespace ChilePlacer.Controllers
         private readonly IUtilidad util;
         private readonly IGirlsRepository girls;
         private readonly IGaleriaGirlsRepository galeriaGirls;
+        private readonly IGaleriaGirlsAudioRepository galeriaGirlsAudio;
         private readonly IAppLogRepository log;
         private readonly IImageTool imageTool;
-        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls, IAppLogRepository _log, IImageTool _imageTool)
+        public ExternalController(IWebHostEnvironment _hostEnv, IUtilidad _util, IGaleriaGirlsRepository _galeriaGirls, IGirlsRepository _girls, IAppLogRepository _log, IImageTool _imageTool, IGaleriaGirlsAudioRepository _galeriaGirlsAudio)
         {
             util = _util;
             hostEnv = _hostEnv;
             girls = _girls;
             galeriaGirls = _galeriaGirls;
+            galeriaGirlsAudio = _galeriaGirlsAudio;
             imageTool = _imageTool;
             log = _log;
         }
@@ -57,7 +60,7 @@ namespace ChilePlacer.Controllers
                         var stream = System.IO.File.Create(path);
                         file.CopyTo(stream);
                         stream.Dispose();
-                        imageTool.MarcaDeAgua(path,pathName);
+                        imageTool.MarcaDeAguaPerfil(path,pathName);
                     }
                     else
                     {
@@ -94,40 +97,68 @@ namespace ChilePlacer.Controllers
             {
                 try
                 {
-                    var p = file.FileName.Replace("_", "").Split('.');
+                    string path = "ClientApp/dist/assets/Girls";
+                    string pathAll = path + "/All/";
+                    string pathAll2 = path + "/All2/";
+                    string pathName = string.Empty;
+
+                    util.CrearDirectorio(path);
+                    util.CrearDirectorio();
+                    var nameFile = file.FileName.Replace("_", "");
+                    var p = nameFile.Split('.');
                     var name = p[0] + "_" + identidad + "." + p[1];
-                    string path = "ClientApp/dist/assets/Girls/";
-                    util.CrearDirectorio("ClientApp/dist/assets/Girls");
+
 
                     if (file.FileName.ToUpper().Contains(".JPG") || file.FileName.ToUpper().Contains(".JPEG") || file.FileName.ToUpper().Contains(".BMP") || file.FileName.ToUpper().Contains(".PNG"))
                     {
-                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Photo");
-                        path = "ClientApp/dist/assets/Girls/Photo/" + name;
+                        var stream = System.IO.File.Create(pathAll + nameFile);
+                        file.CopyTo(stream);
+                        stream.Dispose();
+
+                        Image image = Image.FromFile(pathAll + nameFile);
+                        image = (Image)imageTool.ResizeImage(image, 360, 250);
+                        image.Save(pathAll2 + nameFile);
+
+                        pathName = path + "/Photo/" + name;
+                        imageTool.MarcaDeAguaPerfil(pathAll2 + nameFile, pathName);
+
+                        var girlsModel = girls.GetGirls(Guid.Parse(identidad));
+                        var galeria = util.SetGaleriaGirls(girlsModel, name, pathName, texto);
+                        galeriaGirls.InsertGaleriaGirls(galeria);
                     }
                     else if (file.FileName.ToUpper().Contains(".GIF"))
                     {
-                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Gift");
-                        path = "ClientApp/dist/assets/Girls/Gift/" + name;
+                        var stream = System.IO.File.Create(pathAll + nameFile);
+                        file.CopyTo(stream);
+                        stream.Dispose();
+
+                        Image image = Image.FromFile(pathAll + nameFile);
+                        image = (Image)imageTool.ResizeImage(image, 360, 250);
+                        image.Save(pathAll2 + nameFile);
+
+                        pathName = path + "/Gift/" + name;
+                        imageTool.MarcaDeAguaPerfil(pathAll2 + nameFile, pathName);
+
+                        var girlsModel = girls.GetGirls(Guid.Parse(identidad));
+                        var galeria = util.SetGaleriaGirls(girlsModel, name, pathName, texto);
+                        galeriaGirls.InsertGaleriaGirls(galeria);
                     }
                     else if (file.FileName.ToUpper().Contains(".MP3") || file.FileName.ToUpper().Contains(".MP4"))
                     {
-                        util.CrearDirectorio("ClientApp/dist/assets/Girls/Audio");
-                        path = "ClientApp/dist/assets/Girls/Audio/" + name;
+                        pathName = path + "/Audio/" + nameFile;
+                        var stream = System.IO.File.Create(pathName);
+                        file.CopyTo(stream);
+                        stream.Dispose();
+
+                        var galeria = util.SetGaleriaGirlsAudio(Guid.Parse(identidad), pathName);
+                        galeriaGirlsAudio.InsertGaleriaGirlAudio(galeria);
                     }
                     else
                     {
                         respuesta.Descripcion = "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png .gif)";
                         return respuesta;
                     }
-
-                    var stream = System.IO.File.Create(path);
-                    file.CopyTo(stream);
-                    stream.Dispose();
-
-                    var girlsModel = girls.GetGirls(Guid.Parse(identidad));
-                    var galeria = util.SetGaleriaGirls(girlsModel, name, path, texto);
-                    galeriaGirls.InsertGaleriaGirls(galeria);
-                   
+                 
                 }
                 catch (Exception ex)
                 {

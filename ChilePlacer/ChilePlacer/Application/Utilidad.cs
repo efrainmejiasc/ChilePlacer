@@ -214,20 +214,18 @@ namespace ChilePlacer.Application
             model.Identidad= girls.Identidad;
             model.Fecha = DateTime.UtcNow;
             model.PathImagen = nameFile;
-            model.Img64 = CodeBase64(path);
+            model.Img64 = CodeBase64(path,false);
             model.Texto = texto;
 
             return model;
         }
 
-        public GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, Image image, string texto = "")
+        public GaleriaGirlsAudio SetGaleriaGirlsAudio(Guid identidad, string pathAudio)
         {
-            var model = new GaleriaGirls();
-            model.Identidad = girls.Identidad;
+            var model = new GaleriaGirlsAudio();
+            model.Identidad = identidad;
             model.Fecha = DateTime.UtcNow;
-            model.PathImagen = nameFile;
-            model.Img64 = CodeBase64(image);
-            model.Texto = texto;
+            model.PathAudio = pathAudio;
 
             return model;
         }
@@ -280,6 +278,21 @@ namespace ChilePlacer.Application
                 Directory.CreateDirectory(path);
             }
 
+        }
+
+        public void CrearDirectorio()
+        {
+            string path = "ClientApp/dist/assets/Girls/";
+            string []  folders = { "All", "All2", "Audio", "Gift", "Photo" };
+            foreach(var folder in folders)
+            {
+                path = path + folder;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+          
         }
 
         public List<TypeGirlServices> SetServiciosEscort(List<string> servicios,Guid identidad)

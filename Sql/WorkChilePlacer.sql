@@ -30,7 +30,7 @@ SELECT * FROM ChilePlacer..TypeGirlServices
 
 --TRUNCATE TABLE ChilePlacer..Girls
 --TRUNCATE TABLE ChilePlacer..ProfileGirls
---TRUNCATE TABLE ChilePlacer..GaleriaGirls
+TRUNCATE TABLE ChilePlacer..GaleriaGirls
 --TRUNCATE TABLE ChilePlacer..ChangePassword
 --TRUNCATE TABLE ChilePlacer..TypeGirls
  --TRUNCATE TABLE ChilePlacer..AppLog

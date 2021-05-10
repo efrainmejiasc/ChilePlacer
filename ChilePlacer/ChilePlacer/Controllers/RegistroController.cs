@@ -87,8 +87,8 @@ namespace ChilePlacer.Controllers
             var img64 = util.CodeBase64(t, false);
 
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
-                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,decimal.Parse(estatura.Replace(".",",")),
-                                               decimal.Parse(peso.Replace(".", ",")), medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
+                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,decimal.Parse(estatura.Replace(",",".")),
+                                               decimal.Parse(peso.Replace(",", ".")), medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
 
             var lugarAtencion = util.SetAtencionEscort(atencion,identidad);
             var serviciosSex = util.SetServiciosEscort(servicios, identidad);

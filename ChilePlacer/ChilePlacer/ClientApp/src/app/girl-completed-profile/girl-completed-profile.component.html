@@ -58,7 +58,7 @@
 
   <div style="padding:5px;">
     <label>* Fecha de nacimiento</label>
-    <input type="date" id="fechaNacimiento" class="form form-control" />
+    <input type="date" id="fechaNacimiento" class="form form-control" (blur) ="calcularEdad();"/>
   </div>
 
   <div style="padding:5px;">
@@ -149,7 +149,7 @@
 
   <div style="padding:5px;">
     <label>* Estatura en metros, ejemplo 1,64</label>
-    <input type="number" id="estatura" class="form form-control" placeholder="campo requerido" min="1" max="2.5" step="0.5" (blur)="escribirP()"/>
+    <input type="number" id="estatura" class="form form-control" placeholder="campo requerido" min="1" max="2.5" step="0.5" />
   </div>
 
   <div style="padding:5px;">

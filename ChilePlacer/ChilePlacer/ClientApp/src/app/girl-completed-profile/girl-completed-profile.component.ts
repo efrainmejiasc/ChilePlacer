@@ -137,8 +137,35 @@ export class GirlCompletedProfileComponent implements OnInit {
   }
 
   //Guardar perfil
+public CurrentDate():string {
+  var d = new Date();
+  var month = d.getMonth() + 1;
+  var day = d.getDate();
+  var currentDate = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day
+  return currentDate;
+}
+
+  public calcularEdad() : number {
+    var fechaNacimiento = $('#fechaNacimiento').val() as string;
+    if (fechaNacimiento == '' || fechaNacimiento == null)
+      return 0;
+
+    var date1 = new Date(fechaNacimiento);
+    var date2 = new Date(this.CurrentDate());
+
+    var diff = (date2.getTime() - date1.getTime()) / 1000;
+    diff /= (60 * 60 * 24);
+
+    return Math.abs(Math.round(diff / 365.25)); 
+  }
 
   public SaveprofileGirls() {
+
+    if (this.calcularEdad() < 18) {
+      this.mostrarMensaje('Debe ser mayor de 18 años para poder registrarte');
+      return false;
+    }
+
     this.getParametros();
 
     this.namefile = $('#filename').val() as string;
@@ -158,7 +185,6 @@ export class GirlCompletedProfileComponent implements OnInit {
     var dni = $('#dni').val();
     var sexo = $('#sexo').val();
     var nacionalidad = $('#nacion').val();
-
     var username = $('#username').val();
     var presentacion = $('#presentacion').val();
     var descripcion = $('#descripcion').val();
@@ -169,7 +195,6 @@ export class GirlCompletedProfileComponent implements OnInit {
     var valor2 = $('#valor2').val();
     var drink = $('#drink').val();
     var smoke = $('#smoke').val();
-
     var estatura = $('#estatura').val();
     var peso = $('#peso').val();
     var medidas = $('#medidas').val();
@@ -178,7 +203,6 @@ export class GirlCompletedProfileComponent implements OnInit {
     var hair = $('#hair').val();
     var eyes = $('#eyes').val();
     var depilacion = $('#depilacion').val();
-
     var country = $('#country').val();
     var location = $('#location').val();
     var sector = $('#sector').val();
@@ -354,7 +378,6 @@ export class GirlCompletedProfileComponent implements OnInit {
           $('#nombre').val(data.nombre);
           $('#apellido').val(data.apellido);
           $('#telefono').val(data.telefono);
-          console.log(data.strFechaNacimiento);
           $('#fechaNacimiento').val(data.strFechaNacimiento);
           $('#dni').val(data.dni);
           $('#sexo').val(data.sexo);

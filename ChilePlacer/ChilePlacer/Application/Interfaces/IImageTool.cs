@@ -9,6 +9,7 @@ namespace ChilePlacer.Application.Interfaces
     public interface IImageTool
     {
         void MarcaDeAgua(string path, string pathName);
-        Bitmap ResizeImage(Image image, int width, int height, string path);
+        void MarcaDeAguaPerfil(string path, string pathName);
+        Bitmap ResizeImage(Image image, int width, int height);
     }
 }
