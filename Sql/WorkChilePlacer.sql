@@ -26,7 +26,8 @@ SELECT * FROM ChilePlacer..TypeAtencionGirl
 SELECT * FROM ChilePlacer..TypeGirlServices
 
 
-
+SELECT * FROM ChilePlacer..GaleriaGirls
+SELECT * FROM ChilePlacer..AppLog
 
 --TRUNCATE TABLE ChilePlacer..Girls
 --TRUNCATE TABLE ChilePlacer..ProfileGirls
