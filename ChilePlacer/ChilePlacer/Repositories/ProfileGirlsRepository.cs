@@ -1,4 +1,5 @@
-﻿using ChilePlacer.DataModels;
+﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,11 @@ namespace ChilePlacer.Repositories
     public class ProfileGirlsRepository: IProfileGirlsRepository
     {
         private readonly MyAppContext db;
-        public ProfileGirlsRepository(MyAppContext _db)
+        private readonly IUtilidad util;
+        public ProfileGirlsRepository(MyAppContext _db, IUtilidad _util)
         {
             db = _db;
+            util = _util;
         }
 
         public ProfileGirls InsertProfileGirls(ProfileGirls model) 
@@ -80,6 +83,17 @@ namespace ChilePlacer.Repositories
                 src = "assets/ProfileImageGirls/" + src;
             else
                 src = "assets/ImagesSite/unphoto.jpg";
+
+            return src;
+        }
+
+        public string GetProfileImage(string username)
+        {
+            var src = db.ProfileGirls.Where(x => x.Username == username).OrderByDescending(x => x.Fecha).Select(x => x.Img64).FirstOrDefault();
+            if (string.IsNullOrEmpty(src))
+                src = "data:image/jpeg;base64," + util.CodeBase64("assets/ImagesSite/unphoto.jpg", false);
+            else
+               src = "data:image/jpeg;base64," + src;
 
             return src;
         }

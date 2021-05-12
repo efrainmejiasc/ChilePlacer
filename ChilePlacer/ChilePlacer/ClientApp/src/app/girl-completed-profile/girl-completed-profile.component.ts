@@ -151,13 +151,13 @@ export class GirlCompletedProfileComponent implements OnInit {
 
 
   //Guardar perfil
-public CurrentDate():string {
+ public CurrentDate():string {
   var d = new Date();
   var month = d.getMonth() + 1;
   var day = d.getDate();
-  var currentDate = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day
+   var currentDate = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
   return currentDate;
-}
+ }
 
   public calcularEdad() : number {
     var fechaNacimiento = $('#fechaNacimiento').val() as string;

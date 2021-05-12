@@ -25,7 +25,7 @@ export class ProfileGirlComponent implements OnInit {
   ngOnInit() {
     this.progress = 0; this.message = "";
 
-    var url = window.location.href;
+   let url = window.location.href;
     if (!url.includes('='))
       this.getIdentityUser('true');
     else
@@ -45,6 +45,7 @@ export class ProfileGirlComponent implements OnInit {
         else {
           if (s === 'true') {
             window.location.href = AppConfiguration.Setting().urlServerHost + '/profile-girl?user=' + data.username;
+            return false;
           }
           this._user = data.username; $('#_user').val(data.username);
           this._guid = data.identidad; $('#_guid').val(data.identidad);
@@ -56,10 +57,90 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    setTimeout(this.getImagenes, 3000);
+    setTimeout(this.getImagenes, 1000);
+    setTimeout(this.getImageProfile, 1000);
+    setTimeout(this.getProfile, 1000);
+
 
   }
 
+  public getImageProfile() {
+    let username = $('#_user').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/ImagenProfileGirl",
+      data: {username: username, opt: false},
+      dataType: "json",
+      success: function (data) {
+        $('#_foto').attr("src", data.descripcion);
+      },
+      complete: function () {
+        console.log('getImageProfile');
+      }
+    });
+  }
+
+  public getProfile() {
+    const id = $('#_guid').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileGirl",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
+
+        if (data !== null) {
+          $('#_guid').val(data.identidad);
+          $('#_user').val(data.username);
+
+          $('#escort').val(data.categoriaEscort);
+          $('#presentacion').val(data.presentacion);
+          $('#_fechaNacimiento').val(data.strFechaNacimiento);
+          const ubicacion = data.country + ' - ' + data.location + ' - ' + data.sector;
+          $('#ubicacion').val(ubicacion);
+          $('#telefono').val(data.telefono);
+          $('#valor1').val(data.valorHora);
+          $('#valor2').val(data.valorMediaHora);
+          $('#nacion').val(data.nacionalidad);
+
+        }
+
+      },
+      complete: function () {
+        console.log('getProfile');
+      }
+    });
+
+    setTimeout(this.calcularEdad, 1000);
+  }
+
+
+  public CurrentDate(): string {
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var day = d.getDate();
+    var currentDate = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day
+    return currentDate;
+  }
+
+  public calcularEdad() {
+    console.log('Hola Mundo');
+    var fechaNacimiento = $('#_fechaNacimiento').val() as string;
+    var date1 = new Date(fechaNacimiento);
+    var date2 = new Date(this.CurrentDate());
+
+    var diff = (date2.getTime() - date1.getTime()) / 1000;
+    diff /= (60 * 60 * 24);
+
+    var edad = Math.abs(Math.round(diff / 365.25));
+    console.log(edad);
+    $('#edad').val(edad);
+  }
+
+
+  //subir archivo
 
   public uploadFile = (files) => {
     console.log('SF');
@@ -94,7 +175,7 @@ export class ProfileGirlComponent implements OnInit {
 
   public getImagenes() {
 
-    var identidad = $('#_guid').val();
+    const identidad = $('#_guid').val();
     if (identidad === '' || identidad === null) {
       console.log('identidad no puede ser vacio')
       return false;

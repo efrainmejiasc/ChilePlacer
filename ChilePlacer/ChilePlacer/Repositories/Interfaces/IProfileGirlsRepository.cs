@@ -11,6 +11,7 @@ namespace ChilePlacer.Repositories.Interfaces
         string GetUserName(Guid identidad);
         string GetProfileImage(Guid identidad);
         bool ExisteProfileGirls(Guid identidad);
+        string GetProfileImage(string username);
         bool GetExisteUserName(string username);
         ProfileGirls GetProfileGirls(Guid identidad);
         ProfileGirls InsertProfileGirls(ProfileGirls model);

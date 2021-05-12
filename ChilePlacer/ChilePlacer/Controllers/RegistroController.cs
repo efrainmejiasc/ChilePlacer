@@ -140,6 +140,16 @@ namespace ChilePlacer.Controllers
             return Json(respuesta);
         }
 
+
+        [HttpPost]
+        public JsonResult ImagenProfileGirl(string username)
+        {
+            var respuesta = new RespuestaModel();
+            respuesta.Descripcion = profileGirls.GetProfileImage(username);
+
+            return Json(respuesta);
+        }
+
         [HttpPost]
         public JsonResult GetProfileGirl(string id)
         {
