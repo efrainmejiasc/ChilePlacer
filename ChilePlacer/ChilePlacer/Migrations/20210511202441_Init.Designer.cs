@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChilePlacer.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20210505220327_Cp")]
-    partial class Cp
+    [Migration("20210511202441_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -97,6 +97,54 @@ namespace ChilePlacer.Migrations
                     b.ToTable("GaleriaGirls");
                 });
 
+            modelBuilder.Entity("ChilePlacer.DataModels.GaleriaGirlsAudio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Audio64")
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("PathAudio")
+                        .HasColumnType("VARCHAR(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GaleriaGirlsAudio");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.GaleriaGirlsVideo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AVideo64")
+                        .HasColumnType("VARCHAR(MAX)");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("Identidad")
+                        .HasColumnType("UNIQUEIDENTIFIER");
+
+                    b.Property<string>("PathVideo")
+                        .HasColumnType("VARCHAR(1000)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GaleriaGirlsVideo");
+                });
+
             modelBuilder.Entity("ChilePlacer.DataModels.Girls", b =>
                 {
                     b.Property<int>("Id")
@@ -163,14 +211,14 @@ namespace ChilePlacer.Migrations
                     b.Property<string>("Apellido")
                         .HasColumnType("VARCHAR(80)");
 
-                    b.Property<string>("Atencion")
-                        .HasColumnType("VARCHAR(100)");
+                    b.Property<string>("CategoriaEscort")
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Contextura")
                         .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("VARCHAR(150)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Depilacion")
                         .HasColumnType("VARCHAR(100)");
@@ -206,16 +254,19 @@ namespace ChilePlacer.Migrations
                         .HasColumnType("VARCHAR(MAX)");
 
                     b.Property<string>("Location")
-                        .HasColumnType("VARCHAR(150)");
+                        .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Medidas")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("Nacionalidad")
                         .HasColumnType("VARCHAR(100)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("VARCHAR(80)");
 
                     b.Property<string>("Path")
-                        .HasColumnType("VARCHAR(100)");
+                        .HasColumnType("VARCHAR(500)");
 
                     b.Property<decimal>("Peso")
                         .HasColumnType("DECIMAL");
@@ -226,8 +277,11 @@ namespace ChilePlacer.Migrations
                     b.Property<string>("Presentacion")
                         .HasColumnType("VARCHAR(200)");
 
-                    b.Property<string>("Sexo")
+                    b.Property<string>("Sector")
                         .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("Sexo")
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("Smoke")
                         .HasColumnType("VARCHAR(100)");
@@ -243,9 +297,6 @@ namespace ChilePlacer.Migrations
 
                     b.Property<decimal>("ValorMediaHora")
                         .HasColumnType("DECIMAL");
-
-                    b.Property<string>("WhatsApp")
-                        .HasColumnType("VARCHAR(50)");
 
                     b.HasKey("Id");
 
@@ -470,6 +521,24 @@ namespace ChilePlacer.Migrations
                     b.HasKey("Ide");
 
                     b.ToTable("TypeLocation");
+                });
+
+            modelBuilder.Entity("ChilePlacer.DataModels.TypeNacionalidad", b =>
+                {
+                    b.Property<string>("Ide")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nacionalidad")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("Ide");
+
+                    b.ToTable("TypeNacionalidad");
                 });
 
             modelBuilder.Entity("ChilePlacer.DataModels.TypePiel", b =>

@@ -1,5 +1,5 @@
-INSERT INTO TypeDrink VALUES ('Si','Si')
-INSERT INTO TypeDrink VALUES ('No','No')
-INSERT INTO TypeDrink VALUES ('Ocacionalmente','Ocacionalmente')
+INSERT INTO chileplacer..TypeDrink VALUES ('Si','Si')
+INSERT INTO chileplacer..TypeDrink VALUES ('No','No')
+INSERT INTO chileplacer..TypeDrink VALUES ('Ocacionalmente','Ocacionalmente')
 
 TRUNCATE TABLE TypeDrink

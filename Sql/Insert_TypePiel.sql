@@ -1,7 +1,7 @@
-INSERT INTO TypePiel VALUES ('Blanca' , 'Blanca')
-INSERT INTO TypePiel VALUES ('Trigueña' , 'Trigueña')
-INSERT INTO TypePiel VALUES ('Morena' , 'Morena')
-INSERT INTO TypePiel VALUES ('Mulata' , 'Mulata')
-INSERT INTO TypePiel VALUES ('Oscura' , 'Oscura')
+INSERT INTO chileplacer..TypePiel VALUES ('Blanca' , 'Blanca')
+INSERT INTO chileplacer..TypePiel VALUES ('Trigueña' , 'Trigueña')
+INSERT INTO chileplacer..TypePiel VALUES ('Morena' , 'Morena')
+INSERT INTO chileplacer..TypePiel VALUES ('Mulata' , 'Mulata')
+INSERT INTO chileplacer..TypePiel VALUES ('Oscura' , 'Oscura')
 
 TRUNCATE TABLE TypePiel

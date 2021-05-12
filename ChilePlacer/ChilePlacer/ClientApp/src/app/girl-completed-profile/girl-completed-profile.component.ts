@@ -136,6 +136,20 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
+  public medidasValidas() {
+    const regex = /^\d\d-\d\d-\d\d$/;
+    let medidas = $('#medidas').val() as string ;
+    let resultado = regex.test(medidas);
+    if (!resultado) {
+      $('#msj').html('Las medidas deben cumplir un formato, ej: 90-60-90');
+      $('#mensaje').show();
+      setTimeout(function () { $('#mensaje').hide(); }, 3000);
+      $('#medidas').val('');
+    }
+    return false;
+  }
+
+
   //Guardar perfil
 public CurrentDate():string {
   var d = new Date();
@@ -634,6 +648,7 @@ public CurrentDate():string {
       dataType: "json",
       success: function (data) {
         $("#country").empty();
+        $('#smoke').append('<option selected disabled value="-1">Seleccione pais...</option>');
         $.each(data, function (index, value) {
           $('#country').append('<option  value="' + value.ide + '">' + value.pais + '</option>');
         });
@@ -665,10 +680,6 @@ public CurrentDate():string {
  
 
 
-  public escribirP() {
-    var p = $('#estatura').val();
-    console.log(p);
-  }
 
   
 

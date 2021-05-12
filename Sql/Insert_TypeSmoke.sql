@@ -1,3 +1,3 @@
-INSERT INTO TypeSmoke VALUES ('Si','Si')
-INSERT INTO TypeSmoke VALUES ('No','No')
-INSERT INTO TypeSmoke VALUES ('Ocacionalmente','Ocacionalmente')
+INSERT INTO chileplacer..TypeSmoke VALUES ('Si','Si')
+INSERT INTO chileplacer..TypeSmoke VALUES ('No','No')
+INSERT INTO chileplacer..TypeSmoke VALUES ('Ocacionalmente','Ocacionalmente')

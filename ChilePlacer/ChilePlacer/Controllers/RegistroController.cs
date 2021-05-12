@@ -148,6 +148,8 @@ namespace ChilePlacer.Controllers
 
             var identidad = Guid.Parse(id);
             var profile = profileGirls.GetProfileGirls(identidad);
+
+            if (profile != null)
             profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
 
             return Json(profile);
