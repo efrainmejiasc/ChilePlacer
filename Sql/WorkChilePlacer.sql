@@ -25,7 +25,8 @@ SELECT * FROM ChilePlacer..TypeNacionalidad
 SELECT * FROM ChilePlacer..TypeAtencionGirl
 SELECT * FROM ChilePlacer..TypeGirlServices
 
-
+SELECT * FROM ChilePlacer..Girls 
+SELECT * FROM ChilePlacer..ProfileGirls
 SELECT * FROM ChilePlacer..GaleriaGirls
 SELECT * FROM ChilePlacer..AppLog
 
