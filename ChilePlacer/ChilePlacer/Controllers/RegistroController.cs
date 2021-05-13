@@ -83,7 +83,6 @@ namespace ChilePlacer.Controllers
 
             var identidad = Guid.Parse(id);
             var t = Path.Combine(hostEnv.ContentRootPath,"ClientApp/dist/assets/ProfileImageGirls", nameFoto);
-           // var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto,false);
             var img64 = util.CodeBase64(t, false);
 
             var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
@@ -161,6 +160,7 @@ namespace ChilePlacer.Controllers
 
             if (profile != null)
             profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
+            profile.Edad = util.CalcularEdad(profile.FechaNacimiento);
 
             return Json(profile);
         }

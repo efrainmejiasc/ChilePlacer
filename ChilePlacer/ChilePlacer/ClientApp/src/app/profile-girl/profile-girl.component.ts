@@ -27,12 +27,12 @@ export class ProfileGirlComponent implements OnInit {
 
    let url = window.location.href;
     if (!url.includes('='))
-      this.getIdentityUser('true');
+      window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
     else
-      this.getIdentityUser('false');
+      this.getIdentityUser();
   }
 
-  public getIdentityUser(s) {
+  public getIdentityUser() {
 
     $.ajax({
       type: "POST",
@@ -43,10 +43,6 @@ export class ProfileGirlComponent implements OnInit {
           window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
         }
         else {
-          if (s === 'true') {
-            window.location.href = AppConfiguration.Setting().urlServerHost + '/profile-girl?user=' + data.username;
-            return false;
-          }
           this._user = data.username; $('#_user').val(data.username);
           this._guid = data.identidad; $('#_guid').val(data.identidad);
           console.log(data);
@@ -57,10 +53,9 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    setTimeout(this.getImagenes, 1000);
-    setTimeout(this.getImageProfile, 1000);
     setTimeout(this.getProfile, 1000);
-
+    setTimeout(this.getImageProfile, 1000);
+    setTimeout(this.getImagenes, 1000);
 
   }
 
@@ -97,7 +92,7 @@ export class ProfileGirlComponent implements OnInit {
 
           $('#escort').val(data.categoriaEscort);
           $('#presentacion').val(data.presentacion);
-          $('#_fechaNacimiento').val(data.strFechaNacimiento);
+          $('#edad').val(data.edad);
           const ubicacion = data.country + ' - ' + data.location + ' - ' + data.sector;
           $('#ubicacion').val(ubicacion);
           $('#telefono').val(data.telefono);
@@ -113,31 +108,10 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    setTimeout(this.calcularEdad, 1000);
+    return false;
   }
 
 
-  public CurrentDate(): string {
-    var d = new Date();
-    var month = d.getMonth() + 1;
-    var day = d.getDate();
-    var currentDate = d.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day
-    return currentDate;
-  }
-
-  public calcularEdad() {
-    console.log('Hola Mundo');
-    var fechaNacimiento = $('#_fechaNacimiento').val() as string;
-    var date1 = new Date(fechaNacimiento);
-    var date2 = new Date(this.CurrentDate());
-
-    var diff = (date2.getTime() - date1.getTime()) / 1000;
-    diff /= (60 * 60 * 24);
-
-    var edad = Math.abs(Math.round(diff / 365.25));
-    console.log(edad);
-    $('#edad').val(edad);
-  }
 
 
   //subir archivo
@@ -170,7 +144,10 @@ export class ProfileGirlComponent implements OnInit {
       });
 
     $('#_texto').val('');
-    setTimeout(this.getImagenes, 2000);
+
+    setTimeout(this.getProfile, 1500);
+    setTimeout(this.getImageProfile, 1500);
+    setTimeout(this.getImagenes, 1500);
   }
 
   public getImagenes() {

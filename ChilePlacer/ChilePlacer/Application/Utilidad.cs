@@ -349,5 +349,16 @@ namespace ChilePlacer.Application
 
         }
 
+        public int CalcularEdad (DateTime fechaNacimiento)
+        {
+            var today = DateTime.Today;
+
+            var a = (today.Year * 100 + today.Month) * 100 + today.Day;
+            var b = (fechaNacimiento.Year * 100 + fechaNacimiento.Month) * 100 + fechaNacimiento.Day;
+
+            return (a - b) / 10000;
+        }
+
+
     }
 }

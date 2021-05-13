@@ -19,6 +19,7 @@ namespace ChilePlacer.Application.Interfaces
         void CrearDirectorio(string path);
         string DecodeBase64(string cadena);
         bool CompararString(string a, string b);
+        int CalcularEdad(DateTime fechaNacimiento);
         string CodeBase64(string path, bool opt = false);
         string ConstruirEnlazeRegistro(string email, Guid identidad);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);

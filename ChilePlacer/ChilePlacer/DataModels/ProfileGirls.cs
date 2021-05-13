@@ -108,6 +108,9 @@ namespace ChilePlacer.DataModels
 
         [NotMapped]
         public string StrFechaNacimiento { get; set; }
+
+        [NotMapped]
+        public int Edad { get; set; }
     }
     
 }
