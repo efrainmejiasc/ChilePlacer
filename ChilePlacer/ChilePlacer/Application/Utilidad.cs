@@ -1,6 +1,7 @@
 ﻿using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
 using ChilePlacer.Models;
+using ChilePlacer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,6 +14,12 @@ namespace ChilePlacer.Application
 {
     public class Utilidad : IUtilidad
     {
+        private readonly IAppLogRepository log;
+        public Utilidad(IAppLogRepository _log)
+        {
+            log = _log;
+        }
+
         public string CodeBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -23,14 +30,30 @@ namespace ChilePlacer.Application
         public string CodeBase64(string path, bool opt = false)
         {
             string cadenaBase64 = string.Empty;
-            using (Image image = Image.FromFile(path))
-            {
-                using (MemoryStream m = new MemoryStream())
+            if (string.IsNullOrEmpty(path))
+                return cadenaBase64;
+
+
+            try {
+                using (Image image = Image.FromFile(path))
                 {
-                    image.Save(m, image.RawFormat);
-                    byte[] imageBytes = m.ToArray();
-                    cadenaBase64 = Convert.ToBase64String(imageBytes);
+                    using (MemoryStream m = new MemoryStream())
+                    {
+                        image.Save(m, image.RawFormat);
+                        byte[] imageBytes = m.ToArray();
+                        cadenaBase64 = Convert.ToBase64String(imageBytes);
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                var error = new AppLog()
+                {
+                    Error = ex.ToString(),
+                    Metodo = "Utilidad,CodeBase64(string path, bool opt = false)",
+                    Fecha = DateTime.UtcNow,
+                };
+                log.InserAppLog(error);
             }
 
             return cadenaBase64;
@@ -119,18 +142,21 @@ namespace ChilePlacer.Application
         public bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion)
         {
             bool resultado = false;
-            if (fechaEnvio.Date != fechaActivacion.Date)
-                return resultado;
+            //if (fechaEnvio.Date != fechaActivacion.Date)
+                //return resultado;
 
             int horaEnvio = fechaEnvio.Hour;
             int horaActivacion = fechaActivacion.Hour;
             int diferenciaHora = horaActivacion - horaEnvio;
-            if (diferenciaHora <= 3)
+            if (diferenciaHora <= 72)
                 resultado = true;
             return resultado;
         }
 
-        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64)
+        public ProfileGirls SetProfileGirls(string nombre, string apellido, string dni, string telefono, string path, Guid identidad,string username,string img64, 
+                                           DateTime fechaNacimiento, string sexo, string presentacion, string descripcion, string escort, 
+                                           decimal valor1, decimal valor2, string drink, string smoke, decimal estatura, decimal peso,
+                                           string medidas, string contextura, string piel, string hair, string eyes, string country, string location, string sector,string depilacion,string nacionalidad)
         {
             var profileGirls = new ProfileGirls()
             {
@@ -142,7 +168,28 @@ namespace ChilePlacer.Application
                 Path = path,
                 Fecha = DateTime.UtcNow,
                 Username = username,
-                Img64 = img64
+                Img64 = string.IsNullOrEmpty(path)?string.Empty:img64,
+                FechaNacimiento = fechaNacimiento,
+                Sexo = sexo,
+                Presentacion = presentacion,
+                Descripcion = descripcion,
+                CategoriaEscort = escort,
+                ValorHora = valor1,
+                ValorMediaHora = valor2,
+                Drink = drink,
+                Smoke = smoke,
+                Estatura = estatura,
+                Peso= peso,
+                Medidas = medidas,
+                Contextura = contextura,
+                Piel= piel,
+                Hair = hair,
+                Eyes = eyes,
+                Country = country,
+                Location = location,
+                Sector = sector,
+                Depilacion = depilacion,
+                Nacionalidad = nacionalidad,
             };
 
             return profileGirls;
@@ -167,20 +214,18 @@ namespace ChilePlacer.Application
             model.Identidad= girls.Identidad;
             model.Fecha = DateTime.UtcNow;
             model.PathImagen = nameFile;
-            model.Img64 = CodeBase64(path);
+            model.Img64 = CodeBase64(path,false);
             model.Texto = texto;
 
             return model;
         }
 
-        public GaleriaGirls SetGaleriaGirls(Girls girls, string nameFile, Image image, string texto = "")
+        public GaleriaGirlsAudio SetGaleriaGirlsAudio(Guid identidad, string pathAudio)
         {
-            var model = new GaleriaGirls();
-            model.Identidad = girls.Identidad;
+            var model = new GaleriaGirlsAudio();
+            model.Identidad = identidad;
             model.Fecha = DateTime.UtcNow;
-            model.PathImagen = nameFile;
-            model.Img64 = CodeBase64(image);
-            model.Texto = texto;
+            model.PathAudio = pathAudio;
 
             return model;
         }
@@ -233,6 +278,85 @@ namespace ChilePlacer.Application
                 Directory.CreateDirectory(path);
             }
 
+        }
+
+        public void CrearDirectorio()
+        {
+            string path = "ClientApp/dist/assets/Girls/";
+            string []  folders = { "All", "All2", "Audio", "Gift", "Photo" };
+            foreach(var folder in folders)
+            {
+                path = path + folder;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+          
+        }
+
+        public List<TypeGirlServices> SetServiciosEscort(List<string> servicios,Guid identidad)
+        {
+            var lst = new List<TypeGirlServices>();
+            var s = new TypeGirlServices();
+
+            foreach(var x in servicios)
+            {
+                s.Identidad = identidad;
+                s.TypeServices = x;
+                lst.Add(s);
+                s = new TypeGirlServices();
+            }
+
+            return lst;
+        }
+
+        public List<TypeAtencionGirl> SetAtencionEscort(List<string> atenciones, Guid identidad)
+        {
+            var lst = new List<TypeAtencionGirl>();
+            var s = new TypeAtencionGirl();
+
+            foreach (var x in atenciones)
+            {
+                s.Identidad = identidad;
+                s.TypeAtencion = x;
+                lst.Add(s);
+                s = new TypeAtencionGirl();
+            }
+
+            return lst;
+        }
+
+        public string StrFecha(DateTime fecha)
+        {
+            int  year = fecha.Year;
+            int  month = fecha.Month;
+            int day = fecha.Day;
+            string mes = string.Empty;
+            string dia = string.Empty;
+
+            if (month < 10)
+                mes = "0" + month.ToString();
+            else
+                mes = month.ToString();
+
+            if (day < 10)
+                dia = "0" + day.ToString();
+            else
+                dia = day.ToString();
+
+            return  year.ToString()  + "-" + mes + "-" + dia;
+
+        }
+
+        public int CalcularEdad (DateTime fechaNacimiento)
+        {
+            var today = DateTime.Today;
+
+            var a = (today.Year * 100 + today.Month) * 100 + today.Day;
+            var b = (fechaNacimiento.Year * 100 + fechaNacimiento.Month) * 100 + fechaNacimiento.Day;
+
+            return (a - b) / 10000;
         }
 
 

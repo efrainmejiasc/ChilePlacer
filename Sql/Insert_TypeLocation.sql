@@ -1,0 +1,5 @@
+ INSERT INTO chileplacer..TypeLocation Values ('Arica', 'Arica','Chile')
+ INSERT INTO chileplacer..TypeLocation Values ('Santiago', 'Santiago','Chile')
+ INSERT INTO chileplacer..TypeLocation Values ('Centro', 'Centro','Chile')
+ INSERT INTO chileplacer..TypeLocation Values ('Providencia','Providencia','Chile')
+ INSERT INTO chileplacer..TypeLocation Values ('Las Condes','Las Condes','Chile')								  

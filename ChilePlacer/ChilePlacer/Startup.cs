@@ -6,12 +6,15 @@ using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace ChilePlacer
 {
@@ -56,12 +59,14 @@ namespace ChilePlacer
             //*****************************************************************************
 
             services.AddTransient<MyAppContext, MyAppContext>();
-            services.AddTransient<IAppLogRepository, AppLogRepository>();
             services.AddTransient<IUtilidad, Utilidad>();
             services.AddTransient<ISendMail, SendMail>();
             services.AddTransient<IImageTool, ImageTool>();
             services.AddTransient<IGirlsRepository, GirlsRepository>();
+            services.AddTransient<IAppLogRepository, AppLogRepository>();
+            services.AddTransient<ITypesRepository, TypesRepository>();
             services.AddTransient<IGaleriaGirlsRepository, GaleriaGirlsRepository>();
+            services.AddTransient<IGaleriaGirlsAudioRepository, GaleriaGirlsAudioRepository>();
             services.AddTransient<IPortadaGirlsRepository, PortadaGirlsRepository>();
             services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
             services.AddTransient<IChangePasswordRepository, ChangePasswordRepository>();
@@ -121,6 +126,23 @@ namespace ChilePlacer
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
+                }
+            });
+
+            var defaultDateCulture = "es-ES";
+            var ci = new CultureInfo(defaultDateCulture);
+            ci.NumberFormat.NumberDecimalSeparator = ",";
+            ci.NumberFormat.CurrencyDecimalSeparator = ",";
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ci),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    ci,
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    ci,
                 }
             });
         }

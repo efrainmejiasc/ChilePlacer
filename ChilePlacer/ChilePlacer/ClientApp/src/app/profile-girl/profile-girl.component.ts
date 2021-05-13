@@ -25,14 +25,14 @@ export class ProfileGirlComponent implements OnInit {
   ngOnInit() {
     this.progress = 0; this.message = "";
 
-    var url = window.location.href;
+   let url = window.location.href;
     if (!url.includes('='))
-      this.getIdentityUser('true');
+      window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
     else
-      this.getIdentityUser('false');
+      this.getIdentityUser();
   }
 
-  public getIdentityUser(s) {
+  public getIdentityUser() {
 
     $.ajax({
       type: "POST",
@@ -43,9 +43,6 @@ export class ProfileGirlComponent implements OnInit {
           window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
         }
         else {
-          if (s === 'true') {
-            window.location.href = AppConfiguration.Setting().urlServerHost + '/profile-girl?user=' + data.username;
-          }
           this._user = data.username; $('#_user').val(data.username);
           this._guid = data.identidad; $('#_guid').val(data.identidad);
           console.log(data);
@@ -56,10 +53,68 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    setTimeout(this.getImagenes, 3000);
+    setTimeout(this.getProfile, 1000);
+    setTimeout(this.getImageProfile, 1000);
+    setTimeout(this.getImagenes, 1000);
 
   }
 
+  public getImageProfile() {
+    let username = $('#_user').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/ImagenProfileGirl",
+      data: {username: username, opt: false},
+      dataType: "json",
+      success: function (data) {
+        $('#_foto').attr("src", data.descripcion);
+      },
+      complete: function () {
+        console.log('getImageProfile');
+      }
+    });
+  }
+
+  public getProfile() {
+    const id = $('#_guid').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileGirl",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
+
+        if (data !== null) {
+          $('#_guid').val(data.identidad);
+          $('#_user').val(data.username);
+
+          $('#escort').val(data.categoriaEscort);
+          $('#presentacion').val(data.presentacion);
+          $('#edad').val(data.edad);
+          const ubicacion = data.country + ' - ' + data.location + ' - ' + data.sector;
+          $('#ubicacion').val(ubicacion);
+          $('#telefono').val(data.telefono);
+          $('#valor1').val(data.valorHora);
+          $('#valor2').val(data.valorMediaHora);
+          $('#nacion').val(data.nacionalidad);
+
+        }
+
+      },
+      complete: function () {
+        console.log('getProfile');
+      }
+    });
+
+    return false;
+  }
+
+
+
+
+  //subir archivo
 
   public uploadFile = (files) => {
     console.log('SF');
@@ -89,12 +144,15 @@ export class ProfileGirlComponent implements OnInit {
       });
 
     $('#_texto').val('');
-    setTimeout(this.getImagenes, 3000);
+
+    setTimeout(this.getProfile, 1500);
+    setTimeout(this.getImageProfile, 1500);
+    setTimeout(this.getImagenes, 1500);
   }
 
   public getImagenes() {
 
-    var identidad = $('#_guid').val();
+    const identidad = $('#_guid').val();
     if (identidad === '' || identidad === null) {
       console.log('identidad no puede ser vacio')
       return false;
@@ -121,7 +179,7 @@ export class ProfileGirlComponent implements OnInit {
                       <td>
                            <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
  
-                           <img src= ${item.pathImagen} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
                            <label id=${item.id}> ${item.texto} <label>
                       </td>

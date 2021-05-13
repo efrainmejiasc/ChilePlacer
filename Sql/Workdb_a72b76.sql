@@ -11,3 +11,4 @@ SELECT * FROM db_a72b76_chileplacer..GaleriaGirls
 --DELETE  db_a72b76_chileplacer..Girls
 --TRUNCATE TABLE db_a72b76_chileplacer..ProfileGirls
 --TRUNCATE TABLE db_a72b76_chileplacer..Girls
+--Update db_a72b76_chileplacer..ProfileGirls  set Path='' Where id = 2 

@@ -1,0 +1,5 @@
+INSERT INTO chileplacer..TypeContextura VALUES ('Delgada','Delgada')
+INSERT INTO chileplacer..TypeContextura VALUES ('Mediana','Mediana')
+INSERT INTO chileplacer..TypeContextura VALUES ('Atletica','Atletica')
+INSERT INTO chileplacer..TypeContextura VALUES ('Robusta','Robusta')
+INSERT INTO chileplacer..TypeContextura VALUES ('Voluptuosa','Voluptuosa')

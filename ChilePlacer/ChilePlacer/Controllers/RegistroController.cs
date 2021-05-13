@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace ChilePlacer.Controllers
     {
         private readonly IUtilidad util;
         private readonly ISendMail sendMail;
+        private readonly ITypesRepository types;
         private readonly IGirlsRepository girls;
         private readonly IWebHostEnvironment hostEnv;
         private readonly IHttpContextAccessor httpContext;
@@ -25,10 +27,11 @@ namespace ChilePlacer.Controllers
         private readonly IChangePasswordRepository changePassword;
 
 
-        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword, IHttpContextAccessor _httpContext)
+        public RegistroController(IUtilidad _util, IGirlsRepository _girls, IWebHostEnvironment _hostEnv, ISendMail _sendMail, IProfileGirlsRepository _profileGirls, IChangePasswordRepository _changePassword, IHttpContextAccessor _httpContext, ITypesRepository _types)
         {
             util = _util;
             girls = _girls;
+            types = _types;
             hostEnv = _hostEnv;
             sendMail = _sendMail;
             httpContext = _httpContext;
@@ -64,7 +67,10 @@ namespace ChilePlacer.Controllers
         }
 
         [HttpPost]
-        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username)
+        public JsonResult CompletedRegistroGirls(string nombre, string apellido, string dni,string telefono,string nameFoto ,string id,string username,
+                                                 DateTime fechaNacimiento, string sexo,string presentacion,string descripcion,string escort,List<string> atencion,
+                                                 List<string> servicios,decimal valor1,decimal valor2,string drink,string smoke,string estatura,string peso,
+                                                 string medidas,string contextura,string piel,string hair,string eyes,string country,string location,string sector,string depilacion,string nacionalidad)
         {
             var respuesta = new RespuestaModel();
             respuesta.Status = "false";
@@ -76,8 +82,16 @@ namespace ChilePlacer.Controllers
             }
 
             var identidad = Guid.Parse(id);
-            var img64 = util.CodeBase64("ClientApp/dist/assets/ProfileImageGirls/" + nameFoto);
-            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64);
+            var t = Path.Combine(hostEnv.ContentRootPath,"ClientApp/dist/assets/ProfileImageGirls", nameFoto);
+            var img64 = util.CodeBase64(t, false);
+
+            var profile = util.SetProfileGirls(nombre, apellido, dni, telefono, nameFoto, identidad,username,img64, fechaNacimiento,
+                                               sexo,presentacion,descripcion,escort,valor1,valor2,drink,smoke,decimal.Parse(estatura.Replace(",",".")),
+                                               decimal.Parse(peso.Replace(",", ".")), medidas,contextura,piel,hair,eyes,country,location,sector,depilacion,nacionalidad);
+
+            var lugarAtencion = util.SetAtencionEscort(atencion,identidad);
+            var serviciosSex = util.SetServiciosEscort(servicios, identidad);
+
             if (!profileGirls.ExisteProfileGirls(identidad))
             {
                 if (profileGirls.GetExisteUserName(username))
@@ -85,7 +99,10 @@ namespace ChilePlacer.Controllers
                     respuesta.Descripcion = "El nombre de usuario existe, intente con otros digitos";
                     return Json(respuesta);
                 }
+
                 profile = profileGirls.InsertProfileGirls(profile);
+                lugarAtencion = types.InsertTypeAtencionGirl(lugarAtencion);
+                serviciosSex = types.InsertTypeServiceSex(serviciosSex);
             }
             else
             {
@@ -95,6 +112,12 @@ namespace ChilePlacer.Controllers
                     return Json(respuesta);
                 }
                 profile = profileGirls.UpdateProfileGirls(profile);
+
+                if (lugarAtencion.Count > 0)
+                    types.DeleteTypeAtencionGirl(lugarAtencion, identidad);
+
+                if (serviciosSex.Count > 0)
+                    types.DeleteTypeServiceSex(serviciosSex,identidad);
             }
 
             respuesta.Descripcion = "Perfil actualizado correctamente";
@@ -116,8 +139,34 @@ namespace ChilePlacer.Controllers
             return Json(respuesta);
         }
 
+
         [HttpPost]
-        public JsonResult GetProfileImage(string id)
+        public JsonResult ImagenProfileGirl(string username)
+        {
+            var respuesta = new RespuestaModel();
+            respuesta.Descripcion = profileGirls.GetProfileImage(username);
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult GetProfileGirl(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return Json(null);
+
+            var identidad = Guid.Parse(id);
+            var profile = profileGirls.GetProfileGirls(identidad);
+
+            if (profile != null)
+            profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
+            profile.Edad = util.CalcularEdad(profile.FechaNacimiento);
+
+            return Json(profile);
+        }
+
+        [HttpPost]
+        public JsonResult GetProfile(string id)
         {
             var respuesta = new RespuestaModel();
             var identificador = Guid.Parse(id);
@@ -228,6 +277,108 @@ namespace ChilePlacer.Controllers
             respuesta.Email = util.CodeBase64(email);
 
             return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult GetSexo () 
+        {
+            var tipo = types.GetSex();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetEscort()
+        {
+            var tipo= types.GetEscort();
+            return Json(tipo);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetContextura()
+        {
+            var tipo = types.GetContextura();
+            return Json(tipo);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetPiel()
+        {
+            var tipo = types.GetPiel();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetHair()
+        {
+            var tipo = types.GetHair();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetEyes()
+        {
+            var tipo = types.GetEyes();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetDrink()
+        {
+            var tipo = types.GetDrink();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetSmoke()
+        {
+            var tipo = types.GetSmoke();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetAtencion()
+        {
+            var tipo = types.GetAtencion();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetServicios()
+        {
+            var tipo = types.GetServicios();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetCountry()
+        {
+            var tipo = types.GetCountry();
+            return Json(tipo);
+        }
+
+        [HttpPost]
+        public JsonResult GetLocation()
+        {
+            var tipo = types.GetLocation();
+            return Json(tipo);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetNacionalidad()
+        {
+            var tipo = types.GetNacionalidad();
+            return Json(tipo);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetDepilacion()
+        {
+            var tipo = types.GetDepilacion();
+            return Json(tipo);
         }
     }
 }

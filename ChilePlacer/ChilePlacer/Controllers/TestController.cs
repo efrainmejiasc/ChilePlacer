@@ -22,7 +22,7 @@ namespace ChilePlacer.Controllers
         }
         public IActionResult Index()
         {
-            var list = PathImagenes();
+           /* var list = PathImagenes();
             foreach(var x in list)
             {
                 var nameFile = x.Split('\\');
@@ -30,7 +30,7 @@ namespace ChilePlacer.Controllers
                 var imagen = Image.FromFile(path);
                 var img = (Image) imageTool.ResizeImage(imagen, 312, 240, path);
                 img.Save(Path.Combine(hostEnv.ContentRootPath, @"ClientApp\dist", @"assets\PortadaGirls\" + nameFile[2]), ImageFormat.Jpeg);
-            }
+            }*/
 
 
             return View();

@@ -1,9 +1,16 @@
 
 
+<div>
+  <input type="hidden" id="identidad" />
+  <input type="hidden" id="filename" />
+</div>
 
-<div class="container">
 
-  <span style="font-size:14px;color:silver;"><strong>Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.</strong></span><br />
+
+
+<div class="col col-14">
+
+
 
   <div class="container">
     <div class="row">
@@ -18,56 +25,210 @@
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
         <button type="button" class="btn btn-primary" (click)="file.click()" style="width:auto"> Seleccionar</button>
       </div>
-      <div class="col-md-4">
-        <span class="upload" *ngIf="progress > 0" style="display:none;">
-          {{progress}}%
-        </span>
-        <span class="upload" *ngIf="message" style="display:none;">
-          {{message}}
-        </span>
-      </div>
+
     </div>
   </div>
+
   <br />
 
-  <div class="col col-14">
+  <div style="padding:2%;text-align:center;">
+    <span style="font-size:14px;color:silver;">
+      <strong>
+        Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.
+        <br />(*) Campo requerido
+      </strong>
+    </span><br />
+  </div>
+
+  <!--DATOS PERSONALES-->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight:bold;">
+    <hr />
+    <label>Datos personales</label>
+  </div>
+
+  <div style="padding:5px;">
     <label>Nombre</label>
-    <input type="text" id="nombre" class="form form-control" required [(ngModel)]="nombre" />
+    <input type="text" id="nombre" class="form form-control" placeholder="campo opcional" />
+  </div>
 
+  <div style="padding:5px;">
     <label>Apellido</label>
-    <input type="text" id="apellido" class="form form-control" required [(ngModel)]="apellido" />
+    <input type="text" id="apellido" class="form form-control" placeholder="campo opcional" />
+  </div>
 
-    <label>Nombre de fantasia</label>
-    <input type="text" id="username" class="form form-control" required [(ngModel)]="username"  (blur)="validarUserName()"/>
-    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span><br />
+  <div style="padding:5px;">
+    <label>* Fecha de nacimiento</label>
+    <input type="date" id="fechaNacimiento" class="form form-control" (blur) ="calcularEdad();"/>
+  </div>
 
+  <div style="padding:5px;">
     <label>Rut / Nº Pasaporte</label>
-    <input type="text" id="dni" class="form form-control" required [(ngModel)]="dni" />
+    <input type="text" id="dni" class="form form-control" placeholder="campo opcional" />
+  </div>
 
-    <label>Telefono</label>
-    <input type="text" id="telefono" class="form form-control" required [(ngModel)]="telefono" /><br /><br />
+  <div style="padding:5px;">
+    <label>Telefono / Whatsapp</label>
+    <input type="text" id="telefono" class="form form-control" placeholder="campo opcional" />
+    <span style="font-size:14px;color:silver;">Puede ser utilizado para que los clientes te contacten</span>
+  </div>
 
+  <div style="padding:5px;">
+    <label>Sexo</label>
+    <select id="sexo" class="form form-control"></select>
+  </div>
 
-    <input type="hidden" id="identidad" [(ngModel)]="identidad" />
-    <input type="hidden" id="filename" />
+  <div style="padding:5px;">
+    <label>Pais de origen </label>
+    <select id="nacion" class="form form-control"></select>
+    <span style="font-size:14px;color:silver;">Puede ser utilizado para visualizaciones de los clientes</span>
+  </div>
+
+  <!--DATOS SERVICIO-->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
+    <hr />
+    <label>Datos del servicio</label>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Nombre de fantasia</label>
+    <input type="text" id="username" class="form form-control" (blur)="validarUserName()" placeholder="campo requerido" />
+    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Presentacion</label>
+    <input type="text" id="presentacion" class="form form-control" placeholder="campo requerido" maxlength="50" />
+    <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales (Maximo 50 caracteres)</span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Descripcion</label>
+    <input type="text" id="descripcion" class="form form-control" placeholder="campo requerido" maxlength="100" />
+    <span style="font-size:14px;color:silver;">Es un texto libre sobre tus gustos y preferencias (Maximo 100 caracteres)</span>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Categoria escort</label>
+    <select id="escort" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>Lugar de atencion (puede seleccionar multiples lugares)</label>
+    <select id="atencion" class="form form-control" multiple style="height:100px;"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Opciones de servicios (puede seleccionar multiples servicios)</label>
+    <select id="servicios" class="form form-control" multiple style="height:600px;"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Valor del servicio 1 hora</label>
+    <input type="number" id="valor1" class="form form-control" placeholder="campo opcional" min="1" max="10000" step="1" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>Valor del servicio 1/2 hora</label>
+    <input type="number" id="valor2" class="form form-control" placeholder="campo opcional" min="1" max="10000" step="1" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Consumo de alchol</label>
+    <select id="drink" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Consumo de tabaco</label>
+    <select id="smoke" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;font-size:18px;color:dimgray;font-weight:bold;">
+    <hr />
+    <label>Datos de apariencia</label>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Estatura en metros, ejemplo 1,64</label>
+    <input type="number" id="estatura" class="form form-control" placeholder="campo requerido" min="1" max="2.5" step="0.5" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Peso en kilogramos, ejemplo 56,70</label>
+    <input type="number" id="peso" class="form form-control" placeholder="campo requerido" min="1" max="100" step="0.5" />
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Medidas, ejemplo 90-60-90</label>
+    <input type="text" id="medidas" class="form form-control" placeholder="campo requerido" (blur)="medidasValidas()"/>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Contextura</label>
+    <select id="contextura" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Color de piel</label>
+    <select id="piel" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Color de cabello</label>
+    <select id="hair" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Color de ojos</label>
+    <select id="eyes" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Tipo de depilacion</label>
+    <select id="depilacion" class="form form-control"></select>
   </div>
 
 
+
+  <!--    DATOS UBICACION      -->
+  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
+    <hr />
+    <label>Datos de ubicacion</label>
+  </div>
+
+
+  <div style="padding:5px;">
+    <label>* Pais</label>
+    <select id="country" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Ubicacion</label>
+    <select id="location" class="form form-control"></select>
+  </div>
+
+  <div style="padding:5px;">
+    <label>* Sector / Barrio </label>
+    <input type="text" id="sector" class="form form-control" placeholder="campo requerido" />
+  </div>
+
+  <hr />
 
   <div class="form-group">
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="btn btn-success" style="width:45%;">Actualizar</button>
+          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="form btn btn-success" style="float:left;">Actualizar</button>
         </div>
-        <div class="col-md-6 text-right">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:45%;">Cancelar</button>
+        <div class="col-md-6">
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="float:right;">Cancelar</button>
         </div>
       </div>
     </div>
   </div>
 
+
 </div>
+
 
 
 <div>
@@ -78,4 +239,15 @@
       </div>
     </div>
   </div>
+</div>
+
+
+<div>
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
+  <br /><br />
 </div>

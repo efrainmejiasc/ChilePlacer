@@ -43,12 +43,13 @@ namespace ChilePlacer.Repositories
                         Id = x.perfil.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
-                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
-                        Img64 = x.galeria.Img64,
+                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? x.perfil.Presentacion : x.galeria.Texto,
+                        Img64 = "data:image/jpeg;base64," + x.galeria.Img64,
                         PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
-                        UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
+                        UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
+                        Fecha = x.galeria.Fecha
 
-                    }).OrderByDescending(x => x.Id).ToList();
+                    }).OrderByDescending(x => x.Fecha).ToList();
 
             return model;
         }
@@ -64,12 +65,13 @@ namespace ChilePlacer.Repositories
                         Id = x.perfil.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
-                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? string.Empty : x.galeria.Texto,
-                        Img64 = x.galeria.Img64,
+                        Texto = string.IsNullOrEmpty(x.galeria.Texto) ? x.perfil.Presentacion : x.galeria.Texto,
+                        Img64 = "data:image/jpeg;base64," + x.galeria.Img64,
                         PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
-                        UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString())
+                        UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
+                        Fecha = x.galeria.Fecha
 
-                    }).OrderByDescending(x => x.Id).ToList();
+                    }).OrderByDescending(x => x.Fecha).ToList();
 
             return model;
         }
