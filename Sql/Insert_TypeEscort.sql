@@ -6,3 +6,13 @@
  INSERT INTO chileplacer..TypeEscort VALUES ('Escort Hombres','Escort Hombres')
  INSERT INTO chileplacer..TypeEscort VALUES ('Escort Gay','Escort Gay')
  INSERT INTO chileplacer..TypeEscort VALUES ('Escort Trans', 'Escort Trans')
+
+
+  INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Mujeres','Escort Mujeres') 
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Maduras','Escort Maduras')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Lésbicas','Escort Lésbicas')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Masajes','Masajes')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Chicas Under','Chicas Under')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Hombres','Escort Hombres')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Gay','Escort Gay')
+ INSERT INTO db_a72b76_chileplacer..TypeEscort VALUES ('Escort Trans', 'Escort Trans')

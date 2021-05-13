@@ -2,4 +2,10 @@
  INSERT INTO chileplacer..TypeLocation Values ('Santiago', 'Santiago','Chile')
  INSERT INTO chileplacer..TypeLocation Values ('Centro', 'Centro','Chile')
  INSERT INTO chileplacer..TypeLocation Values ('Providencia','Providencia','Chile')
- INSERT INTO chileplacer..TypeLocation Values ('Las Condes','Las Condes','Chile')								  
+ INSERT INTO chileplacer..TypeLocation Values ('Las Condes','Las Condes','Chile')		
+ 
+  INSERT INTO db_a72b76_chileplacer..TypeLocation Values ('Arica', 'Arica','Chile')
+ INSERT INTO db_a72b76_chileplacer..TypeLocation Values ('Santiago', 'Santiago','Chile')
+ INSERT INTO db_a72b76_chileplacer..TypeLocation Values ('Centro', 'Centro','Chile')
+ INSERT INTO db_a72b76_chileplacer..TypeLocation Values ('Providencia','Providencia','Chile')
+ INSERT INTO db_a72b76_chileplacer..TypeLocation Values ('Las Condes','Las Condes','Chile')									  

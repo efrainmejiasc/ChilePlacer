@@ -648,7 +648,7 @@ export class GirlCompletedProfileComponent implements OnInit {
       dataType: "json",
       success: function (data) {
         $("#country").empty();
-        $('#smoke').append('<option selected disabled value="-1">Seleccione pais...</option>');
+        $('#country').append('<option selected disabled value="-1">Seleccione pais...</option>');
         $.each(data, function (index, value) {
           $('#country').append('<option  value="' + value.ide + '">' + value.pais + '</option>');
         });

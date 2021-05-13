@@ -6,6 +6,6 @@ INSERT INTO chileplacer..TypeSex VALUES ('Femenino', 'Femenino')
 INSERT INTO chileplacer..TypeSex VALUES ('Masculino', 'Masculino')
 INSERT INTO chileplacer..TypeSex VALUES ('Trans', 'Trans')
 
-TRUNCATE TABLE chileplacer..TypeSex
+--TRUNCATE TABLE chileplacer..TypeSex
 
 

@@ -6,4 +6,4 @@ INSERT INTO chileplacer..TypeGirls VALUES ('Modelo', 'Modelo')
 INSERT INTO chileplacer..TypeGirls VALUES ('Vip','Vip')
 INSERT INTO chileplacer..TypeGirls VALUES ('Premiun','Premiun')
 
-TRUNCATE TABLE  chileplacer..TypeGirls
+--TRUNCATE TABLE  chileplacer..TypeGirls
