@@ -28,3 +28,9 @@
   transform: translate(-50%, -50%);
   padding: 30px;
 }
+
+.imgSkill {
+  width: 13.5vw;
+  padding: 8px;
+  border-radius: 30%;
+}

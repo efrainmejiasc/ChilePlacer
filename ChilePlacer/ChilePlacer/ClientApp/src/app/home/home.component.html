@@ -1,10 +1,12 @@
 
 
-<div class="container" style="margin-top:2%;border-radius:30%;">
+<div class="container" >
 
-  <div class="topnav" style="padding:20px;">
-    <input type="text" id="searchUsuario"  placeholder="Buscar usuario...">
-    <button type="submit" class="btn-primary" (click) ="buscarUsuario();">Buscar</button>
+  <div class="input-group rounded">
+    <input type="search" class="form-control rounded" placeholder="Buscar escort" aria-label="Search" aria-describedby="search-addon" id="searchUsuario"/>
+    <span class="btn input-group-text border-0" id="search-addon" (click) ="buscarUsuario();">
+      <i class="fas fa-search">Buscar</i>
+    </span>
   </div>
 
   <table id="tablaPortada" class="table table-hover" style="border:none;text-align:center;">

@@ -677,13 +677,4 @@ export class GirlCompletedProfileComponent implements OnInit {
     return false;
   }
 
- 
-
-
-
-  
-
-
-
-
 }

@@ -19,7 +19,9 @@ export class ClComponent implements OnInit {
 
   ngOnInit() {
     this.getParametros();
-    setTimeout(this.getImagenes, 2000);
+    setTimeout(this.getProfile, 1000);
+    setTimeout(this.getImageProfile, 1000);
+    setTimeout(this.getImagenes, 1000);
   }
 
 
@@ -32,6 +34,61 @@ export class ClComponent implements OnInit {
     this._identidad = atob(urlParams.get('ide'));
     $('#_identidad').val(this._identidad);
   }
+
+  public getProfile() {
+    var id = $('#_identidad').val() as string ;
+
+    console.log(id);
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/GetProfileGirl",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
+
+        if (data !== null) {
+          $('#_identidad').val(data.identidad);
+          $('#_username').val(data.username);
+
+          $('#escort').val(data.categoriaEscort);
+          $('#presentacion').val(data.presentacion);
+          $('#edad').val(data.edad);
+          const ubicacion = data.country + ' - ' + data.location + ' - ' + data.sector;
+          $('#ubicacion').val(ubicacion);
+          $('#telefono').val(data.telefono);
+          $('#valor1').val(data.valorHora);
+          $('#valor2').val(data.valorMediaHora);
+          $('#nacion').val(data.nacionalidad);
+
+        }
+
+      },
+      complete: function () {
+        console.log('getProfile');
+      }
+    });
+
+    return false;
+  }
+
+  public getImageProfile() {
+    let username = $('#_username').val();
+
+    $.ajax({
+      type: "POST",
+      url: "Registro/ImagenProfileGirl",
+      data: { username: username, opt: false },
+      dataType: "json",
+      success: function (data) {
+        $('#_foto').attr("src", data.descripcion);
+      },
+      complete: function () {
+        console.log('getImageProfile');
+      }
+    });
+  }
+
 
   public getImagenes() {
 
@@ -60,9 +117,9 @@ export class ClComponent implements OnInit {
         $.each(data, function (index, item) {
           let tr = `<tr> 
                       <td>
-                           <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
+                           <a href="${item.urlProfile}" style="color:silver;float:left;display:none;"> ${item.username} </a>
  
-                           <img src= ${item.pathImagen} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
                            <label id=${item.id}> ${item.texto} <label>
                       </td>
@@ -77,5 +134,7 @@ export class ClComponent implements OnInit {
 
     return false;
   }
+
+
 
 }
