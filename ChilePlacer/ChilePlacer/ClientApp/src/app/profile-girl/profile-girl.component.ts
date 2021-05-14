@@ -25,7 +25,7 @@ export class ProfileGirlComponent implements OnInit {
   ngOnInit() {
     this.progress = 0; this.message = "";
 
-   let url = window.location.href;
+    let url = window.location.href;
     if (!url.includes('='))
       window.location.href = AppConfiguration.Setting().urlServerHost + '/login-girl/';
     else
@@ -53,7 +53,7 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    setTimeout(this.getProfile, 1000);
+    //setTimeout(this.getProfile, 1000);
     setTimeout(this.getImageProfile, 1000);
     setTimeout(this.getImagenes, 1000);
 
@@ -65,7 +65,7 @@ export class ProfileGirlComponent implements OnInit {
     $.ajax({
       type: "POST",
       url: "Registro/ImagenProfileGirl",
-      data: {username: username, opt: false},
+      data: { username: username, opt: false },
       dataType: "json",
       success: function (data) {
         $('#_foto').attr("src", data.descripcion);
@@ -132,7 +132,7 @@ export class ProfileGirlComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
 
-    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid, texto: this._texto}, withCredentials: false })
+    this.http.post(AppConfiguration.Setting().urlServerHost + '/api/UploadFilePublication', formData, { reportProgress: true, observe: 'events', params: { identidad: this._guid, texto: this._texto }, withCredentials: false })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -145,7 +145,7 @@ export class ProfileGirlComponent implements OnInit {
 
     $('#_texto').val('');
 
-    setTimeout(this.getProfile, 1500);
+    //setTimeout(this.getProfile, 1500);
     setTimeout(this.getImageProfile, 1500);
     setTimeout(this.getImagenes, 1500);
   }
@@ -161,7 +161,7 @@ export class ProfileGirlComponent implements OnInit {
     $.ajax({
       type: "POST",
       url: "Aplicacion/GetImagenesPerfil",
-      data: {identidad: identidad},
+      data: { identidad: identidad },
       dataType: "json",
       success: function (data) {
         console.log(data);
@@ -177,11 +177,9 @@ export class ProfileGirlComponent implements OnInit {
         $.each(data, function (index, item) {
           let tr = `<tr> 
                       <td>
-                           <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
- 
-                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
-                           
-                           <label id=${item.id}> ${item.texto} <label>
+                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
+                           <label id=${item.id}> ${item.texto} <label> 
+                           <a  class='btn' style="color:cornflowerblue;"> <i  (click)= 'eliminar(${item.id});' > eliminar </i></a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
@@ -199,5 +197,10 @@ export class ProfileGirlComponent implements OnInit {
     this._guid = $('#_guid').val().toString();
     window.location.href = AppConfiguration.Setting().urlServerHost + "/girl-completed-profile?identidad=" + this._guid;
   }
+
+  public eliminar(id) {
+   console.log(id);
+  }
+
 
 }

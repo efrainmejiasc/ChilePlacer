@@ -1,7 +1,8 @@
 .imgSkill {
-  width: 13.5vw;
-  padding: 8px;
+  width: 360px;
+  height: 250px;
   border-radius: 30%;
+  padding: 20px;
 }
 
 .modalTipo {

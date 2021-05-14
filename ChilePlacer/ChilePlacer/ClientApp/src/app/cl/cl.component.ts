@@ -122,6 +122,8 @@ export class ClComponent implements OnInit {
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
                            <label id=${item.id}> ${item.texto} <label>
+
+                            <a class='btn' style="color:cornflowerblue;"> <i (click)="publicacion(${item.id})"> publicacion </i></a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);

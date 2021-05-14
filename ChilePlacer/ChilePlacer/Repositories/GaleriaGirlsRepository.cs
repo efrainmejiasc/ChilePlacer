@@ -40,7 +40,7 @@ namespace ChilePlacer.Repositories
                      select new { perfil, galeria }).AsEnumerable()
                     .Select(x => new ImagenPortadaModel
                     {
-                        Id = x.perfil.Id,
+                        Id = x.galeria.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
                         Texto = string.IsNullOrEmpty(x.galeria.Texto) ? x.perfil.Presentacion : x.galeria.Texto,
@@ -62,7 +62,7 @@ namespace ChilePlacer.Repositories
                      select new { perfil, galeria }).AsEnumerable()
                     .Select(x => new ImagenPortadaModel
                     {
-                        Id = x.perfil.Id,
+                        Id = x.galeria.Id,
                         Username = x.perfil.Username,
                         Identidad = x.perfil.Identidad.ToString(),
                         Texto = string.IsNullOrEmpty(x.galeria.Texto) ? x.perfil.Presentacion : x.galeria.Texto,
