@@ -179,7 +179,7 @@ export class ProfileGirlComponent implements OnInit {
                       <td>
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
                            <label id=${item.id}> ${item.texto} <label> 
-                           <a  class='btn' style="color:cornflowerblue;"> <i  (click)= 'eliminar(${item.id});' > eliminar </i></a>
+                           <a href="typescript:void(0);" (click) ="eliminar(${item.id})" style="color:cornflowerblue;"> eliminar </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
@@ -199,8 +199,23 @@ export class ProfileGirlComponent implements OnInit {
   }
 
   public eliminar(id) {
-   console.log(id);
-  }
 
+    console.log(id);
+    return false;
+
+    $.ajax({
+      type: "POST",
+      url: "Aplicacion/EliminarImagenGaleria",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
+
+        console.log(data.descripcion);
+
+      }
+    });
+
+    return false;
+  }
 
 }

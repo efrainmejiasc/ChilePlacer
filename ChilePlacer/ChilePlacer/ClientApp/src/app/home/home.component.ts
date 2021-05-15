@@ -43,9 +43,11 @@ export class HomeComponent implements OnInit {
                       <td>
                            <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
 
-                          <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
                            <label id=${item.id}> ${item.texto} <label>
+
+                           <a href="publicacion-home?user=${item.username}&idf=${item.id}" style="color:cornflowerblue;"> publicacion </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);

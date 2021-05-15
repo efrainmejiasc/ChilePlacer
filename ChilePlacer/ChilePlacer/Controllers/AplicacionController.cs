@@ -5,6 +5,7 @@ using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,6 +68,58 @@ namespace ChilePlacer.Controllers
             model = girls.GetGirls(username, true);
 
             return Json(model);
+        }
+
+
+        [HttpPost]
+        public JsonResult EliminarImagenGaleria (int id)
+        {
+            var respuesta  = new RespuestaModel();
+            if (id == 0)
+                respuesta.Descripcion = "El valor debe ser mayor a 0";
+
+            galeriaGirls.EliminarImagenGaleria(id);
+            respuesta.Descripcion = "ok";
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult GetImagenGirl(int id, string username,int sentido)
+        {
+            var model = new List<ImagenPortadaModel>();
+            var single = new ImagenPortadaModel();
+            var jsonImagenes = string.Empty;
+
+            jsonImagenes = httpContext.HttpContext.Session.GetString("ImagenesGirl");
+            if (!string.IsNullOrEmpty(jsonImagenes))
+            {
+                model = JsonConvert.DeserializeObject<List<ImagenPortadaModel>>(jsonImagenes);
+            }
+            else
+            {
+                model = galeriaGirls.GetImagenesGaleria(username);
+                jsonImagenes = JsonConvert.SerializeObject(model);
+                httpContext.HttpContext.Session.SetString("ImagenesGirl",jsonImagenes);
+            }
+
+            if ( sentido == 0)
+                single = model.Where(x => x.Id == id).FirstOrDefault();
+            else if(sentido == 1) 
+                single = model.Where(x => x.Id >= id).OrderBy(x => x.Fecha).FirstOrDefault();
+            else if (sentido == 2)
+                single = model.Where(x => x.Id <= id).FirstOrDefault();
+
+
+            if (single == null) 
+            {
+                if (sentido == 1)
+                    single = model.OrderBy(x => x.Fecha).FirstOrDefault();
+                else if (sentido == 2)
+                    single = model.OrderByDescending(x => x.Fecha).FirstOrDefault();
+            }
+               
+            return Json(single);
         }
 
 

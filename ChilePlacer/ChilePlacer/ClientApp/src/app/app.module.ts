@@ -13,6 +13,7 @@ import { LoginGirlComponent } from './login-girl/login-girl.component';
 import { CambiarPasswordComponent } from './cambiar-password/cambiar-password.component';
 import { ProfileGirlComponent } from './profile-girl/profile-girl.component';
 import { ClComponent } from './cl/cl.component';
+import { PublicacionHomeComponent } from './publicacion-home/publicacion-home.component';
 
 
 
@@ -27,6 +28,7 @@ import { ClComponent } from './cl/cl.component';
     CambiarPasswordComponent,
     ProfileGirlComponent,
     ClComponent,
+    PublicacionHomeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,6 +42,7 @@ import { ClComponent } from './cl/cl.component';
       { path: 'cambiar-password', component: CambiarPasswordComponent },
       { path: 'profile-girl', component: ProfileGirlComponent },
       { path: 'cl', component: ClComponent },
+      { path: 'publicacion-home', component: PublicacionHomeComponent },
 
     ])
   ],
