@@ -100,31 +100,4 @@
 
 <script type="text/javascript">
 
-  var app = angular.module('myApp', []);
-  app.controller('myCtrl', function ($scope, $http) {
-
-
-
-    $scope.eliminar = function (id) {
-
-      console.log('hola');
-      return false;
-
-      $.ajax({
-        type: "POST",
-        url: "Aplicacion/EliminarImagenGaleria",
-        data: { id: id },
-        dataType: "json",
-        success: function (data) {
-
-          console.log(data.descripcion);
-
-        }
-      });
-
-      return false;
-    }
-
-
-  });
 </script>
