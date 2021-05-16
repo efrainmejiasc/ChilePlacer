@@ -176,10 +176,10 @@ export class ProfileGirlComponent implements OnInit {
 
         $.each(data, function (index, item) {
           let tr = `<tr> 
-                      <td>
+                      <td id="row_${item.id}"  >
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
-                           <label id=${item.id}> ${item.texto} <label> 
-                           <a hrf='role'  class='btn' (click)='eliminar(${item.id})' style="color:cornflowerblue;"> eliminar </a>
+                           <label id=${item.id}> ${item.texto} <label>
+                           <a class='btn' style="color:cornflowerblue;"> <i ng-click= 'eliminar(${item.id});' > eliminar </i></a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
@@ -198,24 +198,28 @@ export class ProfileGirlComponent implements OnInit {
     window.location.href = AppConfiguration.Setting().urlServerHost + "/girl-completed-profile?identidad=" + this._guid;
   }
 
- eliminar(id) {
 
-  console.log(id);
-  return false;
+  eliminar = function (id) {
 
-  $.ajax({
-    type: "POST",
-    url: "Aplicacion/EliminarImagenGaleria",
-    data: { id: id },
-    dataType: "json",
-    success: function (data) {
+    console.log('hola');
+    return false;
 
-      console.log(data.descripcion);
+    $.ajax({
+      type: "POST",
+      url: "Aplicacion/EliminarImagenGaleria",
+      data: { id: id },
+      dataType: "json",
+      success: function (data) {
 
-    }
-  });
+        console.log(data.descripcion);
 
-  return false;
-}
+      }
+    });
+
+    return false;
+  }
+
+
+
 
 }
