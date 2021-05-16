@@ -179,7 +179,7 @@ export class ProfileGirlComponent implements OnInit {
                       <td>
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
                            <label id=${item.id}> ${item.texto} <label> 
-                           <a href="typescript:void(0);" (click) ="eliminar(${item.id})" style="color:cornflowerblue;"> eliminar </a>
+                           <a hrf='role'  class='btn' (click)='eliminar(${item.id})' style="color:cornflowerblue;"> eliminar </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
@@ -198,24 +198,24 @@ export class ProfileGirlComponent implements OnInit {
     window.location.href = AppConfiguration.Setting().urlServerHost + "/girl-completed-profile?identidad=" + this._guid;
   }
 
-  public eliminar(id) {
+ eliminar(id) {
 
-    console.log(id);
-    return false;
+  console.log(id);
+  return false;
 
-    $.ajax({
-      type: "POST",
-      url: "Aplicacion/EliminarImagenGaleria",
-      data: { id: id },
-      dataType: "json",
-      success: function (data) {
+  $.ajax({
+    type: "POST",
+    url: "Aplicacion/EliminarImagenGaleria",
+    data: { id: id },
+    dataType: "json",
+    success: function (data) {
 
-        console.log(data.descripcion);
+      console.log(data.descripcion);
 
-      }
-    });
+    }
+  });
 
-    return false;
-  }
+  return false;
+}
 
 }

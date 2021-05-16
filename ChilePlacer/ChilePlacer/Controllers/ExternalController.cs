@@ -120,7 +120,7 @@ namespace ChilePlacer.Controllers
                         image.Save(pathAll2 + nameFile);
 
                         pathName = path + "/Photo/" + name;
-                        imageTool.MarcaDeAguaPerfil(pathAll2 + nameFile, pathName);
+                        imageTool.MarcaDeAgua(pathAll2 + nameFile, pathName);
 
                         var girlsModel = girls.GetGirls(Guid.Parse(identidad));
                         var galeria = util.SetGaleriaGirls(girlsModel, name, pathName, texto);

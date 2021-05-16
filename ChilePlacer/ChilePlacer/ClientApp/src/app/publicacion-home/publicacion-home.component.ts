@@ -56,7 +56,7 @@ export class PublicacionHomeComponent implements OnInit {
         $('#idf').val(data.id);
         $('#username').val(data.username);
         $("#perfil").attr("href", AppConfiguration.Setting().urlServerHost + '/cl?user=' + data.username + '&ide=' + data.identidad64);
-        $("#perfil").html('perfil de ' + username)
+        $("#perfil").html('Perfil de ' + username)
       }
     });
 

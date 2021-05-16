@@ -20,8 +20,8 @@ namespace ChilePlacer.Application
             Bitmap bmp = new Bitmap(image);
             Graphics graphicsobj = Graphics.FromImage(bmp);
             Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 5), (bmp.Height - 50));
-            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial", 35, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
+            Point postionWaterMark = new Point((bmp.Width / 9), (bmp.Height - 50));
+            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial", 30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
             Image img = (Image)bmp;
             img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
             graphicsobj.Dispose();
@@ -33,8 +33,8 @@ namespace ChilePlacer.Application
             Bitmap bmp = new Bitmap(image);
             Graphics graphicsobj = Graphics.FromImage(bmp);
             Brush brush = new SolidBrush(Color.FromArgb(80, 255, 255, 255));
-            Point postionWaterMark = new Point((bmp.Width / 5), (bmp.Height / 2));
-            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial", 40, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
+            Point postionWaterMark = new Point((bmp.Width / 9), (bmp.Height / 2));
+            graphicsobj.DrawString("www.chileplacer.cl", new System.Drawing.Font("Arial",30, FontStyle.Bold, GraphicsUnit.Pixel), brush, postionWaterMark);
             Image img = (Image)bmp;
             img.Save(pathName, System.Drawing.Imaging.ImageFormat.Jpeg);
             graphicsobj.Dispose();
