@@ -14,7 +14,19 @@
   <table id="tablaPortada" class="table table-hover" style="border:none;text-align:center;">
     <thead style="display:none;"></thead>
     <tbody>
- 
+      <tr *ngFor="let item of items">
+        <td>
+          <a href={{item.urlProfile}} style="color:silver;float:left;"> {{item.username}} </a>
+
+          <img src={{item.img64}} style="width:360px;height:250px;border-radius:30%;padding:20px;" /><p></p><p></p>
+
+          <label> {{item.texto}} </label>
+
+          <a href="publicacion-home?user={{item.username}}&idf={{item.id}}" style="color:cornflowerblue;"> publicacion </a>&nbsp;&nbsp;
+
+          <img src={{item.iconLike}} style="width:20px;height:20px;cursor:hand;" (click)="like(item.id);" class="hand" />
+        </td>
+      </tr>
     </tbody>
   </table>
 

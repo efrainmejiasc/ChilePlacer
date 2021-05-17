@@ -28,3 +28,8 @@
   transform: translate(-50%, -50%);
   padding: 30px;
 }
+
+
+.hand:hover {
+  cursor: pointer;
+}

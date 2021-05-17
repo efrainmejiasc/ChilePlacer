@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AppConfiguration } from "read-appsettings-json";
 import * as $ from 'jquery';
@@ -11,55 +10,37 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
+  public items = [] ;
 
   constructor() { }
 
   ngOnInit() {
     console.log(AppConfiguration.Setting().urlServerHost);
-    console.log(window.location.pathname);
     this.getImagenesPortada()
   }
 
 
-  public getImagenesPortada() {
-   
+  public getImagenesPortada () {
+    var response = [];
+
     $.ajax({
       type: "POST",
       url: "Aplicacion/GetImagenesPortada",
       dataType: "json",
-      success: function (data) {
-        console.log(data);
-        $("#tablaPortada thead tr").remove();
-        $('#tablaPortada tbody tr').remove();
-
-        let title = `<tr>
-                        <th> </th>
-                      </tr>`;
-
-        $("#tablaPortada thead").append(title);
-
-        $.each(data, function (index, item) {
-          let tr = `<tr> 
-                        <td>
-                            <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
-
-                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
-                           
-                            <label id=${item.id}> ${item.texto} </label>
-
-                            <a href="publicacion-home?user=${item.username}&idf=${item.id}" style="color:cornflowerblue;"> publicacion </a>
-                             
-                           <a href ='http://localhost:4200/api/Karina-1010'> <input type='image' src='${item.iconLike}' style='width:20px;height:20px;' (click) ='eliminar('4')'/></a>
-
-                        </td>
-                      </tr>`;
-          $('#tablaPortada tbody').append(tr);
+      success: function (data)
+      {
+        $.each(data, function (index, value) {
+         response.push(value);
         });
+      
       },
       complete: function () {
-        console.log('GetIdentityUser');
+        console.log('getImagenesPortada');
       }
     });
+
+    this.items = response;
+    console.log(this.items);
 
     return false;
   }
@@ -92,6 +73,10 @@ export class HomeComponent implements OnInit {
       }
     });
 
+  }
+
+  public like(id) {
+    console.log(id);
   }
 
 
