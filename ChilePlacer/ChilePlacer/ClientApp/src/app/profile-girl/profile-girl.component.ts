@@ -179,7 +179,7 @@ export class ProfileGirlComponent implements OnInit {
                       <td id="row_${item.id}"  >
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
                            <label id=${item.id}> ${item.texto} <label>
-                           <a class='btn' style="color:cornflowerblue;"> <i ng-click= 'eliminar(${item.id});' > eliminar </i></a>
+                             <a href="${item.urlEliminar} " style="color:cornflowerblue;"> eliminar </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
@@ -218,8 +218,5 @@ export class ProfileGirlComponent implements OnInit {
 
     return false;
   }
-
-
-
 
 }

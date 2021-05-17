@@ -187,7 +187,7 @@ namespace ChilePlacer.Controllers
         [HttpGet]
         [AllowAnonymous]
         [Route("api/{id?}")]
-        public RedirectResult PruebaApi (string id) // id = username
+        public RedirectResult GirlPageUrl (string id) // id = username
         {
             if (string.IsNullOrEmpty(id))
                 return RedirectPermanent(EngineData.UrlServerHost);
@@ -197,6 +197,20 @@ namespace ChilePlacer.Controllers
                  return RedirectPermanent(EngineData.UrlServerHost);
             else
                 return RedirectPermanent(EngineData.UrlServerHost + "cl?user=" + girl.Username + "&ide=" + util.CodeBase64(girl.Identidad));
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/DeleteImageGirl")]
+        public RedirectResult DeleteImageGirl(string username, int id)
+        {
+            if (id <= 0)
+                return RedirectPermanent(EngineData.UrlServerHost);
+
+            galeriaGirls.EliminarImagenGaleria(id);
+
+                return RedirectPermanent(EngineData.UrlServerHost + "profile-girl?user=" + username);
         }
 
     }

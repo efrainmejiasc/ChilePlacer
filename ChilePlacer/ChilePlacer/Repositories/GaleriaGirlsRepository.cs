@@ -48,7 +48,10 @@ namespace ChilePlacer.Repositories
                         Img64 = "data:image/jpeg;base64," + x.galeria.Img64,
                         PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
                         UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
-                        Fecha = x.galeria.Fecha
+                        Fecha = x.galeria.Fecha,
+                        UrlEliminar = EngineData.UrlServerHost + "api/DeleteImageGirl?username=" + x.perfil.Username + "&id=" + x.galeria.Id,
+                        IconLike = EngineData.IconLike,
+                        IconNotLike = EngineData.IconNotLike
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 
@@ -71,7 +74,9 @@ namespace ChilePlacer.Repositories
                         Img64 = "data:image/jpeg;base64," + x.galeria.Img64,
                         PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
                         UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
-                        Fecha = x.galeria.Fecha
+                        Fecha = x.galeria.Fecha,
+                        IconLike = EngineData.IconLike,
+                        IconNotLike = EngineData.IconNotLike
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 
@@ -96,7 +101,9 @@ namespace ChilePlacer.Repositories
                         Img64 = "data:image/jpeg;base64," + x.galeria.Img64,
                         PathImagen = "assets/Girls/Photo/" + x.galeria.PathImagen,
                         UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
-                        Fecha = x.galeria.Fecha
+                        Fecha = x.galeria.Fecha,
+                        IconLike = EngineData.IconLike,
+                        IconNotLike = EngineData.IconNotLike
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 

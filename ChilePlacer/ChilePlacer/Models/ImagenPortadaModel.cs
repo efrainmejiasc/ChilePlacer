@@ -17,6 +17,8 @@ namespace ChilePlacer.Models
         public string Texto { get; set; }
         public string Img64 { get; set; }
         public DateTime Fecha { get; set; }
-
+        public string UrlEliminar { get; set; }
+        public string IconLike { get; set; }
+        public string IconNotLike { get; set; }
     }
 }

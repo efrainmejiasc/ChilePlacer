@@ -98,6 +98,7 @@ export class ClComponent implements OnInit {
       return false;
     }
 
+
     $.ajax({
       type: "POST",
       url: "Aplicacion/GetImagenesPerfil",
@@ -118,12 +119,9 @@ export class ClComponent implements OnInit {
           let tr = `<tr> 
                       <td>
                            <a href="${item.urlProfile}" style="color:silver;float:left;display:none;"> ${item.username} </a>
- 
                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
-                           
                            <label id=${item.id}> ${item.texto} <label>
-
-                            <a class='btn' style="color:cornflowerblue;"> <i (click)="publicacion(${item.id})"> publicacion </i></a>
+                           <a href="publicacion-home?user=${item.username}&idf=${item.id}" style="color:cornflowerblue;"> publicacion </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);

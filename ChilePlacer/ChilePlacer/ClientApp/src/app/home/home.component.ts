@@ -40,15 +40,18 @@ export class HomeComponent implements OnInit {
 
         $.each(data, function (index, item) {
           let tr = `<tr> 
-                      <td>
-                           <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
+                        <td>
+                            <a href="${item.urlProfile}" style="color:silver;float:left;"> ${item.username} </a>
 
-                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
+                            <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/><p></p><p></p>
                            
-                           <label id=${item.id}> ${item.texto} <label>
+                            <label id=${item.id}> ${item.texto} </label>
 
-                           <a href="publicacion-home?user=${item.username}&idf=${item.id}" style="color:cornflowerblue;"> publicacion </a>
-                      </td>
+                            <a href="publicacion-home?user=${item.username}&idf=${item.id}" style="color:cornflowerblue;"> publicacion </a>
+                             
+                           <a href ='http://localhost:4200/api/Karina-1010'> <input type='image' src='${item.iconLike}' style='width:20px;height:20px;' (click) ='eliminar('4')'/></a>
+
+                        </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
         });
