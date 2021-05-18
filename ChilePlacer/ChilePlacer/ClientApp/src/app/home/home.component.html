@@ -3,7 +3,7 @@
 <div class="container" >
 
   <div class="input-group rounded">
-    <input type="search" class="form-control rounded" placeholder="Buscar escort" aria-label="Search" aria-describedby="search-addon" id="searchUsuario"/>
+    <input type="search" class="form-control rounded" placeholder="Buscar escort..." aria-label="Search" aria-describedby="search-addon" id="searchUsuario"  style="font-family:Lucida Handwriting;font-size:20px;background-color:silver;color:black;"/>
     <span class="btn input-group-text border-0" id="search-addon" (click) ="buscarUsuario();">
       <i class="fas fa-search">Buscar</i>
     </span>
@@ -16,15 +16,15 @@
     <tbody>
       <tr *ngFor="let item of items">
         <td>
-          <a href={{item.urlProfile}} style="color:silver;float:left;"> {{item.username}} </a>
+          <a href={{item.urlProfile}} style="color:#e7dde4;float:left;font-size:18px;font-weight: bold"> {{item.username}} </a>
 
-          <img src={{item.img64}} style="width:360px;height:250px;border-radius:30%;padding:20px;" /><p></p><p></p>
+          <img src={{item.img64}} style="width:440px;height:560px;border-radius:30%;padding:18px;" /><p></p><p></p>
 
-          <label> {{item.texto}} </label>
+          <label style="color:white;font-size:18px;"> {{item.texto}} </label>
 
-          <a href="publicacion-home?user={{item.username}}&idf={{item.id}}" style="color:cornflowerblue;"> publicacion </a>&nbsp;&nbsp;
+          <a href="publicacion-home?user={{item.username}}&idf={{item.id}}" style="color:#1438ff;font-size:16px;font-style: italic;"> publicacion </a>&nbsp;&nbsp;
 
-          <img src={{item.iconLike}} style="width:20px;height:20px;cursor:hand;" (click)="like(item.id);" class="hand" />
+          <!--<img src={{item.iconLike}} style="width:20px;height:20px;" (click)="like(item.id);" class="hand" /> -->
         </td>
       </tr>
     </tbody>

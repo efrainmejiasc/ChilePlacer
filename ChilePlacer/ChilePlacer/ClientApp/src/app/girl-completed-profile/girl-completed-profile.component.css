@@ -35,7 +35,7 @@
   padding: 30px;
 }
 
-input::placeholder {
+input:: placeholder {
   color: dodgerblue;
   font-size: 12px;
   text-align:justify;
