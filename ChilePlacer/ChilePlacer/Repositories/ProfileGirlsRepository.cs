@@ -80,9 +80,9 @@ namespace ChilePlacer.Repositories
         {
             var src = db.ProfileGirls.Where(x => x.Identidad == identidad ).OrderByDescending(x => x.Fecha).Select(x => x.Path).FirstOrDefault();
             if (!string.IsNullOrEmpty(src))
-                src = "assets/ProfileImageGirls/" + src;
+                src = "dist/assets/ProfileImageGirls/" + src;
             else
-                src = "assets/ImagesSite/unphoto.jpg";
+                src = "dist/assets/ImagesSite/unphoto.jpg";
 
             return src;
         }
