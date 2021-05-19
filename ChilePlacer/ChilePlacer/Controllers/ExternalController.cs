@@ -65,7 +65,7 @@ namespace ChilePlacer.Controllers
                     else
                     {
                         respuesta.Descripcion = "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)";
-                        return respuesta;
+                        return respuesta; 
                     }
 
                 }
