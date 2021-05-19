@@ -16,14 +16,14 @@
     <div class="row">
       <div class="col col-4">
         <img class="imgSkill" id="foto" /><br />
-        <span style="font-size:12px;color:silver;font-weight:bold;">El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)</span>
+        <label style="font-size:12px;color:white;font-weight:bold;">&nbsp;&nbsp;El archivo debe ser de tipo: (.jpg .jpeg .bmp .png)</label>
       </div>
 
       <div class="col col-4">
         <br /><br /><br />
-        <span style="font-size:12px;font-style:italic;"> Imagen de perfil </span><br />
+        <label style="font-size:12px;font-style:italic;color:white;"> Imagen de perfil </label><br />
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-        <button type="button" class="btn btn-primary" (click)="file.click()" style="width:auto"> Seleccionar</button>
+        <button type="button" class="btn btn-light" (click)="file.click()" style="width:auto"> Seleccionar</button>
       </div>
 
     </div>
@@ -32,18 +32,18 @@
   <br />
 
   <div style="padding:2%;text-align:center;">
-    <span style="font-size:14px;color:silver;">
+    <label style="font-size:14px;color:white;">
       <strong>
         Debes ingresar datos reales, seran utilizados sola para el uso privado de nuestro sitio, estrictamente confidenciales y no seran compartidos.
         <br />(*) Campo requerido
       </strong>
-    </span><br />
+    </label><br />
   </div>
 
   <!--DATOS PERSONALES-->
-  <div style="padding:5px;font-size:18px;color:dimgray; font-weight:bold;">
+  <div style="padding:5px;font-size:18px;font-weight:bold;">
     <hr />
-    <label>Datos personales</label>
+    <label style="color:dimgray">Datos personales</label>
   </div>
 
   <div style="padding:5px;">
@@ -69,7 +69,7 @@
   <div style="padding:5px;">
     <label>Telefono / Whatsapp</label>
     <input type="text" id="telefono" class="form form-control" placeholder="campo opcional" />
-    <span style="font-size:14px;color:silver;">Puede ser utilizado para que los clientes te contacten</span>
+    <label style="font-size:14px;">Puede ser utilizado para que los clientes te contacten</label>
   </div>
 
   <div style="padding:5px;">
@@ -80,31 +80,31 @@
   <div style="padding:5px;">
     <label>Pais de origen </label>
     <select id="nacion" class="form form-control"></select>
-    <span style="font-size:14px;color:silver;">Puede ser utilizado para visualizaciones de los clientes</span>
+    <label style="font-size:14px;">Puede ser utilizado para visualizaciones de los clientes</label>
   </div>
 
   <!--DATOS SERVICIO-->
-  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
+  <div style="padding:5px;font-size:18px;font-weight: bold;">
     <hr />
-    <label>Datos del servicio</label>
+    <label style="color:dimgray">Datos del servicio</label>
   </div>
 
   <div style="padding:5px;">
     <label>* Nombre de fantasia</label>
     <input type="text" id="username" class="form form-control" (blur)="validarUserName()" placeholder="campo requerido" />
-    <span style="font-size:14px;color:silver;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></span>
+    <label style="font-size:14px;">Tu nombre de fantasia y sera utilizado para la creacion de tu mini web y debe cumplir con el siguiente formato nombre seguido de guion y digitos, ej: <strong> Katerina-2210 </strong></label>
   </div>
 
   <div style="padding:5px;">
     <label>* Presentacion</label>
     <input type="text" id="presentacion" class="form form-control" placeholder="campo requerido" maxlength="50" />
-    <span style="font-size:14px;color:silver;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales (Maximo 50 caracteres)</span>
+    <label style="font-size:14px;">Es una frase corta que aparecera en tus publicaciones, para atraer a clientes potenciales (Maximo 50 caracteres)</label>
   </div>
 
   <div style="padding:5px;">
     <label>* Descripcion</label>
     <input type="text" id="descripcion" class="form form-control" placeholder="campo requerido" maxlength="100" />
-    <span style="font-size:14px;color:silver;">Es un texto libre sobre tus gustos y preferencias (Maximo 100 caracteres)</span>
+    <label style="font-size:14px;">Es un texto libre sobre tus gustos y preferencias (Maximo 100 caracteres)</label>
   </div>
 
   <div style="padding:5px;">
@@ -142,9 +142,9 @@
     <select id="smoke" class="form form-control"></select>
   </div>
 
-  <div style="padding:5px;font-size:18px;color:dimgray;font-weight:bold;">
+  <div style="padding:5px;font-size:18px;font-weight:bold;">
     <hr />
-    <label>Datos de apariencia</label>
+    <label style="color: dimgray;">Datos de apariencia</label>
   </div>
 
   <div style="padding:5px;">
@@ -190,9 +190,9 @@
 
 
   <!--    DATOS UBICACION      -->
-  <div style="padding:5px;font-size:18px;color:dimgray; font-weight: bold;">
+  <div style="padding:5px;font-size:18px;font-weight: bold;">
     <hr />
-    <label>Datos de ubicacion</label>
+    <label style="color:dimgray;">Datos de ubicacion</label>
   </div>
 
 
@@ -217,10 +217,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="form btn btn-success" style="float:left;">Actualizar</button>
+          <button type="submit" id="registrar" (click)="SaveprofileGirls()" class="btn btn-light" style="float:left;">Actualizar</button>
         </div>
         <div class="col-md-6">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="float:right;">Cancelar</button>
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-light" style="float:right;">Cancelar</button>
         </div>
       </div>
     </div>
@@ -233,9 +233,9 @@
 
 <div>
   <div id="mensaje" class="modalTipo">
-    <div class="modal-content">
+    <div class="modal-content" style="background-color:silver;">
       <div class="formulario-campo">
-        <label id="msj" [(ngModel)]="msj"></label>
+        <label id="msj" [(ngModel)]="msj" style="color:black;font-size:18px;"></label>
       </div>
     </div>
   </div>

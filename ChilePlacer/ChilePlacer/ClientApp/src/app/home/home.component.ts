@@ -16,11 +16,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     console.log(AppConfiguration.Setting().urlServerHost);
-    this.getImagenesPortada()
+    this.getImagenesPortada();
   }
 
 
-  public getImagenesPortada () {
+  public getImagenesPortada() {
+
+    $('#searchUsuario').val('');
     var response = [];
 
     $.ajax({

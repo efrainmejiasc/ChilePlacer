@@ -156,11 +156,15 @@ namespace ChilePlacer.Controllers
                 return Json(null);
 
             var identidad = Guid.Parse(id);
-            var profile = profileGirls.GetProfileGirls(identidad);
 
-            if (profile != null)
-            profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
-            profile.Edad = util.CalcularEdad(profile.FechaNacimiento);
+            var profile = new ProfileGirls();
+            profile = profileGirls.GetProfileGirls(identidad);
+
+            if(profile != null)
+            {
+                profile.StrFechaNacimiento = util.StrFecha(profile.FechaNacimiento);
+                profile.Edad = util.CalcularEdad(profile.FechaNacimiento);
+            }
 
             return Json(profile);
         }
@@ -183,10 +187,14 @@ namespace ChilePlacer.Controllers
             var s = girls.LoginGirls(email, password64);
             if (s != null)
             {
-                respuesta.Descripcion = "Usuario correctamente logeado";
-                respuesta.Identidad = s.Identidad.ToString();
-                respuesta.Username = s.Email;
-                SetIdentityUser(s);
+                if (SetIdentityUser(s))
+                {
+                    respuesta.Descripcion = "Usuario correctamente logeado";
+                    respuesta.Identidad = s.Identidad.ToString();
+                    respuesta.Username = s.Email;
+                }
+                else
+                    respuesta.Descripcion = "Completa tu perfil,desde el enlaze que recibiste en: " + email;
             }
             else
                 respuesta.Descripcion = "Usuario y password no existe";
@@ -194,11 +202,24 @@ namespace ChilePlacer.Controllers
             return Json(respuesta);
         }
 
-        private void SetIdentityUser(Girls s) 
+        private bool SetIdentityUser(Girls s) 
         {
-            httpContext.HttpContext.Session.SetString("Identidad", s.Identidad.ToString());
-            httpContext.HttpContext.Session.SetString("Email", s.Email);
-            httpContext.HttpContext.Session.SetString("Username", profileGirls.GetUserName(s.Identidad));
+            var resultado = false;
+            try
+            {
+                httpContext.HttpContext.Session.SetString("Identidad", s.Identidad.ToString());
+                httpContext.HttpContext.Session.SetString("Email", s.Email);
+                httpContext.HttpContext.Session.SetString("Username", profileGirls.GetUserName(s.Identidad));
+                resultado = true;
+            }
+            catch
+            {
+                httpContext.HttpContext.Session.SetString("Identidad",string.Empty);
+                httpContext.HttpContext.Session.SetString("Email", string.Empty);
+                httpContext.HttpContext.Session.SetString("Username", string.Empty);
+            }
+
+            return resultado;
         }
 
         [HttpPost]

@@ -40,3 +40,12 @@ input:: placeholder {
   font-size: 12px;
   text-align:justify;
 }
+
+label {
+    color:white;
+}
+
+input {
+  background-color: #f8f4f3;
+
+}

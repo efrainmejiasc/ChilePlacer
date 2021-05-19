@@ -2,17 +2,17 @@
 
   <div class="col col-14">
     <label>Email</label>
-    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" />
-    <span style="font-size:14px;color:silver;">Ingresa una direccion de correo electronico valida</span><br />
+    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" style="background-color:#f8f4f3;color:black;"/>
+    <span style="font-size:14px;color:white;">Ingresa una direccion de correo electronico valida</span><br /><br />
 
     <label>Contraseña</label>
-    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" (blur)="validarPassword();" />
-    <span style="font-size:14px;color:silver;">Debe contener numeros ,letras y su tamaño debe ser mayor o igual a ocho (8) caracteres</span><br />
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" (blur)="validarPassword();" style="background-color:#f8f4f3;color:black;"/>
+    <span style="font-size:14px;color:white;">Debe contener numeros ,letras y su tamaño debe ser mayor o igual a ocho (8) caracteres</span><br /><br />
 
     <label>Confirmar contraseña</label>
-    <input type="password" id="confirmaPassword" class="form form-control" required [(ngModel)]="confirmaPassword" />
+    <input type="password" id="confirmaPassword" class="form form-control" required [(ngModel)]="confirmaPassword" style="background-color:#f8f4f3;color:black;"/>
 
-    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot</label><br /><br />
+    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> Declaro que soy mayor de edad  </label><br /><br />
 
   </div>
 
@@ -20,10 +20,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="getRegister();" class="btn btn-success" style="width:45%;">Registrar</button>
+          <button type="submit" id="registrar" (click)="getRegister();" class="btn btn-light" style="width:45%;">Registrar</button>
         </div>
         <div class="col-md-6 text-right">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:45%;">Cancelar</button>
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-light" style="width:45%;">Cancelar</button>
         </div>
       </div>
     </div>
@@ -33,10 +33,9 @@
 
 <div>
   <div id="mensaje" class="modalTipo">
-    <div class="modal-content">
-      <!-- <i class='fas fa-times'>x</i>-->
+    <div class="modal-content" style="background-color:silver;">
       <div class="formulario-campo">
-        <label id="msj" [(ngModel)]="msj"></label>
+        <label id="msj" [(ngModel)]="msj" style="color:black;font-size:18px;"></label>
       </div>
     </div>
   </div>

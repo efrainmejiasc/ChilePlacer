@@ -7,20 +7,20 @@
 
     <div class="col col-4">
       <img class="imgSkill" id="_foto" /><br />
-      <a class='btn' style="color:cornflowerblue;"> <i (click)="actualizarPerfil();"> Actualizar perfil</i></a>
+      <a class='btn'  style="color:#1438ff;font-size:16px;font-style:italic;"> <i (click)="actualizarPerfil();"> Actualizar perfil</i></a>
     </div>
 
     <div class="col col-8">
 
       <div style="text-align:center;margin-top:10%;">
-        <span style="font-size:14px;color:silver;font-weight:bold;">Nueva publicacion</span>
-        <input type="text" id="_texto" [(ngModel)]="_texto" placeholder="Descripcion imagen" class="form form-control" />
+        <span style="font-size:18px;color:silver;font-weight:bold;">Nueva publicacion</span>
+        <input type="text" id="_texto" [(ngModel)]="_texto" placeholder="Descripcion imagen" class="form form-control" style="background-color:#f8f4f3;color:black;"/>
       </div>
       <div>
 
         <div style="text-align:center;">
           <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-          <a class='btn' style="color:cornflowerblue;"> <i (click)="file.click();"> &nbsp;&nbsp;Seleccionar foto</i></a>
+          <a class ='btn' style="color:#1438ff;font-size:16px;font-style:italic;"> <i (click)="file.click();"> &nbsp;&nbsp;Seleccionar foto</i></a>
         </div>
       </div>
       <div>
@@ -29,54 +29,9 @@
 
     <br /><br />
 
-    <!--
-      <div class="col col-4" style="display:none;">
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Categoria escort: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="escort">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Presentacion: </span>
-        <input type="text" style="border:none;font-family: Arial, Helvetica, sans-serif" class="form form-control" id="presentacion">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Edad: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="edad">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Ubicacion: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="ubicacion">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Telefono: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="telefono">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif"> Valor hora: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="valor1">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif"> Valor 1/2 hora: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="valor2">
-      </div>
-      <div>
-        <span style="font-family:Times New Roman,Times, serif">Pais de origen: </span>
-        <input type="text" style="border:none;font-family:Arial,Helvetica,sans-serif" class="form form-control" id="nacion">
-      </div>
-     </div>
-    -->
-
-
-
   </div>
 
 
-
-
-
-  <div id="contenedor" class="container">
-
-  </div>
 
   <table id="tablaPortada" class="table table-hover" style="border:none;text-align:center;">
     <thead style="display:none;"></thead>

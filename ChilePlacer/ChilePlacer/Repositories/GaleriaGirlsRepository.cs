@@ -51,7 +51,8 @@ namespace ChilePlacer.Repositories
                         Fecha = x.galeria.Fecha,
                         UrlEliminar = EngineData.UrlServerHost + "api/DeleteImageGirl?username=" + x.perfil.Username + "&id=" + x.galeria.Id,
                         IconLike = EngineData.IconLike,
-                        IconNotLike = EngineData.IconNotLike
+                        IconNotLike = EngineData.IconNotLike,
+                        Usershow = x.perfil.Username.Split("-")
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 
@@ -76,7 +77,8 @@ namespace ChilePlacer.Repositories
                         UrlProfile = EngineData.UrlServerHost +  "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
                         Fecha = x.galeria.Fecha,
                         IconLike = EngineData.IconLike,
-                        IconNotLike = EngineData.IconNotLike
+                        IconNotLike = EngineData.IconNotLike,
+                        Usershow = x.perfil.Username.Split("-")
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 
@@ -103,7 +105,8 @@ namespace ChilePlacer.Repositories
                         UrlProfile = EngineData.UrlServerHost + "cl?user=" + x.perfil.Username + "&ide=" + util.CodeBase64(x.perfil.Identidad.ToString()),
                         Fecha = x.galeria.Fecha,
                         IconLike = EngineData.IconLike,
-                        IconNotLike = EngineData.IconNotLike
+                        IconNotLike = EngineData.IconNotLike,
+                        Usershow = x.perfil.Username.Split("-")
 
                     }).OrderByDescending(x => x.Fecha).ToList();
 

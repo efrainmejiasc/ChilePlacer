@@ -177,9 +177,9 @@ export class ProfileGirlComponent implements OnInit {
         $.each(data, function (index, item) {
           let tr = `<tr> 
                       <td id="row_${item.id}"  >
-                           <img src= ${item.img64} style="width:360px;height:250px;border-radius:30%;padding:20px;"/></p></p></p>
-                           <label id=${item.id}> ${item.texto} <label>
-                             <a href="${item.urlEliminar} " style="color:cornflowerblue;"> eliminar </a>
+                           <img src= ${item.img64} style="width:440px;height:560px;border-radius:30%;padding:18px;" /></p></p></p>
+                           <label id=${item.id} style="color:white;font-size:18px;" > ${item.texto} <label>
+                           <a href="${item.urlEliminar}" style="color:#1438ff;font-size:16px;font-style: italic;" > eliminar </a>
                       </td>
                       </tr>`;
           $('#tablaPortada tbody').append(tr);

@@ -20,5 +20,6 @@ namespace ChilePlacer.Models
         public string UrlEliminar { get; set; }
         public string IconLike { get; set; }
         public string IconNotLike { get; set; }
+        public string [] Usershow { get; set; }
     }
 }

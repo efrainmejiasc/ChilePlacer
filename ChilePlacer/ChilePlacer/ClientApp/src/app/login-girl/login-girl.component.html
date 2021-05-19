@@ -6,17 +6,17 @@
 
 
     <label>Email</label>
-    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" />
+    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" style="background-color:#f8f4f3;color:black;" />
 
 
     <label>Contraseña</label>
-    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" />
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" style="background-color:#f8f4f3;color:black;"/>
 
 
-    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot</label><br />
+    <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot </label><br />
 
      <div style="text-align:center;">
-       <a class ='btn' style="color:cornflowerblue"> <i (click)="olvidoPassword()">Modificar / Olvidaste la contraseña ?</i></a>
+       <a class ='btn' style="color:#1438ff;font-size:16px;font-style:italic;"> <i (click)="olvidoPassword()">Modificar / Olvidaste la contraseña ?</i></a>
     </div>
 
   </div>
@@ -25,10 +25,10 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <button type="submit" id="registrar" (click)="loginGirls();" class="btn btn-success" style="width:45%;">Login</button>
+          <button type="submit" id="registrar" (click)="loginGirls();" class="btn btn-light" style="width:45%;">Login</button>
         </div>
         <div class="col-md-6 text-right">
-          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-danger" style="width:45%;">Cancelar</button>
+          <button type="submit" id="cancelar" (click)="cancelar();" class="btn btn-light" style="width:45%;">Cancelar</button>
         </div>
       </div>
     </div>
@@ -39,16 +39,17 @@
 
 <div>
   <div id="mensaje" class="modalTipo">
-    <div class="modal-content">
-      <div class="formulario-campo">
-        <label id="msj" [(ngModel)]="msj"></label>
+    <div class="modal-content" style="background-color:silver;">
+      <div class="formulario-campo" >
+        <label id="msj" [(ngModel)]="msj" style="color:black;font-size:18px;"></label>
       </div>
     </div>
   </div>
 </div>
 
+
 <div>
-  <div id="olvido" class="modalTipo">
+  <div id="olvido" class="modalTipo" style="background-color:black;">
     <div class="modal-content">
       <div class="formulario-campo">
 
