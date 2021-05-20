@@ -147,7 +147,7 @@ export class ProfileGirlComponent implements OnInit {
 
     //setTimeout(this.getProfile, 1500);
     setTimeout(this.getImageProfile, 2000);
-    setTimeout(this.getImagenes, 2000);
+    setTimeout(this.getImagenes, 2500);
   }
 
   public getImagenes() {

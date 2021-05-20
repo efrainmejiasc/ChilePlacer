@@ -6,11 +6,11 @@
 
 
     <label>Email</label>
-    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" style="background-color:#f8f4f3;color:black;" />
+    <input type="email" id="mail" class="form form-control" required [(ngModel)]="mail" style="background-color:#f8f4f3;color:black;" /><br />
 
 
     <label>Contraseña</label>
-    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" style="background-color:#f8f4f3;color:black;"/>
+    <input type="password" id="password" class="form form-control" required [(ngModel)]="password" style="background-color:#f8f4f3;color:black;"/><br />
 
 
     <label class="checkbox-inline"> <input type="checkbox" id="robot" class="btn btn btn-default active" required [(ngModel)]="robot" /> No soy un robot </label><br />
@@ -49,27 +49,27 @@
 
 
 <div>
-  <div id="olvido" class="modalTipo" style="background-color:black;">
-    <div class="modal-content">
+  <div id="olvido" class="modalTipo" >
+    <div class="modal-content" style="background-color: #ff66d1;">
       <div class="formulario-campo">
 
-        <span style="float:left;font-size:16px;"> Email </span>
-        <input type="email" class="form form-control" id="_mail" placeholder="Ingresa tu email registrado" />
-        <span style="float:left;font-size:16px;"> Codigo </span>
-        <input type="text" class="form form-control" id="_codigo" placeholder="Ingresa codigo" />
+        <label style="float:left;font-size:16px;"> Email </label>
+        <input type="email" class="form form-control" id="_mail" placeholder="Ingresa tu email registrado" style="background-color:silver;color:dimgray;" /><br />
+        <label style="float:left;font-size:16px;"> Codigo </label>
+        <input type="text" class="form form-control" id="_codigo" placeholder="Ingresa codigo" style="background-color:silver;color:dimgray;"/>
 
         <div class="row">
           <div class="col-md-6 text-left">
-            <a class='btn' style="color:cornflowerblue;float:left;"> <i (click)="getCodigo();"> Obtener codigo ?</i></a>
+            <a class='btn' style="color:#1438ff;font-size:16px;font-style: italic;"> <i (click)="getCodigo();"> Obtener codigo ?</i></a>
           </div>
 
           <div class="col-md-6 text-right">
-            <a class='btn' style="color:cornflowerblue;float:right"> <i (click)="haveCodigo();"> Tengo un codigo !!</i></a>
+            <a class='btn' style="color:#1438ff;font-size:16px;font-style: italic;"> <i (click)="haveCodigo();"> Tengo un codigo !!</i></a>
           </div>
 
         </div>
 
-        <div id="_msj" style="display:block;font-size:14px;text-align:center;">
+        <div id="_msj" style="display:block;font-size:16px;text-align:center;">
           <label id="_mensaje">  </label>
         </div>
 
@@ -79,10 +79,10 @@
           <div class="col-md-12">
             <div class="row">
               <div class="col-md-6 text-left">
-                <button type="submit" id="send_mail" (click)="validarCodigo();" class="btn btn-success" style="width:45%;">Enviar</button>
+                <button type="submit" id="send_mail" (click)="validarCodigo();" class="btn btn-light" style="width:45%;">Enviar</button>
               </div>
               <div class="col-md-6 text-right">
-                <button type="submit" id="no_send_mail" (click)="cerrarOlvido();" class="btn btn-danger" style="width:45%;">Cancelar</button>
+                <button type="submit" id="no_send_mail" (click)="cerrarOlvido();" class="btn btn-light" style="width:45%;">Cancelar</button>
               </div>
             </div>
           </div>
