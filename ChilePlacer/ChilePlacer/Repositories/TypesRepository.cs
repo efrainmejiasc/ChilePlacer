@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,23 @@ namespace ChilePlacer.Repositories
             db.SaveChanges();
 
             InsertTypeAtencionGirl(model);
+        }
+
+
+        public List<AdmTablesModel> GetRegistrosTypeEscort()
+        {
+            var model = db.TypeEscort.ToList();
+            var lst = new List<AdmTablesModel>();
+            var s = new AdmTablesModel();
+            foreach (var x in model)
+            {
+                s.Id = x.Id;
+                s.Ide = x.Ide;
+                s.Descripcion = x.Categoria;
+                lst.Add(s);
+                s = new AdmTablesModel();
+            }
+            return lst;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.DataModels;
+using ChilePlacer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,8 @@ namespace ChilePlacer.Repositories.Interfaces
         void DeleteTypeAtencionGirl(List<TypeAtencionGirl> model, Guid identidad);
         List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model);
         List<TypeAtencionGirl> InsertTypeAtencionGirl(List<TypeAtencionGirl> model);
+
+
+        List<AdmTablesModel> GetRegistrosTypeEscort();
     }
 }
