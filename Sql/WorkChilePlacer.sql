@@ -6,23 +6,25 @@ SELECT * FROM ChilePlacer..PortadaGirls
 SELECT * FROM ChilePlacer..AppLog
 
 
-SELECT * FROM ChilePlacer..TypeAtencion
+SELECT * FROM ChilePlacer..TypeAtencion                                SELECT * FROM ChilePlacer..TypeLocation
+SELECT * FROM ChilePlacer..TypeContextura
+SELECT * FROM ChilePlacer..TypeCountry
 SELECT * FROM ChilePlacer..TypeDepilacion
 SELECT * FROM ChilePlacer..TypeDrink
+SELECT * FROM ChilePlacer..TypeEscort
 SELECT * FROM ChilePlacer..TypeEyes
 SELECT * FROM ChilePlacer..TypeGirls 
+--SELECT * FROM ChilePlacer..TypeGirlServices
+--SELECT * FROM ChilePlacer..TypeAtencionGirl
+
 SELECT * FROM ChilePlacer..TypeHair 
+SELECT * FROM ChilePlacer..TypeNacionalidad
 SELECT * FROM ChilePlacer..TypePiel
 SELECT * FROM ChilePlacer..TypeServicesSex
 SELECT * FROM ChilePlacer..TypeSex
 SELECT * FROM ChilePlacer..TypeSmoke
-SELECT * FROM ChilePlacer..TypeDrink
-SELECT * FROM ChilePlacer..TypeCountry
-SELECT * FROM ChilePlacer..TypeLocation
-SELECT * FROM ChilePlacer..TypeNacionalidad
 
 
-SELECT * FROM ChilePlacer..TypeAtencionGirl
 SELECT * FROM ChilePlacer..TypeGirlServices
 
 SELECT * FROM ChilePlacer..Girls 

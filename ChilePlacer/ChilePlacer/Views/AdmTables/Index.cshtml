@@ -11,21 +11,53 @@
 
 <input type="hidden" />
 
-<div  class="container" style="text-align:center;margin-top:5%;">
+<div  class="container" style="margin-top:5%;">
 
     <div class="row">
 
-        <div>
+        <div style="float:left;">
+            <label>Nombre Tablas</label>
             <select id="tables" onchange="buscarRegistros()" class="form form-control"></select>
+        </div>
+
+        <div style="float:right;">
+            <input type='submit' class='btn btn-primary' onClick='nuevo()' value='Nuevo' />
         </div>
 
     </div>
 
-    <div>
+    <div  style="text-align:center;">
         <table id="tablaPortada" class="table table-hover" style="text-align:center;">
             <thead></thead>
             <tbody></tbody>
         </table>
     </div>
+
 </div>
+
+
+    <div>
+        <div id="modal" class="modalTipo">
+            <div class="modal-content">
+                <div class="formulario-campo">
+
+                    <label style="text-align:justify;">Descripcion</label>
+                    <input type='text' id="_item" class='form form-control' placeholder="Ingrese descripcion..." style="text-align:justify;" />
+                    <input type="hidden" id="_tabla"/>
+                    <br />
+                    <div class="row">
+                        <div>  
+                           <input type='submit' class='btn btn-success' onClick='nuevoItem();' value='Aceptar'  style="float:left;" />
+                        </div>
+                        <div> 
+                            <input type='submit' class='btn btn-danger' onClick='cancelar();' value='Cancelar' style="float:right;" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 

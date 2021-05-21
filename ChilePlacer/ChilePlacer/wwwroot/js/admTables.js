@@ -25,12 +25,12 @@ $(document).ready(function () {
 }
 
 
-function buildTable () {
+function buildTable (tableName) {
 
     $.ajax({
         type: "POST",
         url: "AdmTables/GetRegisterTable",
-        //data: { nombreTabla: nombreTabla },
+        data: { tableName: tableName },
         dataType: "json",
         success: function (data) {
             console.log(data);
@@ -38,7 +38,7 @@ function buildTable () {
             $('#tablaPortada tbody tr').remove();
 
             let title = `<tr>
-                            <th> Id </th>
+
                             <th> Identificador </th>
                             <th> Descripcion </th>
                             <th> </th>
@@ -48,10 +48,9 @@ function buildTable () {
 
             $.each(data, function (index, item) {
                 let tr = `<tr> 
-                      <td> ${item.id} </td>
                       <td> ${item.ide} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <input type='submit' class='btn btn-primary' onClick ='eliminar(${item.id})' value='Eliminar'/> </td>
+                      <td> <input type='submit' class='btn btn-primary' onClick ='eliminarItem(${item.id})' value='Eliminar'/> </td>
                       </tr>`;
                 $('#tablaPortada tbody').append(tr);
             });
@@ -67,6 +66,58 @@ function buildTable () {
 function buscarRegistros() {
 
     var nombreTabla = $('#tables').val();
+    $('#_tabla').val(nombreTabla);
     console.log(nombreTabla);
-    buildTable();
+    buildTable(nombreTabla);
+}
+
+function nuevo() {
+    $('#modal').show();
+}
+
+
+function cancelar() {
+    $('#modal').hide();
+}
+
+function nuevoItem() {
+    var nombreTabla = $('#_tabla').val();
+    var item = $('#_item').val();
+
+    $.ajax({
+        type: "POST",
+        url: "AdmTables/InsertRegistroTable",
+        data: { tableName: nombreTabla, item: item },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            buildTable(nombreTabla);
+        },
+        complete: function () {
+            console.log('NuevoItem');
+        }
+    });
+
+    return false;
+}
+
+
+function eliminarItem(id) {
+    var nombreTabla = $('#_tabla').val();
+
+    $.ajax({
+        type: "POST",
+        url: "AdmTables/DeleteRegisterTable",
+        data: { tableName: nombreTabla, id: id },
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            buildTable(nombreTabla);
+        },
+        complete: function () {
+            console.log('NuevoItem');
+        }
+    });
+
+    return false;
 }

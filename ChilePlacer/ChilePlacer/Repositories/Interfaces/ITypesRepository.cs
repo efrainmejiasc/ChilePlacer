@@ -29,7 +29,19 @@ namespace ChilePlacer.Repositories.Interfaces
         List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model);
         List<TypeAtencionGirl> InsertTypeAtencionGirl(List<TypeAtencionGirl> model);
 
-
+        List<AdmTablesModel> GetRegistrosTypeAtencion();
+        List<AdmTablesModel> GetRegistrosTypeContextura();
+        List<AdmTablesModel> GetRegistrosTypeCountry();
+        List<AdmTablesModel> GetRegistrosTypeDepilacion();
+        List<AdmTablesModel> GetRegistrosTypeDrink();
         List<AdmTablesModel> GetRegistrosTypeEscort();
+        List<AdmTablesModel> GetRegistrosTypeEyes();
+        List<AdmTablesModel> GetRegistrosTypeGirls();
+        List<AdmTablesModel> GetRegistrosTypeHair();
+        List<AdmTablesModel> GetRegistrosTypeNacionalidad();
+        List<AdmTablesModel> GetRegistrosTypePiel();
+        List<AdmTablesModel> GetRegistrosTypeServicesSex();
+        List<AdmTablesModel> GetRegistrosTypeSex();
+        List<AdmTablesModel> GetRegistrosTypeSmoke();
     }
 }
