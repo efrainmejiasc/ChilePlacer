@@ -43,5 +43,37 @@ namespace ChilePlacer.Repositories.Interfaces
         List<AdmTablesModel> GetRegistrosTypeServicesSex();
         List<AdmTablesModel> GetRegistrosTypeSex();
         List<AdmTablesModel> GetRegistrosTypeSmoke();
+
+
+        void DeleteRegistrosTypeAtencion(int id);
+        void DeleteRegistrosTypeContextura(int id);
+        void DeleteRegistrosTypeCountry(int id);
+        void DeleteRegistrosTypeDepilacion(int id);
+        void DeleteRegistrosTypeDrink(int id);
+        void DeleteRegistrosTypeEscort(int id);
+        void DeleteRegistrosTypeEyes(int id);
+        void DeleteRegistrosTypeGirls(int id);
+        void DeleteRegistrosTypeHair(int id);
+        void DeleteRegistrosTypeNacionalidad(int id);
+        void DeleteRegistrosTypePiel(int id);
+        void DeleteRegistrosTypeServicesSex(int id);
+        void DeleteRegistrosTypeSex(int id);
+        void DeleteRegistrosTypeSmoke(int id);
+
+
+        void InsertRegistrosTypeAtencion(TypeAtencion model);
+        void InsertRegistrosTypeContextura(TypeContextura model);
+        void InsertRegistrosTypeCountry(TypeCountry model);
+        void InsertRegistrosTypeDepilacion(TypeDepilacion model);
+        void InsertRegistrosTypeDrink(TypeDrink model);
+        void InsertRegistrosTypeEscort(TypeEscort model);
+        void InsertRegistrosTypeEyes(TypeEyes model);
+        void InsertRegistrosTypeGirls(TypeGirls model);
+        void InsertRegistrosTypeHair(TypeHair model);
+        void InsertRegistrosTypeNacionalidad(TypeNacionalidad model);
+        void InsertRegistrosTypePiel(TypePiel model);
+        void InsertRegistrosTypeServicesSex(TypeServicesSex model);
+        void InsertRegistrosTypeSex(TypeSex model);
+        void InsertRegistrosTypeSmoke(TypeSmoke model);
     }
 }

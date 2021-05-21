@@ -50,7 +50,7 @@ function buildTable (tableName) {
                 let tr = `<tr> 
                       <td> ${item.ide} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <input type='submit' class='btn btn-primary' onClick ='eliminarItem(${item.id})' value='Eliminar'/> </td>
+                      <td> <input type='submit' class='btn btn-danger' onClick ='eliminarItem(${item.id})' value='Eliminar'/> </td>
                       </tr>`;
                 $('#tablaPortada tbody').append(tr);
             });
@@ -72,6 +72,12 @@ function buscarRegistros() {
 }
 
 function nuevo() {
+    var nombreTabla = $('#_tabla').val();
+    if (nombreTabla === '') {
+        alert('Seleccione una tabla para agregar item');
+        return false;
+    }
+
     $('#modal').show();
 }
 
@@ -82,16 +88,22 @@ function cancelar() {
 
 function nuevoItem() {
     var nombreTabla = $('#_tabla').val();
-    var item = $('#_item').val();
+    var descripcion = $('#_item').val();
+
+    if (descripcion === '' || nombreTabla === '') {
+        alert('Seleccione una tabla  e ingrese descripcion');
+        return false;
+    }
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/InsertRegistroTable",
-        data: { tableName: nombreTabla, item: item },
+        url: "AdmTables/InsertRegisterTable",
+        data: { tableName: nombreTabla, descripcion: descripcion },
         dataType: "json",
         success: function (data) {
             console.log(data);
             buildTable(nombreTabla);
+            $('#modal').hide();
         },
         complete: function () {
             console.log('NuevoItem');

@@ -93,7 +93,6 @@ namespace ChilePlacer.Repositories
 
         #endregion
 
-
         #region APLICACION
         public List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model)
         {
@@ -129,7 +128,6 @@ namespace ChilePlacer.Repositories
             InsertTypeAtencionGirl(model);
         }
         #endregion
-
 
         #region GET_REGISTROS
 
@@ -361,6 +359,197 @@ namespace ChilePlacer.Repositories
 
         #endregion
 
+        #region DELETE_REGISTROS
+
+        public void  DeleteRegistrosTypeAtencion(int id)
+        {
+            var m = db.TypeAtencion.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public  void DeleteRegistrosTypeContextura(int id)
+        {
+            var m = db.TypeContextura.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeCountry(int id)
+        {
+            var m = db.TypeCountry.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeDepilacion(int id)
+        {
+            var m = db.TypeDepilacion.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeDrink(int id)
+        {
+            var m = db.TypeDrink.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeEscort(int id)
+        {
+            var m = db.TypeEscort.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeEyes(int id)
+        {
+            var m = db.TypeEyes.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeGirls(int id)
+        {
+            var m = db.TypeGirls.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeHair(int id)
+        {
+            var m = db.TypeHair.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeNacionalidad(int id)
+        {
+            var m = db.TypeNacionalidad.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypePiel(int id)
+        {
+            var m = db.TypePiel.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+
+        public void DeleteRegistrosTypeServicesSex(int id)
+        {
+            var m = db.TypeServicesSex.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeSex(int id)
+        {
+            var m = db.TypeSex.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        public void DeleteRegistrosTypeSmoke(int id)
+        {
+            var m = db.TypeSmoke.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
+
+        #endregion
+
+        #region INSERT_REGISTROS
+
+        public void InsertRegistrosTypeAtencion(TypeAtencion model)
+        {
+            db.TypeAtencion.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeContextura(TypeContextura model)
+        {
+            db.TypeContextura.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeCountry(TypeCountry model)
+        {
+            db.TypeCountry.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeDepilacion(TypeDepilacion model)
+        {
+            db.TypeDepilacion.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeDrink(TypeDrink model)
+        {
+            db.TypeDrink.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeEscort(TypeEscort model)
+        {
+            db.TypeEscort.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeEyes(TypeEyes model)
+        {
+            db.TypeEyes.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeGirls(TypeGirls model)
+        {
+            db.TypeGirls.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeHair(TypeHair model)
+        {
+            db.TypeHair.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeNacionalidad(TypeNacionalidad model)
+        {
+            db.TypeNacionalidad.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypePiel(TypePiel model)
+        {
+            db.TypePiel.Add(model);
+            db.SaveChanges();
+        }
+
+
+        public void InsertRegistrosTypeServicesSex(TypeServicesSex model)
+        {
+            db.TypeServicesSex.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeSex(TypeSex model)
+        {
+            db.TypeSex.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeSmoke(TypeSmoke model)
+        {
+            db.TypeSmoke.Add(model);
+            db.SaveChanges();
+        }
+
+        #endregion
 
     }
 }

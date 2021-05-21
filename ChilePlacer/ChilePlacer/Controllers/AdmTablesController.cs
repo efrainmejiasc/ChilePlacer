@@ -1,4 +1,5 @@
 ﻿using ChilePlacer.Application.Interfaces;
+using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -120,77 +121,116 @@ namespace ChilePlacer.Controllers
         [HttpPost]
         public JsonResult DeleteRegisterTable(string tableName, int id)
         {
-            var registros = new List<AdmTablesModel>();
-
             if (tableName == "TypeAtencion")
-                registros = types.GetRegistrosTypeAtencion();
+                types.DeleteRegistrosTypeAtencion(id);
             else if (tableName == "TypeContextura")
-                registros = types.GetRegistrosTypeContextura();
+                types.DeleteRegistrosTypeContextura(id);
             else if (tableName == "TypeCountry")
-                registros = types.GetRegistrosTypeCountry();
+                types.DeleteRegistrosTypeCountry(id);
             else if (tableName == "TypeDepilacion")
-                registros = types.GetRegistrosTypeDepilacion();
+                types.DeleteRegistrosTypeDepilacion(id);
             else if (tableName == "TypeDrink")
-                registros = types.GetRegistrosTypeAtencion();
+                types.DeleteRegistrosTypeAtencion(id);
             else if (tableName == "TypeEscort")
-                registros = types.GetRegistrosTypeEscort();
+                types.DeleteRegistrosTypeEscort(id);
             else if (tableName == "TypeEyes")
-                registros = types.GetRegistrosTypeEyes();
+                types.DeleteRegistrosTypeEyes(id);
             else if (tableName == "TypeGirls")
-                registros = types.GetRegistrosTypeGirls();
+                types.DeleteRegistrosTypeGirls(id);
             else if (tableName == "TypeHair")
-                registros = types.GetRegistrosTypeHair();
+                types.DeleteRegistrosTypeHair(id);
             else if (tableName == "TypeNacionalidad")
-                registros = types.GetRegistrosTypeNacionalidad();
+                types.DeleteRegistrosTypeNacionalidad(id);
             else if (tableName == "TypePiel")
-                registros = types.GetRegistrosTypePiel();
+                types.DeleteRegistrosTypePiel(id);
             else if (tableName == "TypeServicesSex")
-                registros = types.GetRegistrosTypeServicesSex();
+                types.DeleteRegistrosTypeServicesSex(id);
             else if (tableName == "TypeSex")
-                registros = types.GetRegistrosTypeSex();
+                types.DeleteRegistrosTypeSex(id);
             else if (tableName == "TypeSmoke")
-                registros = types.GetRegistrosTypeSmoke();
+                types.DeleteRegistrosTypeSmoke(id);
 
 
-            return Json(registros);
+            return Json("Ok");
         }
 
         [HttpPost]
         public JsonResult InsertRegisterTable(string tableName, string descripcion)
         {
-            var registros = new List<AdmTablesModel>();
 
             if (tableName == "TypeAtencion")
-                registros = types.GetRegistrosTypeAtencion();
+            {
+                var model = new TypeAtencion() { Ide = descripcion, Atencion = descripcion };
+                types.InsertRegistrosTypeAtencion(model);
+            }
             else if (tableName == "TypeContextura")
-                registros = types.GetRegistrosTypeContextura();
+            {
+                var model = new TypeContextura() { Ide = descripcion, Contextura = descripcion };
+                types.InsertRegistrosTypeContextura(model);
+            }
             else if (tableName == "TypeCountry")
-                registros = types.GetRegistrosTypeCountry();
+            {
+                var model = new TypeCountry() { Ide = descripcion, Pais = descripcion };
+                types.InsertRegistrosTypeCountry(model);
+            }
             else if (tableName == "TypeDepilacion")
-                registros = types.GetRegistrosTypeDepilacion();
+            {
+                var model = new TypeDepilacion() { Ide = descripcion, Depilacion = descripcion };
+                types.InsertRegistrosTypeDepilacion(model);
+            }
             else if (tableName == "TypeDrink")
-                registros = types.GetRegistrosTypeAtencion();
+            {
+                var model = new TypeDrink() { Ide = descripcion, Drink = descripcion };
+                types.InsertRegistrosTypeDrink(model);
+            }
             else if (tableName == "TypeEscort")
-                registros = types.GetRegistrosTypeEscort();
+            {
+                var model = new TypeEscort() { Ide = descripcion, Categoria = descripcion };
+                types.InsertRegistrosTypeEscort(model);
+            }
             else if (tableName == "TypeEyes")
-                registros = types.GetRegistrosTypeEyes();
+            {
+                var model = new TypeEyes() { Ide = descripcion, Ojos = descripcion };
+                types.InsertRegistrosTypeEyes(model);
+            }
             else if (tableName == "TypeGirls")
-                registros = types.GetRegistrosTypeGirls();
+            {
+                var model = new TypeGirls() { Ide = descripcion, Type = descripcion };
+                types.InsertRegistrosTypeGirls(model);
+            }
             else if (tableName == "TypeHair")
-                registros = types.GetRegistrosTypeHair();
+            {
+                var model = new TypeHair() { Ide = descripcion, ColorCabello = descripcion };
+                types.InsertRegistrosTypeHair(model);
+            }
             else if (tableName == "TypeNacionalidad")
-                registros = types.GetRegistrosTypeNacionalidad();
+            {
+                var model = new TypeNacionalidad() { Ide = descripcion, Nacionalidad = descripcion };
+                types.InsertRegistrosTypeNacionalidad(model);
+            }
             else if (tableName == "TypePiel")
-                registros = types.GetRegistrosTypePiel();
+            {
+                var model = new TypePiel() { Ide = descripcion, Piel = descripcion };
+                types.InsertRegistrosTypePiel(model);
+            }
             else if (tableName == "TypeServicesSex")
-                registros = types.GetRegistrosTypeServicesSex();
+            {
+                var model = new TypeServicesSex() { Ide = descripcion, Servicio = descripcion };
+                types.InsertRegistrosTypeServicesSex(model);
+            }
             else if (tableName == "TypeSex")
-                registros = types.GetRegistrosTypeSex();
+            {
+                var model = new TypeSex() { Ide = descripcion, Sexo = descripcion };
+                types.InsertRegistrosTypeSex(model);
+            }
             else if (tableName == "TypeSmoke")
-                registros = types.GetRegistrosTypeSmoke();
+            {
+                var model = new TypeSmoke() { Ide = descripcion, Smoke = descripcion };
+                types.InsertRegistrosTypeSmoke(model);
+            }
 
 
-            return Json(registros);
+            return Json("Ok");
         }
     }
 }
