@@ -7,6 +7,11 @@ $(document).ready(function () {
 });
 
 
+function iniicio() {
+    window.location.href = 'Index';
+}
+
+
 function getIdentityUserAdm() {
 
     $.ajax({
