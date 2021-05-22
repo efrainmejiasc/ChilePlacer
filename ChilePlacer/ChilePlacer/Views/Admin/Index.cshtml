@@ -23,11 +23,13 @@
 <br />
 
 <div class="container text-center">
+    <a href="#" onclick="abrirOlvido();"> Olvidate la contraseña </a>
+    <br />
     <a href="@ViewBag.UrlAdmTable"> Administrar catalogos </a>
     <br />
     <a href="@ViewBag.UrlAdmConfig"> Configuracion </a>
     <br />
-    <a href="#" onclick="abrirOlvido();"> Olvidate la contraseña </a>
+
 </div>
 
 <div class="container text-center">
@@ -35,9 +37,10 @@
     <div id="olvido" class="modalTipo">
         <div class="modal-content">
             <div class="formulario-campo">
-                <label>Actualizaremos tus datos y enviaremos una contraseña temporal a tu correo electronico</label>
+                <label style="font-size:14px;">Actualizaremos tus datos y enviaremos una contraseña temporal a tu correo electronico</label>
                 <input type='email' id="email2" class='form form-control' placeholder="Ingrese email..." style="text-align:justify;" />
-
+                <label style="font-size:12px;">La contraseña debe contener numeros, letras y un minimo de ocho(8) caracteres</label>
+                <br />
                 <br />
                 <div class="row">
                     <div class="col-md-6">

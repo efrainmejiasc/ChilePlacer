@@ -19,6 +19,10 @@ function classes() {
     
 }
 
+function inicio() {
+    window.location.href = 'Index';
+}
+
 
 function getIdentityUserAdm() {
 

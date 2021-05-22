@@ -52,7 +52,7 @@ function validarEmail(email) {
     return true;
 }
 
-function EnviarEmail() {
+function enviarEmail() {
 
     var email = $('#email2').val();
 
@@ -78,6 +78,8 @@ function EnviarEmail() {
                 alert('Enviamos un email  con una contraseña provicional');
             else
                 alert('Datos ingresados incorrectos');
+
+            cerrarAdmMod();
         },
         complete: function () {
             console.log('OlvidoPassword');
