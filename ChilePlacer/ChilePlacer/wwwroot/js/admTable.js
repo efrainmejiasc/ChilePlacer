@@ -2,15 +2,39 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    getIdentityUserAdm();
     getNameTables();
 });
 
+
+function inicio() {
+    window.location.href = 'Index';
+}
+
+
+function getIdentityUserAdm() {
+
+    $.ajax({
+        type: "POST",
+        url: "GetIdentityUserAdm",
+        dataType: "json",
+        success: function (data) {
+            if (data === null)
+                window.location.href = 'Index';
+        },
+        complete: function () {
+            console.log('GetIdentityUserAdm');
+        }
+    });
+
+    return false;
+}
 
   function getNameTables() {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/GetNameTables",
+        url: "GetNameTables",
         dataType: "json",
         success: function (data) {
             $("#tables").empty();
@@ -29,7 +53,7 @@ function buildTable (tableName) {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/GetRegisterTable",
+        url: "GetRegisterTable",
         data: { tableName: tableName },
         dataType: "json",
         success: function (data) {
@@ -119,7 +143,7 @@ function eliminarItem(id) {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/DeleteRegisterTable",
+        url: "DeleteRegisterTable",
         data: { tableName: nombreTabla, id: id },
         dataType: "json",
         success: function (data) {
