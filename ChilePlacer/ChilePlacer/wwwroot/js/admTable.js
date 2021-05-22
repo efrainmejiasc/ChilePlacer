@@ -2,15 +2,41 @@
 
 $(document).ready(function () {
     console.log("ready!");
+    getIdentityUserAdm();
+    classes();
     getNameTables();
 });
+
+
+function getIdentityUserAdm() {
+
+    $.ajax({
+        type: "POST",
+        url: "GetIdentityUserAdm",
+        dataType: "json",
+        success: function (data) {
+            if (data === null)
+                window.location.href = 'Index';
+        },
+        complete: function () {
+            console.log('GetIdentityUserAdm');
+        }
+    });
+
+    return false;
+}
+
+
+function classes() {
+    console.log('classes');
+}
 
 
   function getNameTables() {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/GetNameTables",
+        url: "GetNameTables",
         dataType: "json",
         success: function (data) {
             $("#tables").empty();

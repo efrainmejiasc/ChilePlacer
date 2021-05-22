@@ -70,6 +70,7 @@ namespace ChilePlacer
             services.AddTransient<IPortadaGirlsRepository, PortadaGirlsRepository>();
             services.AddTransient<IProfileGirlsRepository, ProfileGirlsRepository>();
             services.AddTransient<IChangePasswordRepository, ChangePasswordRepository>();
+            services.AddTransient<IUserAdmRepository, UserAdmRepository>();
 
 #if DEBUG
             EngineData.UrlServerHost = Configuration.GetValue<string>("HostSettings:UrlServerHostLocal");

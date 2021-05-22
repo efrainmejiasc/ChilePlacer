@@ -77,3 +77,11 @@
   width: 2px;
   height: 2px;
 }
+
+.floatleft{
+    float:left;
+}
+
+.floatright{
+    float: right;
+}

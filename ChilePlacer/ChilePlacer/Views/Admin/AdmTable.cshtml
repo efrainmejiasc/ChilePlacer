@@ -1,0 +1,70 @@
+﻿
+@{
+
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="~/js/admTable.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+<link rel="stylesheet" href="~/css/modal.css" />
+
+<input type="hidden" />
+
+<div class="container" style="margin-top:5%;">
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <label>Nombre Tablas</label>
+        </div>
+        <div class="col-md-8">
+            <select id="tables" onchange="buscarRegistros()" class="form form-control"  style="width:300px;"></select>
+        </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <div style="text-align:center;">
+        <table id="tablaPortada" class="table table-hover" style="text-align:center;">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+
+        <br />
+
+        <div class="col-md-12">
+            <input type='submit' id="new" class='btn btn-primary' onClick='nuevo()' value='Nuevo' style="width:100%" />
+        </div>
+
+    </div>
+
+</div>
+
+
+<div>
+    <div id="modal" class="modalTipo">
+        <div class="modal-content">
+            <div class="formulario-campo">
+
+                <label style="text-align:justify;font-size:16px;">Descripcion</label>
+                <input type='text' id="_item" class='form form-control' placeholder="Ingrese descripcion..." style="text-align:justify;" />
+                <input type="hidden" id="_tabla" />
+                <br />
+                <div class="row" >
+                    <div class="col-md-6">
+                        <input type='submit' class='btn btn-success float-left' onClick='nuevoItem();' value='Aceptar' />
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type='submit' class='btn btn-danger float-right' onClick='cancelar();' value='Cancelar' />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

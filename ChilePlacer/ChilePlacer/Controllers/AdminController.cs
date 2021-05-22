@@ -1,7 +1,9 @@
-﻿using ChilePlacer.Application.Interfaces;
+﻿using ChilePlacer.Application;
+using ChilePlacer.Application.Interfaces;
 using ChilePlacer.DataModels;
 using ChilePlacer.Models;
 using ChilePlacer.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,21 +12,126 @@ using System.Threading.Tasks;
 
 namespace ChilePlacer.Controllers
 {
-    public class AdmTablesController : Controller
+    public class AdminController : Controller
     {
         private readonly IUtilidad util;
         private readonly ITypesRepository types;
-        public AdmTablesController(IUtilidad _util, ITypesRepository _types)
+        private readonly IHttpContextAccessor httpContext;
+        private readonly IUserAdmRepository userAdm;
+        public AdminController(IUtilidad _util, ITypesRepository _types, IHttpContextAccessor _httpContext, IUserAdmRepository _userAdm)
         {
             util = _util;
             types = _types;
+            userAdm = _userAdm;
+            httpContext = _httpContext;
         }
-
 
         public IActionResult Index()
         {
+            ViewBag.UrlAdmTable = EngineData.UrlServerHost + "Admin/AdmTable";
+            ViewBag.UrlAdmConfig = EngineData.UrlServerHost + "Admin/AdmConfig";
             return View();
         }
+
+
+        public IActionResult AdmTable()
+        {
+            return View();
+        }
+
+        public IActionResult AdmConfig()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult RegistroAdm(string email, string password)
+        {
+            var respuesta = new RespuestaModel();
+            if (userAdm.GetExisteEmail(email, true))
+            {
+                respuesta.Descripcion = "La direccion de e-mail: " + email + " ya existe en nuestro sistema";
+                return Json(respuesta);
+            }
+
+            var password64 = util.CodeBase64(email + "#" + password);
+            var adm = new UserAdm()
+            {
+                EmailAdm = email, PasswordAdm = password64,
+                Activo = true,Fecha = DateTime.UtcNow
+            };
+
+           adm  = userAdm.InsertAdm(adm);
+
+            if (adm.Id > 0)
+                respuesta.Descripcion = "Registro satisfactorio";
+            else
+                respuesta.Descripcion = "Registro fallido";
+
+            return Json(respuesta);
+        }
+
+
+        [HttpPost]
+        public JsonResult LoginAdm(string email, string password)
+        {
+            RespuestaModel respuesta = new RespuestaModel();
+            var password64 = util.CodeBase64(email + "#" + password);
+            var s = userAdm.LoginAdm(email, password64);
+            if (s != null)
+            {
+                if (SetIdentityUserAdm(s))
+                {
+                    respuesta.Status = "true";
+                }
+                else
+                    respuesta.Status = "false" ;
+            }
+            else
+                respuesta.Status = "false";
+
+            return Json(respuesta);
+        }
+
+        private bool SetIdentityUserAdm(UserAdm s)
+        {
+            var resultado = false;
+            try
+            {
+                httpContext.HttpContext.Session.SetString("IdAdm", s.Id.ToString());
+                httpContext.HttpContext.Session.SetString("EmailAdm", s.EmailAdm);
+                httpContext.HttpContext.Session.SetString("PasswordAdm", s.PasswordAdm);
+                resultado = true;
+            }
+            catch
+            {
+                httpContext.HttpContext.Session.SetString("IdAdm", string.Empty);
+                httpContext.HttpContext.Session.SetString("EmailAdm", string.Empty);
+                httpContext.HttpContext.Session.SetString("PasswordAdm", string.Empty);
+            }
+
+            return resultado;
+        }
+
+        [HttpPost]
+        public JsonResult GetIdentityUserAdm()
+        {
+            var usuarioAdministrado = new UserAdm();
+            var test = httpContext.HttpContext.Session.GetString("EmailAdm");
+            if (string.IsNullOrEmpty(test))
+            {
+                usuarioAdministrado = null;
+                return Json(usuarioAdministrado);
+            }
+
+            usuarioAdministrado.Id = Convert.ToInt32(httpContext.HttpContext.Session.GetString("IdAdm"));
+            usuarioAdministrado.EmailAdm = httpContext.HttpContext.Session.GetString("EmailAdm");
+            usuarioAdministrado.PasswordAdm = httpContext.HttpContext.Session.GetString("PasswordAdm");
+
+            return Json(usuarioAdministrado);
+        }
+
 
         [HttpPost]
         public JsonResult GetNameTables()
