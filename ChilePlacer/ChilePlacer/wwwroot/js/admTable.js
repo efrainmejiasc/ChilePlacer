@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 
-function iniicio() {
+function inicio() {
     window.location.href = 'Index';
 }
 
