@@ -3,7 +3,6 @@
 $(document).ready(function () {
     console.log("ready!");
     getIdentityUserAdm();
-    classes();
     getNameTables();
 });
 
@@ -25,12 +24,6 @@ function getIdentityUserAdm() {
 
     return false;
 }
-
-
-function classes() {
-    console.log('classes');
-}
-
 
   function getNameTables() {
 
@@ -55,7 +48,7 @@ function buildTable (tableName) {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/GetRegisterTable",
+        url: "GetRegisterTable",
         data: { tableName: tableName },
         dataType: "json",
         success: function (data) {
@@ -145,7 +138,7 @@ function eliminarItem(id) {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/DeleteRegisterTable",
+        url: "DeleteRegisterTable",
         data: { tableName: nombreTabla, id: id },
         dataType: "json",
         success: function (data) {

@@ -28,60 +28,53 @@
   padding: 30px;
 }
 
+
 .btnCerrar {
-  border: none;
-  width: auto;
-  height: auto;
-  color: black;
-  background-color: white;
-  float: right;
+    border: none;
+    width: auto;
+    height: auto;
+    color: black;
+    background-color: white;
+    float: right;
 }
 
 .itypeg {
-  width: 150px;
-  background-color: #20c997;
-  color: white;
-  border-radius: 20px;
-  border-color: #20c997;
-  border: 0px;
+    width: 150px;
+    background-color: #20c997;
+    color: white;
+    border-radius: 20px;
+    border-color: #20c997;
+    border: 0px;
 }
 
 .ityper {
-  width: 150px;
-  background-color: #e83e8c;
-  color: white;
-  border-radius: 20px;
-  border-color: #e83e8c;
-  border: 0px;
+    width: 150px;
+    background-color: #e83e8c;
+    color: white;
+    border-radius: 20px;
+    border-color: #e83e8c;
+    border: 0px;
 }
 
 .ityped {
-  width: 150px;
-  background-color: #3db8e6;
-  color: white;
-  border-radius: 20px;
-  border-color: #3db8e6;
-  border: 0px;
+    width: 150px;
+    background-color: #3db8e6;
+    color: white;
+    border-radius: 20px;
+    border-color: #3db8e6;
+    border: 0px;
 }
 
 .spanR {
-  border-radius: 20px;
-  background-color: #e83e8c;
-  width: 2px;
-  height: 2px;
+    border-radius: 20px;
+    background-color: #e83e8c;
+    width: 2px;
+    height: 2px;
 }
 
 .spanG {
-  border-radius: 20px;
-  background-color: #20c997;
-  width: 2px;
-  height: 2px;
-}
-
-.floatleft{
-    float:left;
-}
-
-.floatright{
-    float: right;
+    border-radius: 20px;
+    background-color: #20c997;
+    width: 2px;
+    height: 2px;
 }

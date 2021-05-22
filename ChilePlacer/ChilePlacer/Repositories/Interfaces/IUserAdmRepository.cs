@@ -9,7 +9,9 @@ namespace ChilePlacer.Repositories.Interfaces
     public interface IUserAdmRepository
     {
         UserAdm InsertAdm(UserAdm model);
+        UserAdm GetUserAdm(string email);
         bool GetExisteEmail(string email, bool activo);
         UserAdm LoginAdm(string email, string password);
+        UserAdm UpdateAdmPassword(string email, string password);
     }
 }

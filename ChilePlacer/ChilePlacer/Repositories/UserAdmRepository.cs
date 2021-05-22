@@ -30,12 +30,30 @@ namespace ChilePlacer.Repositories
             return false;
         }
 
+        public UserAdm GetUserAdm(string email)
+        {
+            return  db.UserAdm.Where(x => x.Activo == true && x.EmailAdm == email).FirstOrDefault();
+        }
+
         public UserAdm InsertAdm(UserAdm model)
         {
             db.UserAdm.Add(model);
             db.SaveChanges();
 
             return model;
+        }
+
+        public UserAdm UpdateAdmPassword(string email, string password)
+        {
+            var adm = db.UserAdm.Where(x => x.EmailAdm == email && x.Activo == true).FirstOrDefault();
+            if (adm == null)
+                return null;
+
+            db.UserAdm.Attach(adm);
+            adm.PasswordAdm = password;
+            db.SaveChanges();
+
+            return adm;
         }
     }
 }

@@ -28,5 +28,8 @@ namespace ChilePlacer.DataModels
 
         [Column(Order = 5, TypeName = "DATETIME")]
         public DateTime Fecha { get; set; }
+
+        [Column(Order = 6, TypeName = "VARCHAR(50)")]
+        public string  RolAdm { get; set; }
     }
 }

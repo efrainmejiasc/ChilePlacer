@@ -6,6 +6,7 @@
     <script src="~/js/index.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/modal.css" />
 }
 
 
@@ -15,16 +16,43 @@
     <label> Autentificacion </label>
     <input type="email" id="email" class="form-check form-control" placeholder="Ingrese email" autocomplete="off" />
     <input type="password" id="password" class="form-check form-control" placeholder="Ingrese password" autocomplete="off" /><br />
-    <input type="submit" id="auth" class="btn-primary form-control" onclick="autentificar();"/>
+    <input type="submit" id="auth" class="btn-primary form-control" onclick="autentificar();" />
 
 </div>
 
-    <br />
+<br />
 
-    <div class="container text-center">
-        <a href="@ViewBag.UrlAdmTable"> Administrar catalogos </a>
-        <br />
-        <a href="@ViewBag.UrlAdmConfig"> Configuracion </a>
+<div class="container text-center">
+    <a href="@ViewBag.UrlAdmTable"> Administrar catalogos </a>
+    <br />
+    <a href="@ViewBag.UrlAdmConfig"> Configuracion </a>
+    <br />
+    <a href="#" onclick="abrirOlvido();"> Olvidate la contraseña </a>
+</div>
+
+<div class="container text-center">
+
+    <div id="olvido" class="modalTipo">
+        <div class="modal-content">
+            <div class="formulario-campo">
+                <label>Actualizaremos tus datos y enviaremos una contraseña temporal a tu correo electronico</label>
+                <input type='email' id="email2" class='form form-control' placeholder="Ingrese email..." style="text-align:justify;" />
+
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type='submit' class='btn btn-success float-left' onClick='enviarEmail();' value='Aceptar' />
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type='submit' class='btn btn-danger float-right' onClick='cerrarOlvido();' value='Cancelar' />
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+</div>
 
 

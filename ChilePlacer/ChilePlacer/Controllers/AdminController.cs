@@ -18,11 +18,13 @@ namespace ChilePlacer.Controllers
         private readonly ITypesRepository types;
         private readonly IHttpContextAccessor httpContext;
         private readonly IUserAdmRepository userAdm;
-        public AdminController(IUtilidad _util, ITypesRepository _types, IHttpContextAccessor _httpContext, IUserAdmRepository _userAdm)
+        private readonly ISendMail sendMail;
+        public AdminController(IUtilidad _util, ITypesRepository _types, IHttpContextAccessor _httpContext, IUserAdmRepository _userAdm, ISendMail _sendMail)
         {
             util = _util;
             types = _types;
             userAdm = _userAdm;
+            sendMail = _sendMail;
             httpContext = _httpContext;
         }
 
@@ -30,6 +32,7 @@ namespace ChilePlacer.Controllers
         {
             ViewBag.UrlAdmTable = EngineData.UrlServerHost + "Admin/AdmTable";
             ViewBag.UrlAdmConfig = EngineData.UrlServerHost + "Admin/AdmConfig";
+
             return View();
         }
 
@@ -59,7 +62,7 @@ namespace ChilePlacer.Controllers
             var adm = new UserAdm()
             {
                 EmailAdm = email, PasswordAdm = password64,
-                Activo = true,Fecha = DateTime.UtcNow
+                Activo = true,Fecha = DateTime.UtcNow,RolAdm="Administrador"
             };
 
            adm  = userAdm.InsertAdm(adm);
@@ -68,6 +71,40 @@ namespace ChilePlacer.Controllers
                 respuesta.Descripcion = "Registro satisfactorio";
             else
                 respuesta.Descripcion = "Registro fallido";
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateAdmPassword(string email, string password)
+        {
+            var respuesta = new RespuestaModel();
+            var password64 = util.CodeBase64(email + "#" + password);
+            var adm = userAdm.UpdateAdmPassword(email,password64);
+            respuesta.Descripcion = adm != null ? "Modificacion de contraseña satisfactoria" : "No existen los datos enviados";
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult OlvidoPassword(string email)
+        {
+            var respuesta = new RespuestaModel();
+            var adm = userAdm.GetUserAdm(email);
+
+            if(adm == null)
+            {
+                respuesta.Status = "false";
+                return Json(respuesta);
+            }
+
+            var codigo = util.ConstruirCodigo();
+            var password64 = util.CodeBase64(email + "#" + codigo);
+            var user = userAdm.UpdateAdmPassword(email, password64);
+            var subject = "www.chileplacer.cl , olvido de contraseña";
+            var body = "Tu nueva contraseña temporal es: " + codigo;
+
+            sendMail.EnviarMailNotificacion(subject, body, user.EmailAdm);
+            respuesta.Status = "true";
 
             return Json(respuesta);
         }
