@@ -6,7 +6,7 @@ SELECT * FROM ChilePlacer..PortadaGirls
 SELECT * FROM ChilePlacer..AppLog
 
 
-SELECT * FROM ChilePlacer..TypeAtencion                                SELECT * FROM ChilePlacer..TypeLocation
+SELECT * FROM ChilePlacer..TypeAtencion                                
 SELECT * FROM ChilePlacer..TypeContextura
 SELECT * FROM ChilePlacer..TypeCountry
 SELECT * FROM ChilePlacer..TypeDepilacion
@@ -31,6 +31,12 @@ SELECT * FROM ChilePlacer..Girls
 SELECT * FROM ChilePlacer..ProfileGirls
 SELECT * FROM ChilePlacer..GaleriaGirls
 SELECT * FROM ChilePlacer..AppLog
+
+SELECT * FROM ChilePlacer..TypeNacionalidad
+
+SELECT * FROM ChilePlacer..TypeLocation 
+SELECT * FROM ChilePlacer..TypeCountry
+
 
 --TRUNCATE TABLE ChilePlacer..Girls
 --TRUNCATE TABLE ChilePlacer..ProfileGirls
