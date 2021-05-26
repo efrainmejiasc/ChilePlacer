@@ -41,10 +41,10 @@ export class HomeComponent implements OnInit {
         $('#20l').attr("href", data[8].urlProfile); $('#21l').attr("href", data[9].urlProfile); $('#22l').attr("href", data[10].urlProfile); $('#23l').attr("href", data[11].urlProfile);
         $('#30l').attr("href", data[12].urlProfile); $('#31l').attr("href", data[13].urlProfile); $('#32l').attr("href", data[14].urlProfile); $('#33l').attr("href", data[15].urlProfile);
 
-        $('#00l').html(data[0].usershow); $('#01l').html(data[1].usershow); $('#02l').html(data[2].usershow); $('#03l').html(data[3].usershow);
-        $('#10l').html(data[4].usershow); $('#11l').html(data[5].usershow); $('#12l').html(data[6].usershow); $('#13l').html(data[7].usershow);
-        $('#20l').html(data[8].usershow); $('#21l').html(data[9].usershow); $('#22l').html(data[10].usershow); $('#23l').html(data[11].usershow);
-        $('#30l').html(data[12].usershow); $('#31l').html(data[13].usershow); $('#32l').html(data[14].usershow); $('#33l').html(data[15].usershow);
+        $('#00l').html(data[0].usershow[0]); $('#01l').html(data[1].usershow[0]); $('#02l').html(data[2].usershow[0]); $('#03l').html(data[3].usershow[0]);
+        $('#10l').html(data[4].usershow[0]); $('#11l').html(data[5].usershow[0]); $('#12l').html(data[6].usershow[0]); $('#13l').html(data[7].usershow[0]);
+        $('#20l').html(data[8].usershow[0]); $('#21l').html(data[9].usershow[0]); $('#22l').html(data[10].usershow[0]); $('#23l').html(data[11].usershow[0]);
+        $('#30l').html(data[12].usershow[0]); $('#31l').html(data[13].usershow[0]); $('#32l').html(data[14].usershow[0]); $('#33l').html(data[15].usershow[0]);
 
         $.each(data, function (index, value) {
          response.push(value);
