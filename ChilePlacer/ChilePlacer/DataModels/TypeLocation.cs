@@ -21,6 +21,6 @@ namespace ChilePlacer.DataModels
         public string Location { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR(100)")]
-        public int Country { get; set; }
+        public string Country { get; set; }
     }
 }

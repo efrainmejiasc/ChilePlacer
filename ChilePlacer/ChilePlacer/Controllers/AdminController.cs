@@ -42,6 +42,11 @@ namespace ChilePlacer.Controllers
             return View();
         }
 
+        public IActionResult AdmTableCountry()
+        {
+            return View();
+        }
+
         public IActionResult AdmConfig()
         {
             return View();
@@ -183,7 +188,7 @@ namespace ChilePlacer.Controllers
             nameTables.Add(s);
             s = new AdmTablesModel();
             s.IdTabla = "TypeCountry"; s.NombreTabla = "Pais residencia";
-            nameTables.Add(s);
+             nameTables.Add(s);
             s = new AdmTablesModel();
             s.IdTabla = "TypeDepilacion"; s.NombreTabla = "Tipos de Depilacion";
             nameTables.Add(s);
@@ -232,7 +237,7 @@ namespace ChilePlacer.Controllers
                 registros = types.GetRegistrosTypeAtencion();
             else if (tableName == "TypeContextura")
                 registros = types.GetRegistrosTypeContextura();
-            else if (tableName == "TypeCountry")
+             else if (tableName == "TypeCountry")
                 registros = types.GetRegistrosTypeCountry();
             else if (tableName == "TypeDepilacion")
                 registros = types.GetRegistrosTypeDepilacion();
@@ -375,6 +380,65 @@ namespace ChilePlacer.Controllers
 
 
             return Json("Ok");
+        }
+
+
+        [HttpPost]
+        public JsonResult GetPaises()
+        {
+            var registros = new List<AdmTablesModel>();
+            registros = types.GetRegistrosTypeCountry();
+            return Json(registros);
+        }
+
+
+        [HttpPost]
+        public JsonResult GetLocalidades(string pais)
+        {
+            var registros = new List<AdmTablesModel>();
+            registros = types.GetRegistrosTypeLocation(pais);
+            return Json(registros);
+        }
+
+
+        [HttpPost]
+        public JsonResult DeletePais(int id)
+        {
+            types.DeleteRegistrosTypeCountry(id);
+
+            return Json("Ok");
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteLocalidad(int id)
+        {
+            types.DeleteRegistrosTypeLocation(id);
+
+            return Json("Ok");
+        }
+
+        [HttpPost]
+        public JsonResult InsertLocalidad(string pais, string localidad)
+        {
+            var respuesta = new RespuestaModel();
+            try
+            {
+                var model = new TypeLocation()
+                {
+                    Country = pais,
+                    Ide = localidad,
+                    Location = localidad
+                };
+                types.InsertRegistrosTypeLocation(model);
+                respuesta.Descripcion = "Nueva localidad creada exitosamente";
+            }
+            catch
+            {
+                respuesta.Descripcion = "La localidad ya existe";
+            }
+
+            return Json(respuesta);
         }
     }
 }

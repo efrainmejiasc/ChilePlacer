@@ -11,6 +11,10 @@ function inicio() {
     window.location.href = 'Index';
 }
 
+function goToCountry() {
+    window.location.href = 'AdmTableCountry';
+}
+
 
 function getIdentityUserAdm() {
 
@@ -74,7 +78,7 @@ function buildTable (tableName) {
                 let tr = `<tr> 
                       <td> ${item.ide} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <input type='submit' class='btn btn-danger' onClick ='eliminarItem(${item.id})' value='Eliminar'/> </td>
+                      <td> <input type='submit' class='btn btn-danger' onClick = "eliminarItem('${item.id}')" value='Eliminar'/> </td>
                       </tr>`;
                 $('#tablaPortada tbody').append(tr);
             });
