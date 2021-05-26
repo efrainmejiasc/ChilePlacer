@@ -24,6 +24,7 @@ namespace ChilePlacer.Repositories.Interfaces
         List<TypeDepilacion> GetDepilacion();
         List<TypeNacionalidad> GetNacionalidad();
 
+
         void DeleteTypeServiceSex(List<TypeGirlServices> model, Guid identidad);
         void DeleteTypeAtencionGirl(List<TypeAtencionGirl> model, Guid identidad);
         List<TypeGirlServices> InsertTypeServiceSex(List<TypeGirlServices> model);
@@ -43,6 +44,7 @@ namespace ChilePlacer.Repositories.Interfaces
         List<AdmTablesModel> GetRegistrosTypeServicesSex();
         List<AdmTablesModel> GetRegistrosTypeSex();
         List<AdmTablesModel> GetRegistrosTypeSmoke();
+        List<AdmTablesModel> GetRegistrosTypeLocation(string pais);
 
 
         void DeleteRegistrosTypeAtencion(int id);
@@ -59,6 +61,7 @@ namespace ChilePlacer.Repositories.Interfaces
         void DeleteRegistrosTypeServicesSex(int id);
         void DeleteRegistrosTypeSex(int id);
         void DeleteRegistrosTypeSmoke(int id);
+        void DeleteRegistrosTypeLocation(int id);
 
 
         void InsertRegistrosTypeAtencion(TypeAtencion model);
@@ -75,5 +78,6 @@ namespace ChilePlacer.Repositories.Interfaces
         void InsertRegistrosTypeServicesSex(TypeServicesSex model);
         void InsertRegistrosTypeSex(TypeSex model);
         void InsertRegistrosTypeSmoke(TypeSmoke model);
+        void InsertRegistrosTypeLocation(TypeLocation model);
     }
 }

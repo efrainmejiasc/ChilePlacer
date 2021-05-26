@@ -356,6 +356,22 @@ namespace ChilePlacer.Repositories
             return lst;
         }
 
+        public List<AdmTablesModel> GetRegistrosTypeLocation(string pais)
+        {
+            var model = db.TypeLocation.Where(x => x.Country == pais).ToList();
+            var lst = new List<AdmTablesModel>();
+            var s = new AdmTablesModel();
+            foreach (var x in model)
+            {
+                s.Id = x.Id;
+                s.Ide = x.Ide;
+                s.Descripcion = x.Location;
+                lst.Add(s);
+                s = new AdmTablesModel();
+            }
+            return lst;
+        }
+
 
         #endregion
 
@@ -368,6 +384,12 @@ namespace ChilePlacer.Repositories
             db.SaveChanges();
         }
 
+        public void DeleteRegistrosTypeLocation(int id)
+        {
+            var m = db.TypeLocation.Where(x => x.Id == id).FirstOrDefault();
+            db.Remove(m);
+            db.SaveChanges();
+        }
         public  void DeleteRegistrosTypeContextura(int id)
         {
             var m = db.TypeContextura.Where(x => x.Id == id).FirstOrDefault();
@@ -546,6 +568,12 @@ namespace ChilePlacer.Repositories
         public void InsertRegistrosTypeSmoke(TypeSmoke model)
         {
             db.TypeSmoke.Add(model);
+            db.SaveChanges();
+        }
+
+        public void InsertRegistrosTypeLocation(TypeLocation model)
+        {
+            db.TypeLocation.Add(model);
             db.SaveChanges();
         }
 
