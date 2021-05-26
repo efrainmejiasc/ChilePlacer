@@ -34,5 +34,24 @@
   cursor: pointer;
 }
 
+.sf {
+  width: 110px;
+  height: 140px;
+  border-radius: 30%;
+  padding: 5px;
+}
+
+.sfl {
+  color: #e7dde4;
+  float:none;
+  font-size: 12px;
+  font-weight: bold
+}
+
+.sftd {
+  text-align: center;
+  width: 100px;
+  margin:auto;
+}
 
 
