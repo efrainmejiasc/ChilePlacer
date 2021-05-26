@@ -173,7 +173,7 @@ function buildTableLocalidad(pais) {
             $.each(data, function (index, item) {
                 let tr = `<tr> 
                         <td> ${item.ide} </td>
-                        <td> <input type='submit' class='btn btn-danger' onClick = "deleteLocalidad('${item.id}, ${item.ide}')" value='Eliminar'/> </td>
+                        <td> <input type='submit' class='btn btn-danger' onClick = "deleteLocalidad('${item.id}', '${item.ide}')" value='Eliminar'/> </td>
                       </tr>`;
                 $('#tablaPortada tbody').append(tr);
             });
