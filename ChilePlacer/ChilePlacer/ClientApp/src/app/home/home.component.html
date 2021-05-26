@@ -11,12 +11,44 @@
 
   <hr />
 
+  <table id="seriesFoto" class="table table-hover" style="border:none;text-align:center;">
+    <tr>
+       <td class="sftd"> <img id="00" class="sf" /> <br /> <a id="00l" class="sfl"> </a></td>
+       <td class="sftd"> <img id="01" class="sf" /> <br /> <a id="01l" class="sfl"> </a></td>
+       <td class="sftd"> <img id="02" class="sf" /> <br /> <a id="02l" class="sfl"> </a></td>
+       <td class="sftd"> <img id="03" class="sf" /> <br /> <a id="03l" class="sfl"> </a></td>
+    </tr>
+
+    <tr>
+      <td class="sftd"> <img id="10" class="sf" /> <br /> <a id="10l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="11" class="sf" /> <br /> <a id="11l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="12" class="sf" /> <br /> <a id="12l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="13" class="sf" /> <br /> <a id="13l" class="sfl"> </a></td>
+    </tr>
+
+    <tr>
+      <td class="sftd"> <img id="20" class="sf" /> <br /> <a id="20l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="21" class="sf" /> <br /> <a id="21l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="22" class="sf" /> <br /> <a id="22l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="23" class="sf" /> <br /> <a id="23l" class="sfl"> </a></td>
+    </tr>
+
+    <tr>
+      <td class="sftd"> <img id="30" class="sf" /> <br /> <a id="30l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="31" class="sf" /> <br /> <a id="31l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="32" class="sf" /> <br /> <a id="32l" class="sfl"> </a></td>
+      <td class="sftd"> <img id="33" class="sf" /> <br /> <a id="33l" class="sfl"> </a></td>
+    </tr>
+  </table>
+
+  <hr />
+
   <table id="tablaPortada" class="table table-hover" style="border:none;text-align:center;">
     <thead style="display:none;"></thead>
     <tbody>
       <tr *ngFor="let item of items">
         <td>
-          <a href={{item.urlProfile}} style="color:#e7dde4;float:left;font-size:18px;font-weight: bold"> {{item.usershow[0]}} </a>
+          <a href={{item.urlProfile}} style="color:#e7dde4;float:left;font-size:18px;font-weight:bold"> {{item.usershow[0]}} </a>
 
           <img src={{item.img64}} style="width:440px;height:560px;border-radius:30%;padding:18px;" /><p></p><p></p>
 
