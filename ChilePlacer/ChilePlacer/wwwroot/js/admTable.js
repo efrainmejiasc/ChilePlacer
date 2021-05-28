@@ -20,7 +20,7 @@ function getIdentityUserAdm() {
 
     $.ajax({
         type: "POST",
-        url: "GetIdentityUserAdm",
+        url: urlGetIdentityUserAdm,
         dataType: "json",
         success: function (data) {
             if (data === null)
@@ -38,7 +38,7 @@ function getIdentityUserAdm() {
 
     $.ajax({
         type: "POST",
-        url: "GetNameTables",
+        url: urlGetNameTables,
         dataType: "json",
         success: function (data) {
             $("#tables").empty();
@@ -57,7 +57,7 @@ function buildTable (tableName) {
 
     $.ajax({
         type: "POST",
-        url: "GetRegisterTable",
+        url: urlGetRegisterTable,
         data: { tableName: tableName },
         dataType: "json",
         success: function (data) {
@@ -78,7 +78,7 @@ function buildTable (tableName) {
                 let tr = `<tr> 
                       <td> ${item.ide} </td>
                       <td> ${item.descripcion} </td>
-                      <td> <input type='submit' class='btn btn-danger' onClick = "eliminarItem('${item.id}')" value='Eliminar'/> </td>
+                      <td> <input type='submit' class='btn btn-danger' onClick = "eliminarItem( '${item.id}' )" value='Eliminar'/> </td>
                       </tr>`;
                 $('#tablaPortada tbody').append(tr);
             });
@@ -125,7 +125,7 @@ function nuevoItem() {
 
     $.ajax({
         type: "POST",
-        url: "AdmTables/InsertRegisterTable",
+        url: urlInsertRegisterTable,
         data: { tableName: nombreTabla, descripcion: descripcion },
         dataType: "json",
         success: function (data) {
@@ -147,7 +147,7 @@ function eliminarItem(id) {
 
     $.ajax({
         type: "POST",
-        url: "DeleteRegisterTable",
+        url: urlDeleteRegisterTable,
         data: { tableName: nombreTabla, id: id },
         dataType: "json",
         success: function (data) {

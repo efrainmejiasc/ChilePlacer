@@ -27,7 +27,7 @@ function getIdentityUserAdm() {
 
     $.ajax({
         type: "POST",
-        url: "GetIdentityUserAdm",
+        url: urlGetIdentityUserAdm,
         dataType: "json",
         success: function (data) {
             if (data === null)
@@ -103,7 +103,7 @@ function nuevoAdm() {
 
     $.ajax({
         type: "POST",
-        url: "RegistroAdm",
+        url: urlRegistroAdm,
         data: {email: email, password: password1},
         dataType: "json",
         success: function (data) {
@@ -183,7 +183,7 @@ function modificarAdm() {
 
     $.ajax({
         type: "POST",
-        url: "UpdateAdmPassword",
+        url: urlUpdateAdmPassword,
         data: { email: email, password: password1 },
         dataType: "json",
         success: function (data) {

@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="~/css/modal.css" />
 }
 
-
+<script>
+    var urlLoginAdm = '@Url.Action("LoginAdm", "Admin")';
+    var urlOlvidoPassword ='@Url.Action("OlvidoPassword", "Admin")';
+</script>
 
 <div class="container text-center" style="margin-top:5%;text-align:center;">
 
-    <label> Autentificacion </label>
+    <label style="font-size:26px;"> Autentificacion </label>
     <input type="email" id="email" class="form-check form-control" placeholder="Ingrese email" autocomplete="off" />
     <input type="password" id="password" class="form-check form-control" placeholder="Ingrese password" autocomplete="off" /><br />
     <input type="submit" id="auth" class="btn-primary form-control" onclick="autentificar();" />

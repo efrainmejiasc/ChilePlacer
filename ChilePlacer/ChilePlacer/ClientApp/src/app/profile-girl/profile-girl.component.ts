@@ -54,8 +54,8 @@ export class ProfileGirlComponent implements OnInit {
     });
 
     //setTimeout(this.getProfile, 1000);
-    setTimeout(this.getImageProfile, 2000);
-    setTimeout(this.getImagenes, 2000);
+    setTimeout(this.getImageProfile, 2500);
+    setTimeout(this.getImagenes, 2500);
 
   }
 
@@ -147,7 +147,7 @@ export class ProfileGirlComponent implements OnInit {
 
     //setTimeout(this.getProfile, 1500);
     setTimeout(this.getImageProfile, 2000);
-    setTimeout(this.getImagenes, 2500);
+    setTimeout(this.getImagenes, 3000);
   }
 
   public getImagenes() {

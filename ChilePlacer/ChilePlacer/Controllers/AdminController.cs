@@ -67,7 +67,7 @@ namespace ChilePlacer.Controllers
             var adm = new UserAdm()
             {
                 EmailAdm = email, PasswordAdm = password64,
-                Activo = true,Fecha = DateTime.UtcNow,RolAdm="Administrador"
+                Activo = true,Fecha = DateTime.UtcNow,RolAdm="administrador"
             };
 
            adm  = userAdm.InsertAdm(adm);

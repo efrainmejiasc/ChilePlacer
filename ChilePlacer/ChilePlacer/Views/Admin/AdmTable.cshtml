@@ -1,12 +1,19 @@
 ﻿
 @{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="~/js/admTable.js"></script>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/modal.css" />
 }
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="~/js/admTable.js"></script>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-<link rel="stylesheet" href="~/css/modal.css" />
+<script>
+    var urlGetIdentityUserAdm = '@Url.Action("GetIdentityUserAdm", "Admin")';
+    var urlGetNameTables = '@Url.Action("GetNameTables", "Admin")';
+    var urlGetRegisterTable = '@Url.Action("GetRegisterTable","Admin")';
+    var urlInsertRegisterTable = '@Url.Action("InsertRegisterTable","Admin")';
+    var urlDeleteRegisterTable = '@Url.Action("DeleteRegisterTable", "Admin")';
+</script>
 
 <input type="hidden" />
 
@@ -25,7 +32,7 @@
             <label>Nombre Tablas</label>
         </div>
         <div class="col-md-8">
-            <select id="tables" onchange="buscarRegistros()" class="form form-control"  style="width:300px;"></select>
+            <select id="tables" onchange="buscarRegistros()" class="form form-control" style="width:300px;"></select>
         </div>
     </div>
 

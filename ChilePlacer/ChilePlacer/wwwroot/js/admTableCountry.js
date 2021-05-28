@@ -5,11 +5,19 @@ $(document).ready(function () {
     buildTablePais()
 });
 
+function inicio() {
+    window.location.href = "Index";
+}
+
+function catalogos() {
+    window.location.href = "AdmTable";
+}
+
 function getIdentityUserAdm() {
 
     $.ajax({
         type: "POST",
-        url: "GetIdentityUserAdm",
+        url: urlGetIdentityUserAdm,
         dataType: "json",
         success: function (data) {
             if (data === null)
@@ -27,7 +35,7 @@ function buildTablePais() {
 
     $.ajax({
         type: "POST",
-        url: "GetPaises",
+        url: urlGetPaises,
         dataType: "json",
         success: function (data) {
             console.log(data);
@@ -66,7 +74,7 @@ function deletePais(id) {
 
     $.ajax({
         type: "POST",
-        url: "DeletePais",
+        url: urlDeletePais,
         data: { id: id},
         dataType: "json",
         success: function (data) {
@@ -84,11 +92,11 @@ function deletePais(id) {
 
 function deleteLocalidad(id,pais) {
 
-    var pais = $('#_country').val(pais);
+    $('#_country').val(pais);
 
     $.ajax({
         type: "POST",
-        url: "DeleteLocalidad",
+        url: urlDeleteLocalidad,
         data: { id: id },
         dataType: "json",
         success: function (data) {
@@ -127,7 +135,7 @@ function nuevaLocalidad() {
 
     $.ajax({
         type: "POST",
-        url: "InsertLocalidad",
+        url: urlInsertLocalidad,
         data: { pais: pais, localidad: localidad},
         dataType: "json",
         success: function (data) {
@@ -153,7 +161,7 @@ function buildTableLocalidad(pais) {
 
     $.ajax({
         type: "POST",
-        url: "GetLocalidades",
+        url: urlGetLocalidades,
         data: {pais: pais},
         dataType: "json",
         success: function (data) {

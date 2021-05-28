@@ -15,7 +15,7 @@ function autentificar() {
 
     $.ajax({
         type: "POST",
-        url: "LoginAdm",
+        url: urlLoginAdm,
         data: { email: email, password: password },
         dataType: "json",
         success: function (data) {
@@ -69,7 +69,7 @@ function enviarEmail() {
 
     $.ajax({
         type: "POST",
-        url: "OlvidoPassword",
+        url: urlOlvidoPassword,
         data: { email: email},
         dataType: "json",
         success: function (data) {
@@ -79,7 +79,7 @@ function enviarEmail() {
             else
                 alert('Datos ingresados incorrectos');
 
-            cerrarAdmMod();
+            cerrarOlvido();
         },
         complete: function () {
             console.log('OlvidoPassword');

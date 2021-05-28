@@ -7,13 +7,23 @@
     <link rel="stylesheet" href="~/css/modal.css" />
 }
 
-<input type="hidden" id="_country" />
+<script>
+      var urlGetIdentityUserAdm = '@Url.Action("GetIdentityUserAdm", "Admin")';
+      var urlGetPaises = '@Url.Action("GetPaises", "Admin")';
+      var urlDeletePais = '@Url.Action("DeletePais", "Admin")';
+      var urlDeleteLocalidad = '@Url.Action("DeleteLocalidad", "Admin")';
+      var urlInsertLocalidad = '@Url.Action("InsertLocalidad", "Admin")';
+      var urlGetLocalidades = '@Url.Action("GetLocalidades", "Admin")';
+</script>
 
+<input type="hidden" id="_country" />
 
 <div class="container" style="margin-top:3%;">
 
     <div class="row col-md-6">
+        <input type="submit" class="btn btn-light" value="Inicio" onclick="inicio();" />
         <input type="submit" class="btn btn-light" value="Paises" onclick="buildTablePais();" />
+        <input type="submit" class="btn btn-light" value="Catalogos" onclick="catalogos();" />
     </div><br />
 
     <div style="text-align:center;">
