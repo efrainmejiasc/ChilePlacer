@@ -73,10 +73,9 @@ export class GirlCompletedProfileComponent implements OnInit {
         else if (event.type === HttpEventType.Response) {
           this.message = 'Exito';
           this.onUploadFinished.emit(event.body);
+          setTimeout(this.setImageProfile, 2000);
         }
       });
-
-    setTimeout(this.setImageProfile, 3000);
   }
 
   public getParametros() {
@@ -119,7 +118,7 @@ export class GirlCompletedProfileComponent implements OnInit {
       if (soloNum.test(nvalor) || soloLet.test(nvalor) || !nvalor.includes('-')) {
         $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
         $('#mensaje').show();
-        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        setTimeout(function () { $('#mensaje').hide(); }, 4000);
         $('#username').val('');
       }
 
@@ -127,7 +126,7 @@ export class GirlCompletedProfileComponent implements OnInit {
       if (!soloNum.test(svalor[1]) || !soloLet.test(svalor[0])) {
         $('#msj').html('El nombre de fantasia no cumple con el formato: Nombre seguido de guion y digitos,ej:<strong> Katerina-2210');
         $('#mensaje').show();
-        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        setTimeout(function () { $('#mensaje').hide(); }, 4000);
         $('#username').val('');
       }
 
@@ -143,7 +142,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     if (!resultado) {
       $('#msj').html('Las medidas deben cumplir un formato, ej: 90-60-90');
       $('#mensaje').show();
-      setTimeout(function () { $('#mensaje').hide(); }, 3000);
+      setTimeout(function () { $('#mensaje').hide(); }, 4000);
       $('#medidas').val('');
     }
     return false;
@@ -352,7 +351,7 @@ export class GirlCompletedProfileComponent implements OnInit {
         $('#msj').html('');
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
-        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        setTimeout(function () { $('#mensaje').hide(); }, 4000);
       },
       complete: function () {
         console.log('SaveProfileGirls');
@@ -366,7 +365,7 @@ export class GirlCompletedProfileComponent implements OnInit {
     $('#msj').html('');
     $('#msj').html(msj);
     $('#mensaje').show();
-    setTimeout(this.ocultarmensaje, 3000);
+    setTimeout(this.ocultarmensaje, 4000);
   }
 
   public ocultarmensaje() {

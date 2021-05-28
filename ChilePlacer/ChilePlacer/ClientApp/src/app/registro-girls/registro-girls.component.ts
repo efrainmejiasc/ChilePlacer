@@ -76,7 +76,7 @@ export class RegistroGirlsComponent  {
     $('#msj').html('');
     $('#msj').html(msj);
     $('#mensaje').show();
-    setTimeout(this.ocultarmensaje, 3000);
+    setTimeout(this.ocultarmensaje, 4000);
   }
 
   public cancelar() {
@@ -95,14 +95,14 @@ export class RegistroGirlsComponent  {
        if (soloNum.test(nvalor) || soloLet.test(nvalor)) {
          $('#msj').html('La contraseña debe contener numeros y letras');
          $('#mensaje').show();
-         setTimeout(function () { $('#mensaje').hide(); }, 3000);
+         setTimeout(function () { $('#mensaje').hide(); }, 4000);
          $('#password').val('');
        }
 
        if (nvalor.length < 8) {
          $('#msj').html('La contraseña debe contener minimo ocho(8) caracteres');
          $('#mensaje').show();
-         setTimeout(function () { $('#mensaje').hide(); }, 3000);
+         setTimeout(function () { $('#mensaje').hide(); }, 4000);
          $('#password').val('');
        }
      }

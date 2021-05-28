@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   public getImagenesPortada() {
 
+    $('#loading').show();
     $('#searchUsuario').val('');
     var response = [];
 
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
         $.each(data, function (index, value) {
          response.push(value);
         });
-      
+        $('#loading').hide();
+
       },
       complete: function () {
         console.log('getImagenesPortada');
@@ -79,7 +81,7 @@ export class HomeComponent implements OnInit {
           $('#msj').html('');
           $('#msj').html( username + ' No se encuentra registrado');
           $('#mensaje').show();
-          setTimeout(function () { $('#mensaje').hide(); }, 3000);
+          setTimeout(function () { $('#mensaje').hide(); }, 4000);
         }
         else {
           window.location.href = AppConfiguration.Setting().urlServerHost + '/cl?user=' + data.username + "&ide=" + data.identidad64;

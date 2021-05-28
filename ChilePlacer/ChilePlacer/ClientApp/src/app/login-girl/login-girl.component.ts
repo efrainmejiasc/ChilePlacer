@@ -34,7 +34,7 @@ export class LoginGirlComponent implements OnInit {
     $('#msj').html('');
     $('#msj').html(msj);
     $('#mensaje').show();
-    setTimeout(this.ocultarmensaje, 3000);
+    setTimeout(this.ocultarmensaje, 4000);
   }
 
   public loginGirls() {
@@ -52,7 +52,7 @@ export class LoginGirlComponent implements OnInit {
         $('#msj').html('');
         $('#msj').html(data.descripcion);
         $('#mensaje').show();
-        setTimeout(function () { $('#mensaje').hide(); }, 3000);
+        setTimeout(function () { $('#mensaje').hide(); }, 4000);
         setTimeout(function () { window.location.href = AppConfiguration.Setting().urlServerHost ; }, 3000);
       },
       complete: function () {
@@ -111,7 +111,7 @@ export class LoginGirlComponent implements OnInit {
           $('#_mensaje').css("color", "red");
           $('#_mensaje').html(data.descripcion);
           $('#_msj').show();
-          setTimeout(function() { $('#_msj').hide(); }, 3000);
+          setTimeout(function() { $('#_msj').hide(); }, 4000);
           $('#olvido').hide();
           return false;
         }
@@ -169,7 +169,7 @@ export class LoginGirlComponent implements OnInit {
           $('#_mensaje').css("color", "red");
           $('#_mensaje').html(data.descripcion);
           $('#_msj').show();
-          setTimeout(function () { $('#_msj').hide(); }, 3000);
+          setTimeout(function () { $('#_msj').hide(); }, 4000);
           return false;
         }
       }

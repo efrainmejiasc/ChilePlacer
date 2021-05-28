@@ -19,9 +19,9 @@ export class ClComponent implements OnInit {
 
   ngOnInit() {
     this.getParametros();
-    setTimeout(this.getProfile, 2000);
-    setTimeout(this.getImageProfile, 2000);
-    setTimeout(this.getImagenes, 2000);
+    setTimeout(this.getProfile, 1000);
+    setTimeout(this.getImageProfile, 1000);
+    setTimeout(this.getImagenes, 1000);
   }
 
 
@@ -126,6 +126,8 @@ export class ClComponent implements OnInit {
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
         });
+
+        $('#loading').hide();
       },
       complete: function () {
         console.log('GetIdentityUser');

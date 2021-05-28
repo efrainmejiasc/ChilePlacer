@@ -53,9 +53,8 @@ export class ProfileGirlComponent implements OnInit {
       }
     });
 
-    //setTimeout(this.getProfile, 1000);
-    setTimeout(this.getImageProfile, 2500);
-    setTimeout(this.getImagenes, 2500);
+    setTimeout(this.getImageProfile, 1500);
+    setTimeout(this.getImagenes, 1500);
 
   }
 
@@ -140,14 +139,13 @@ export class ProfileGirlComponent implements OnInit {
         else if (event.type === HttpEventType.Response) {
           this.message = 'Exito';
           this.onUploadFinished.emit(event.body);
+          //setTimeout(this.getProfile, 1500);
+          setTimeout(this.getImageProfile, 1000);
+          setTimeout(this.getImagenes, 1000);
         }
       });
 
     $('#_texto').val('');
-
-    //setTimeout(this.getProfile, 1500);
-    setTimeout(this.getImageProfile, 2000);
-    setTimeout(this.getImagenes, 3000);
   }
 
   public getImagenes() {
@@ -184,6 +182,8 @@ export class ProfileGirlComponent implements OnInit {
                       </tr>`;
           $('#tablaPortada tbody').append(tr);
         });
+
+        $('#loading').hide();
       },
       complete: function () {
         console.log('GetIdentityUser');

@@ -90,7 +90,7 @@ namespace ChilePlacer.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("api/UploadFilePublication")]
-        public async Task<RespuestaModel> UploadFilePublicationAsync(IFormFile file, string identidad,string texto = "")
+        public RespuestaModel UploadFilePublication(IFormFile file, string identidad,string texto = "")
         {
             var respuesta = new RespuestaModel();
             if (file != null)
@@ -156,7 +156,6 @@ namespace ChilePlacer.Controllers
                     else
                     {
                         respuesta.Descripcion = "El archivo debe ser de tipo: (.jpg .jpeg .bmp .png .gif)";
-                        await Task.Delay(2000);
                         return respuesta;
                     }
                  
@@ -171,20 +170,16 @@ namespace ChilePlacer.Controllers
                     };
                     log.InserAppLog(error);
                     respuesta.Descripcion = ex.ToString();
-                    await Task.Delay(2000);
                     return respuesta;
                 }
             }
             else
             {
-                
                 respuesta.Descripcion = "El valor no puede ser nulo";
-                await Task.Delay(2000);
                 return respuesta;
             }
 
             respuesta.Descripcion = "OK: Exito";
-            await Task.Delay(2000);
             return respuesta;
         }
 
